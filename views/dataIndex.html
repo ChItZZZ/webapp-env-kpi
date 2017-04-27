@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="styles/dataManage.css">
+<link rel="stylesheet" href="bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css"/>
+
+<div class="dashboard-init">
+  <nav class="dashboard-subnav navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-collapse">
+        <div>
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="#/data" style="font-size:20px;padding-left:0px;">智慧城市-太仓 数据管理系统</a>
+            </li>
+
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown " style="float:right">
+              <a href="javascript:void(0);" ng-click="logout()">
+                <div class="name">退出</div>
+              </a>
+            </li>
+            <li class="dropdown" style="float:right">
+              <a href="#/data">
+                <div class="name">欢迎! {{currentUser.account}}</div>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid dashboard-content">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="sidebar">
+          <ul class="nav sidenav">
+            <li class="data-nav" ui-sref-active="active">
+              <a ui-sref="dataApp.data">数据管理</a>
+              <ul class="list-unstyled">
+                <li>
+                  <div class="class-filter-input-wrapper">
+                    <form>
+                      <input type="text" ng-model="searchText" class="class-filter-input form-control" placeholder=""></form>
+                  </div>
+                </li>
+              </ul>
+              <ul class="nav sidenav storage-data-list" style="overflow-y:auto">
+                <li class="cla-item" ng-class="{'active': $state.params.table == tableItem.table.name}" ng-repeat="tableItem in tableList | filter:searchText">
+                  <a href="#/data?table={{tableItem.table.name}}">
+                    <span class="cla-name">{{tableItem.table.description}}</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- <li class="data-nav" ui-sref-active="active">
+            <a ui-sref="dataApp.dict">字典表管理</a>
+          </li>
+          -->
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div ui-view></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div>
+<div style="width:100%;text-align:center;margin-top:30px;font-size:11px; color:#777;">
+  主办单位：太仓市人民政府　制作：太仓市经济和信息化委员会　同济大学太仓智慧城市高新技术研究院
+  <br>
+  建议使用IE9.0以上浏览器 网站联系电话：（86）0512-53577423
+  <br>苏ICP备08000273号</div>
+</div>

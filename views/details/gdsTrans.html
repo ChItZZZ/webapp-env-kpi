@@ -1,0 +1,93 @@
+
+<div class="banner details-banner">
+	<div class="container"  style="background-image: url(../images/banner/publicservice_banner.png);">
+		<ol class="breadcrumb">
+			<li><a href="/">首页</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6003})">公共事业</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6003})">交通</a></li>
+			<li class="active">货物运输</li>
+		</ol>
+		<h2>货物运输</h2>
+	</div>
+</div>
+<div class="details-content">
+	<div class="container">
+		<tabset>
+			<tab heading="货车数量" id="tab_MedicalInstitutions">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								货车数量
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-8 chart-panel">
+									<highchart  id="gdsTrckNumPieChart" config="gdsTrckNumPieChart" ></highchart>
+								</div>
+								<div class="col-md-4">
+									<table class="table table-hover">
+										<caption><h4>{{displayYear}} 年 {{TrckLastMonth}} 月货车存量分布情况</h4></caption>
+	    								<tr ng-repeat="gdsTrckNum in gdsTrckNumLastMonthList">
+	    									<td><font size="3">{{gdsTrckNum.name}}</font></td>
+	    									<td class="t-right"><font size="3">{{gdsTrckNum.number}}辆</font></td>
+	    								</tr>
+									</table>
+								</div>
+							</div>
+							<div><hr></div>
+							<div class="row">
+								<div class="col-md-8 chart-panel">
+									<highchart  id="gdsTrckNumKindColumnChart"  config="gdsTrckNumKindColumnChart" ></highchart>
+								</div>
+								<div class="col-md-4">
+									<h4>货车类别选择</h4>
+									<div class="radio" ng-repeat="gdsTrckNumOne in gdsTrckNumList">
+										<label>
+											<input type="radio" ng-model="gdsTrckKindSelected" ng-value="gdsTrckNumOne.name" name="gdsTrckNumList" ng-click="gdsTrckKindChange(gdsTrckNumOne)">
+								            <font size="3">{{gdsTrckNumOne.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</tab>
+			<tab heading="货车吨位数" id="tab_MedicalInstitutions">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								货车吨位数
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-8 chart-panel">
+									<highchart  id="gdsTrckTngKindColumnChart" config="gdsTrckTngKindColumnChart" ></highchart>
+								</div>
+								<div class="col-md-4">
+									<table class="table table-hover">
+										<caption><h4>{{displayYear}} 年 {{TrckLastMonth}} 月货车吨位数分布情况</h4></caption>
+	    								<tr ng-repeat="gdsTrckTng in gdsTrckTngLastMonthList">
+	    									<td><font size="3">{{gdsTrckTng.name}}</font></td>
+	    									<td class="t-right"><font size="3">{{gdsTrckTng.number}}吨</font></td>
+	    								</tr>
+									</table>
+									<div><br><br></div>
+									<h4>货车吨位数类别选择</h4>
+									<div class="radio" ng-repeat="gdsTrckTngOne in gdsTrckTngList">
+										<label>
+											<input type="radio" ng-model="gdsTrckTngKindSelected" ng-value="gdsTrckTngOne.name" name="gdsTrckTngList" ng-click="gdsTrckTngKindChange(gdsTrckTngOne)">
+								            <font size="3">{{gdsTrckTngOne.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</tab>
+		</tabset>
+	</div>
+</div>

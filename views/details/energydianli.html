@@ -1,0 +1,471 @@
+<div class="banner details-banner">
+	<div class="container" style="background-image: url(../images/banner/energy_banner.png);">
+		<ol class="breadcrumb">
+			<li><a href="/">首页</a></li>
+			<li>
+				<a ui-sref="app.kpicategory({categoryId:5001})">资源环境</a>
+			</li>
+			<li>
+				<a ui-sref="app.kpicategory({categoryId:5001})">电力消耗</a>
+			</li>
+			<li class="active">电力消耗详情</li>
+		</ol>
+		<h2>全社会用电量</h2>
+	</div>
+</div>
+
+<div class="details-content">
+	<div class="container">
+		<tabset>
+			<tab heading="全行业用电量">
+				<div class="row" style="margin-top: 20px;">
+					<div class="col-md-12">
+						<tabset class="sub-nav-tabs-conatainer">
+							<tab heading="电力消耗量-分产业">
+							
+								<div class="panel panel-primary" style="margin-top:20px">
+										<div class="panel-heading">{{nowyear}}{{nowmonth}}关键数据</div>
+										<div class="panel-body" style="padding: 0;">
+											<div class=" col-md-4">			
+												<div class="col-md-4">
+													<img style="height: 50px;width:50px;" src="/images/energy/dianli.png" />
+												</div>
+												<div class="col-md-8">
+													<div class="key-title"><h5>第一产业电力消耗量</h5></div>
+													<div class="content">
+													<h5>{{diyichanye_value}} 万千瓦时</h5>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="col-md-4">
+													<img style="height: 50px;width:50px;" src="/images/energy/dianli.png" />
+												</div>
+												<div class="col-md-8">
+													<div class="key-title"><h5>第二产业电力消耗量</h5></div>
+													<div class="content">
+													<h5>{{dierchanye_value}} 万千瓦时</h5>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="col-md-4">
+													<img style="height: 50px;width:50px;" src="/images/energy/dianli.png" />
+												</div>
+												<div class="col-md-8">
+													<div class="key-title"><h5>第三产业电力消耗量</h5></div>
+													<div class="content">
+														<h5>{{disanchanye_value}} 万千瓦时</h5>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										{{nowyear}}{{nowmonth}}电力消耗量-分产业
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-6 chart-panel" align="center">										 
+												<highchart class="col-md-6"  style="width:500px;height:500px" config="energydianli_chanye_option"></highchart>
+											</div>
+											<div class="col-md-6" align="center">
+												<highchart class="col-md-6" style="width:500px;height:500px" config="energydianli_chanye_column_option"></highchart>												
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										{{nowyear}}第一产业电力消耗量
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9 chart-panel">											 
+												<highchart class="col-md-6" style="width:700px;height:500px" config="energydianli_diyichanye_option">第一产业电力消耗量</highchart>
+											</div>
+											<div class="col-md-3">
+												<p class="fill-margin"></p>
+												<div class="ioc-panel-desc">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<p>一.{{nowmonth}}第一产业用电量:{{diyichanye_value}} 万千瓦时</p>   
+													<p>二.{{nowmonth}}第一产业用电量累计比上年同期增加:{{diyichanye_rate}}%</p>                                                
+													                                             
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										{{nowyear}}第二产业电力消耗量
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9 chart-panel">											 
+												<highchart class="col-md-6" style="width:700px;height:500px" config="energydianli_dierchanye_option">第二产业电力消耗量</highchart>
+											</div>
+											<div class="col-md-3">
+												<p class="fill-margin"></p>
+												<div class="ioc-panel-desc">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>				
+													<p>一.{{nowmonth}}第二产业用电量:{{dierchanye_value}} 万千瓦时</p>   
+													<p>二.{{nowmonth}}第二产业用电量累计比上年同期增加:{{dierchanye_rate}}%</p>            									                           							
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>	
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										{{nowyear}}第三产业电力消耗量
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9 chart-panel">											 
+		                                    	<highchart class="col-md-6" style="width:700px;height:500px" config="energydianli_disanchanye_option">第三产业电力消耗量</highchart>
+											</div>
+											<div class="col-md-3">
+												<p class="fill-margin"></p>
+												<div class="ioc-panel-desc">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<p>一.{{nowmonth}}第三产业用电量:{{disanchanye_value}} 万千瓦时</p>   
+													<p>二.{{nowmonth}}第三产业用电量累计比上年同期增加:{{disanchanye_rate}}%</p>          
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>								
+							</tab>
+							<tab heading="电力消耗量-分行业">
+								<div class="panel panel-primary" style="margin-top:20px">
+									<div class="panel-heading">
+										{{nowyear}}{{nowmonth}}电力消耗量-分行业
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-6 chart-panel" align="center">											 
+												<highchart class="col-md-6"  style="width:500px;height:500px" config="energydianli_hangye_option"></highchart>												
+												
+											</div>
+											<div class="col-md-6">											 											
+												<highchart class="col-md-6" style="width:500px;height:500px" config="energydianli_hangye_column_option"></highchart>												
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										{{nowyear}}农、林、牧、渔业电力消耗量
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9 chart-panel">											 
+	                                			<highchart class="col-md-6" style="width:700px;height:500px" config="energydianli_nonglingmuyuhangye_option">农、林、牧、渔业电力消耗量</highchart>
+											</div>
+											<div class="col-md-3">
+												<p class="fill-margin"></p>
+												<div class="ioc-panel-desc">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>        
+													<p>一.{{nowmonth}}农、林、牧、渔业用电量:{{nonglingyongdianliang_value}} 万千瓦时</p>   
+													<p>二.{{nowmonth}}农、林、牧、渔业用电量累计比上年同期增加:{{nonglingyongdianliang_rate}}%</p>                                                
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										{{nowyear}}工业电力消耗量
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+												<div class="col-md-9 chart-panel">											 
+													<highchart class="col-md-6" style="width:700px;height:500px" config="energydianli_gongyehangye_option">工业电力消耗量</highchart>
+												</div>
+												<div class="col-md-3">
+													<p class="fill-margin"></p>
+													<div class="ioc-panel-desc">
+														<p class="ioc-panel-desc-title">
+															<img src="/images/common/titles/one-sentence.png"/>
+														</p>	
+														<p>一.{{nowmonth}}工业用电量:{{gongyeyongdianliang_value}} 万千瓦时</p>   
+														<p>二.{{nowmonth}}工业用电量累计比上年同期增加:{{gongyeyongdianliang_rate}}%</p>												                           							
+													</div>
+												</div>
+											</div>
+									</div>
+								</div>	
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										{{nowyear}}建筑业电力消耗量
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9 chart-panel">											 
+		                                    		<highchart class="col-md-6" style="width:700px;height:500px" config="energydianli_jianzhuyehangye_option">建筑业电力消耗量</highchart>
+											</div>
+											<div class="col-md-3">
+												<p class="fill-margin"></p>
+												<div class="ioc-panel-desc">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<p>一.{{nowmonth}}建筑业用电量:{{jianzhuyeyongdianliang_value}} 万千瓦时</p>   
+													<p>二.{{nowmonth}}建筑业用电量累计比上年同期增加:{{jianzhuyeyongdianliang_rate}}%</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>								
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										{{nowyear}}交通运输、仓储和邮政业电力消耗量
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+												<div class="col-md-9 chart-panel">											 
+	                                               <highchart class="col-md-6" style="width:700px;height:500px" config="energydianli_jtccyzhangye_option">交通运输、仓储和邮政业</highchart>
+												</div>
+												<div class="col-md-3">
+													<p class="fill-margin"></p>
+													<div class="ioc-panel-desc">
+														<p class="ioc-panel-desc-title">
+															<img src="/images/common/titles/one-sentence.png"/>
+														</p>
+														<p>一.{{nowmonth}}交通运输、仓储和邮政业用电量:{{jiaotongyongdianliang_value}} 万千瓦时</p>   
+														<p>二.{{nowmonth}}交通运输、仓储和邮政业用电量累计比上年同期增加:{{jiaotongyongdianliang_rate}}%</p>	                                                  
+													</div>
+												</div>
+											</div>
+									</div>
+								</div>
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										{{nowyear}}信息传输、计算机服务和软件业电力消耗量
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+													<div class="col-md-9 chart-panel">											 
+		                                               	<highchart class="col-md-6" style="width:700px;height:500px" config="energydianli_xxjsjrjhangye_option">信息传输、计算机服务和软件业</highchart>
+													</div>
+												<div class="col-md-3">
+													<p class="fill-margin"></p>
+													<div class="ioc-panel-desc">
+														<p class="ioc-panel-desc-title">
+															<img src="/images/common/titles/one-sentence.png"/>
+														</p>
+														<p>一.{{nowmonth}}信息传输、计算机服务和软件业用电量:{{xingxiyongdianliang_value}} 万千瓦时</p>   
+														<p>二.{{nowmonth}}信息传输、计算机服务和软件业用电量累计比上年同期增加:{{xingxiyongdianliang_rate}}%</p>													                           							
+													</div>
+												</div>
+											</div>
+									</div>
+								</div>	
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										{{nowyear}}批发和零售、住宿和餐饮业电力消耗量
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9 chart-panel">											 
+		                                		<highchart class="col-md-6" style="width:700px;height:500px" config="energydianli_pflszscyhangye_option">批发和零售、住宿和餐饮业</highchart>
+											</div>
+											<div class="col-md-3">
+												<p class="fill-margin"></p>
+												<div class="ioc-panel-desc">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<p>一.{{nowmonth}}批发和零售、住宿和餐饮业用电量:{{pifayongdianliang_value}} 万千瓦时</p>   
+													<p>二.{{nowmonth}}批发和零售、住宿和餐饮业用电量累计比上年同期增加:{{pifayongdianliang_rate}}%</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>								
+								<div class="panel panel-primary" style="margin-top: 20px;">
+										<div class="panel-heading">
+											{{nowyear}}金融、房地产、商务及居民服务业电力消耗量
+											<span class="glyphicon glyphicon-question-sign pull-right"></span>
+										</div>
+										<div class="panel-body">
+											<div class="row">
+														<div class="col-md-9 chart-panel">											 
+		                                					<highchart class="col-md-6" style="width:700px;height:500px" config="energydianli_jrfdcswjmfwyhangye_option">金融、房地产、商务及居民服务业</highchart>	                                                
+														</div>
+													<div class="col-md-3">
+														<p class="fill-margin"></p>
+														<div class="ioc-panel-desc">
+															<p class="ioc-panel-desc-title">
+																<img src="/images/common/titles/one-sentence.png"/>
+															</p>
+															<p>一.{{nowmonth}}金融、房地产、商务及居民服务业用电量:{{jinrongyongdianliang_value}} 万千瓦时</p>   
+															<p>二.{{nowmonth}}金融、房地产、商务及居民服务业用电量累计比上年同期增加:{{jinrongyongdianliang_rate}}%</p>													                           							
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>	
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										{{nowyear}}公共事业及管理组织电力消耗量
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9 chart-panel">											 
+		                                		<highchart class="col-md-6" style="width:700px;height:500px" config="energydianli_ggsyglhangye_option">公共事业及管理组织</highchart>	                                                		                                  	
+											</div>
+											<div class="col-md-3">
+												<p class="fill-margin"></p>
+												<div class="ioc-panel-desc">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<p>一.{{nowmonth}}公共事业及管理组织用电量:{{gonggongyongdianliang_value}} 万千瓦时</p>   
+													<p>二.{{nowmonth}}公共事业及管理组织用电量累计比上年同期增加:{{gonggongyongdianliang_rate}}%</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>								
+							</tab>
+						</tabset>
+					</div>
+				</div>
+   			</tab>
+   			<tab heading="生活用电量">
+   				<div class="row" style="margin-top: 20px;">
+					<div class="col-md-12">
+		   				<tabset class="sub-nav-tabs-conatainer">
+							<tab heading="城乡生活电力消耗量">
+
+								<div class="panel panel-primary" style="margin-top:20px">
+									<div class="panel-heading">{{nowyear}}{{nowmonth}}关键数据</div>
+									<div class="panel-body" style="padding: 0;">
+										<div class="col-md-6">
+											<div class="col-md-4">
+												<img style="height: 50px;width:50px;" src="/images/energy/dianli.png" />
+											</div>
+											<div class="col-md-8">
+												<div class="key-title"><h5>城镇生活电力消耗量</h5></div>
+												<div class="content">
+												<h5>{{chengzhengyongdianliang_value}} 万千瓦时</h5>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="col-md-4">
+												<img style="height: 50px;width:50px;" src="/images/energy/dianli.png" />
+											</div>
+											<div class="col-md-8">
+												<div class="key-title"><h5>农村生活电力消耗量</h5></div>
+												<div class="content">
+												<h5>{{nongcunyongdianliang_value}} 万千瓦时</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+					
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										{{nowyear}}{{nowmonth}}城乡生活电力消耗量	
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9 chart-panel">											 
+		                                		<highchart class="col-md-6" style="width:700px;height:500px" config="energydianli_shenghuo_option"></highchart>	                                                			                                	
+											</div>
+											<div class="col-md-3">
+												<p class="fill-margin"></p>
+												<div class="ioc-panel-desc">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<p>一.{{nowmonth}}城乡生活用电量:{{chengxiangyongdianliang_value}} 万千瓦时</p>   
+													<p>二.{{nowmonth}}城镇生活用电量占总量比例:{{chengzhenyongdianliang_zongrate}}</p> 
+													<p>三.{{nowmonth}}农村生活用电量占总量比例:{{nongcunyongdianliang_zongrate}}</p>                                            
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										{{nowyear}}城镇生活电力消耗量
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9 chart-panel">											 
+		                                		<highchart class="col-md-6" style="width:700px;height:500px" config="energydianli_chengzhenshenghuo_option">城镇</highchart>	                                                			                                	
+											</div>
+											<div class="col-md-3">
+												<p class="fill-margin"></p>
+												<div class="ioc-panel-desc">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<p>一.{{nowmonth}}城镇用电量:{{chengzhengyongdianliang_value}} 万千瓦时</p>   
+													<p>二.{{nowmonth}}城镇用电量累计比上年同期增加:{{chengzhengyongdianliang_rate}}%</p>                                                  
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										{{nowyear}}农村生活电力消耗量
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9 chart-panel">											 
+				                            	<highchart class="col-md-6" style="width:700px;height:500px" config="energydianli_nongcunshenghuo_option">农村</highchart>	                                                			                                					                            	
+											</div>
+											<div class="col-md-3">
+												<p class="fill-margin"></p>
+													<div class="ioc-panel-desc">
+														<p class="ioc-panel-desc-title">
+															<img src="/images/common/titles/one-sentence.png"/>
+														</p>
+														<p>一.{{nowmonth}}农村用电量:{{nongcunyongdianliang_value}} 万千瓦时</p>   
+														<p>二.{{nowmonth}}农村用电量累计比上年同期增加:{{nongcunyongdianliang_rate}}%</p>													                           							
+													</div>
+											</div>
+										</div>
+									</div>
+								</div>	
+							</tab>
+						</tabset>
+					</div>					
+				</div>
+   			</tab>
+		</tabset>
+	</div>
+</div>

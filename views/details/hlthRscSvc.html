@@ -1,0 +1,121 @@
+
+<div class="banner details-banner">
+	<div class="container"  style="background-image: url(../images/banner/publicservice_banner.png);">
+		<ol class="breadcrumb">
+			<li><a href="/">首页</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6004})">公共事业</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6004})">医疗卫生</a></li>
+			<li class="active">医疗卫生资源与服务</li>
+		</ol>
+		<h2>医疗卫生资源与服务</h2>
+	</div>
+</div>
+<div class="details-content">
+	<div class="container">
+		<tabset>
+			<tab heading="卫生资源" id="tab_MedicalInstitutions">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								医疗机构
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-8 chart-panel">
+									<highchart  id="medicalInstitutionSumChart" config="medicalInstitutionSumChart" ></highchart>
+								</div>
+								<div class="col-md-4">
+									<table class="table table-hover">
+										<caption><h4>{{medicalInstitutionsLastYear}} 年末全市医疗机构情况分布</h4></caption>
+	    								<tr ng-repeat="institution in medicalInstitutions">
+	    									<td><font size="3">{{institution.name}}</font></td>
+	    									<td class="t-right"><font size="3">{{institution.number}}家</font></td>
+	    								</tr>
+									</table>
+								</div>
+							</div>
+							<div><br><hr><br></div>
+							<div class="row">
+								<div class="col-md-8 chart-panel">
+									<highchart  id="medicalInstitutionSumByKindChart"  config="medicalInstitutionSumByKindChart" ></highchart>
+								</div>
+								<div class="col-md-4">
+									<h4>医院类别选择</h4>
+									<div class="radio" ng-repeat="medicalInstitutionSumOne in medicalInstitutionByKindSumList">
+										<label>
+											<input type="radio" ng-model="medicalInstitutionSelected" ng-value="medicalInstitutionSumOne.name" name="medicalInstitutionByKindSumList" ng-click="medicalInstitutionKindChange(medicalInstitutionSumOne)">
+								            <font size="3">{{medicalInstitutionSumOne.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								卫生技术人员
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-6 chart-panel">
+									<highchart  id="medicalWorkersPieChart" style="width:480px;" config="medicalWorkersPieChart"></highchart>
+								</div>
+								<div class="col-md-6 chart-panel">
+									<highchart  id="medicalWorkersByKindLineChart" style="width:480px;" config="medicalWorkersByKindLineChart" ></highchart>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								病床
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<highchart  id="medicalBedsColumnChart"  style="width:800px;"  config="medicalBedsColumnChart"></highchart>
+							</div>
+						</div>
+					</div>
+				</div>
+			</tab>
+			<tab heading="诊疗服务" id="tab_MedicalInstitutions">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								诊疗服务
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-6">
+									<highchart style="width:400px; height: 450px"  id="medicalServiceColumnChart1" config="medicalServiceColumnChart1" ></highchart>
+								</div>
+								<div class="col-md-6">
+									<highchart style="width:400px; height: 450px" id="medicalServiceColumnChart2" config="medicalServiceColumnChart2" ></highchart>
+								</div>
+							</div>
+							<div><br><hr><br></div>
+							<div class="row">
+								<div class="col-md-8 chart-panel">
+									<highchart  id="medicalServiceByKindLineChart" style="width:600px; height: 450px" config="medicalServiceByKindLineChart" ></highchart>
+								</div>
+								<div class="col-md-4">
+									<h4>诊疗类别选择</h4>
+									<div class="radio" ng-repeat="medicalServicePatientsOne in medicalServicePatientsByKindList">
+										<label>
+											<input type="radio" ng-model="medicalServiceSelected" ng-value="medicalServicePatientsOne.name" name="medicalServicePatientsByKindList" ng-click="medicalServiceKindChange(medicalServicePatientsOne)">
+								            <font size="3">{{medicalServicePatientsOne.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</tab>
+		</tabset>
+	</div>
+</div>

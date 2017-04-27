@@ -1,0 +1,94 @@
+
+<div class="banner details-banner">
+  <div class="container" style="background-image: url(../images/banner/minsheng_banner.png);">
+    <ol class="breadcrumb">
+      <li><a href="#/main">首页</a></li>
+      <li><a href="#/kpicategory?categoryId=2001">民生</a></li>
+      <li><a href="#/kpicategory?categoryId=2003">人口结构</a></li>
+      <li class="active">{{currentTab}}</li>
+    </ol>
+    <h1>{{currentTab}}</h1>
+  </div>
+</div>
+
+<div class="details-content">
+  <div class="container">
+    <tabset>
+      <tab ng-repeat="tab in tabMap" active="tab.active" heading="{{tab.label}}" id="{{tab.id}}" ng-click="tabChangeFunction('{{tab.name}}')" name="{{tab.name}}">
+      </tab>
+    </tabset>
+    <div class="row col-md-12" style="margin-top: 20px;">
+      <div class="panel panel-primary" style="margin-top: 20px;" id="plan-born-panel">
+        <div class="panel-heading">
+          {{panel_heading[0]}}
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="span8 col-md-8 chart-panel">
+              <highchart config="ALLOPTION.POPULATIONCHART"></highchart>
+              <div class="span4 col-md-4"></div>
+              <img src="/images/common/titles/click-to-chart-detail.png" alt="点击图标可以查看详情" />
+            </div>
+            <p class="fill-margin"></p>
+            <div class="span4 col-md-4">
+              <div class="ioc-panel-desc">
+                <p class="ioc-panel-desc-title">
+                  <img src="/images/common/titles/data_details.png" />
+                </p>
+                <h>{{ALLDATA.tableName}}</h>
+                <table class="table" style="font-size:16px">
+                  <tr ng-repeat="tableData in ALLDATA.tableData">
+                    <td>{{tableData.name}}</td>
+                    <td align="right">{{tableData.value}}</td>
+                  </tr>
+                </table>
+                <div ng-if="ALLDATA.detailTableName != null">
+                  <hr/>
+                  <p class="ioc-panel-desc-title">
+                    <img src="/images/common/titles/data_details.png" />
+                  </p>
+                  <h>{{ALLDATA.detailTableName}}</h>
+                  <table class="table" style="font-size:16px;background-color:skyblue">
+                    <tr ng-repeat="tableData in ALLDATA.detailTableData">
+                      <td>{{tableData.name}}</td>
+                      <td align="right">{{tableData.value}}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="plan-born-detail-panel" class="row col-md-12" style="margin-top: 20px;">
+      <div class="panel panel-primary" style="margin-top: 20px;">
+        <div class="panel-heading">
+          {{panel_heading[1]}}
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="span8 col-md-8 chart-panel">
+              <highchart config="ALLOPTION.POPULATIONTOWNCHART"></highchart>
+              <div class="span4 col-md-4"></div>
+              <img src="/images/common/titles/click-to-chart-detail.png" alt="点击图标可以查看详情" />
+            </div>
+
+            <div class="span4 col-md-4 chart-panel">
+              <p class="ioc-panel-desc-title">
+                <img src="/images/common/titles/data_details.png" />
+              </p>
+              <h>{{ALLDATA.townTableName}}</h>
+              <table class="table" style="font-size:16px">
+                <tr ng-repeat="tableData in ALLDATA.townTableData">
+                  <td>{{tableData.name}}</td>
+                  <td align="right">{{tableData.value}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

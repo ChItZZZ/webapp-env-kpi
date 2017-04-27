@@ -1,0 +1,126 @@
+<div class="banner details-banner">
+  <div class="container"  style="background-image: url(../images/banner/tax_banner.png);">
+    <ol class="breadcrumb">
+      <li><a href="/">首页</a></li>
+      <li><a ui-sref="app.kpicategory({categoryId:4})">经济</a></li>
+      <li><a ui-sref="app.kpicategory({categoryId:4})">投资和贸易</a></li>
+      <li class="active">贸易</li>
+    </ol>
+    <h2>贸易</h2>
+  </div>
+</div>
+<div class="details-content">
+  <div class="container">
+    <tabset>
+      <tab heading="进出口贸易" id="tab_eduQuality">
+        <div class="row" style="margin-top: 20px;">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+               进出口贸易额
+              <span class="glyphicon glyphicon-question-sign pull-right"></span>
+            </div>
+            <span ng-show="false">{{ci = dataMap.TradeValue.lastestObject}}</span>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-7 chart-panel">
+                  <highchart  style="width:550px;" id="chart1" config="TradeValueChart" ></highchart>
+                </div>
+                <div class="col-md-5">
+                  <table class="table table-hover">
+
+                    <caption class="">{{ci.year}} 年 {{ci.month}} 月进出口贸易额</caption>
+                    <thead class="ioc-thead">
+                      <tr>
+                        <th>统计项目</th>
+                        <th class="t-right">统计值</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                      <tr>
+                        <td>进出口累计额</td>
+                        <td class="t-right">{{ci.ioAccm}} 万元</td>
+                        <td class="t-right"></td>
+                      </tr>
+                      <tr>
+                        <td>比上年同期增长</td>
+                        <td class="t-right">{{ci.ioRate}} %</td>
+                        <td class="t-right"></td>
+                      </tr>
+                      <tr>
+                        <td>本年目标完成率</td>
+                        <td class="t-right">{{ci.ioCompleteRate}} %</td>
+                        <td class="t-right"></td>
+                      </tr>
+                  </table>
+                  <h4></h4>
+                  <div class="radio" ng-repeat="studyQualityOne in studyQuality">
+                    <label>
+                      <input type="radio" ng-model="studyQualityKindSelected" ng-value="studyQualityOne.name" name="studyQuality" ng-click="studyQualityKindChange(studyQualityOne)">
+                            {{studyQualityOne.name}}
+                        </label>
+                  </div>
+                  <p class="fill-margin"></p>
+                  <div class="ioc-panel-desc">
+                    <!-- <p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+                出口贸易额
+              <span class="glyphicon glyphicon-question-sign pull-right"></span>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-7 chart-panel">
+                  <highchart  id="schoolQualityByKindColumnChart" style="width:550px;" config="OutportTradeValueChart" ></highchart>
+                </div>
+                <div class="col-md-5">
+                  <table class="table table-hover">
+
+                    <caption >{{ci.year}} 年 {{ci.month}} 月出口贸易额</caption>
+                    <thead class="ioc-thead">
+                      <tr>
+                        <th>统计项目</th>
+                        <th class="t-right">统计值</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                      <tr>
+                        <td>出口累计额</td>
+                        <td class="t-right">{{ci.oAccm}} 万元</td>
+                        <td class="t-right"></td>
+                      </tr>
+                      <tr>
+                        <td>比上年同期增长</td>
+                        <td class="t-right">{{ci.oRate}} %</td>
+                        <td class="t-right"></td>
+                      </tr>
+                      <tr>
+                        <td>本年目标完成率</td>
+                        <td class="t-right">{{ci.oCompleteRate}} %</td>
+                        <td class="t-right"></td>
+                      </tr>
+                  </table>
+                  <h4></h4>
+                  <div class="radio" ng-repeat="schoolQualityOne in schoolQuality">
+                    <label>
+                      <input type="radio" ng-model="schoolQualityKindSelected" ng-value="schoolQualityOne.name" name="schoolQualityLastYearList" ng-click="schoolQualityKindChange(schoolQualityOne)">
+                            {{schoolQualityOne.name}}
+                        </label>
+                  </div>
+                  <p class="fill-margin"></p>
+                  <div class="ioc-panel-desc">
+                    <!-- <p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+</div>

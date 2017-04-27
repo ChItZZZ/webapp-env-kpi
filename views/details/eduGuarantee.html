@@ -1,0 +1,394 @@
+
+<div class="banner details-banner">
+	<div class="container"  style="background-image: url(../images/banner/publicservice_banner.png);">
+		<ol class="breadcrumb">
+			<li><a href="/">首页</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6001})">公共事业</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6001})">教育</a></li>
+			<li class="active">教育保障</li>
+		</ol>
+		<h2>教育保障</h2>
+	</div>
+</div>
+<div class="details-content">
+	<div class="container">
+		<tabset>
+			<tab heading="师资保障" id="tab_eduGuarantee">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								教师学历比例
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-8 chart-panel">
+									<highchart  id="tchrGrntByKindBarChart" style="width:530px;" config="tchrGrntByKindBarChart" ></highchart>
+								</div>
+								<div class="col-md-4">
+									<table class="table table-hover">
+										<caption><h4>{{lastYear}} 年教师学历比例情况</h4></caption>
+	    								<tr ng-repeat="tchrGrnt in tchrGrntLastYearList">
+	    									<td><font size="3">{{tchrGrnt.name}}</font></td>
+	    									<td><font size="3">{{tchrGrnt.number}}%</font></td>
+	    								</tr>
+									</table>
+									<h4>教师学历比例类别选择</h4>
+									<div class="radio" ng-repeat="tchrGrntOne in tchrGrntList">
+										<label>
+											<input type="radio" ng-model="tchrGrntKindSelected" ng-value="tchrGrntOne.name" name="tchrGrntList" ng-click="tchrGrntKindChange(tchrGrntOne)">
+								            <font size="3">{{tchrGrntOne.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+							<div>
+								<!-- <p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p>
+										<p><h4>{{tchrGrntListCommentSelected}}</h4></p>
+									</div> -->
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</tab>
+			<tab heading="投入保障">
+				<div class="panel panel-primary">
+						<div class="panel-heading">
+								投入保障
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-8 ">  <!-- chart-panel style="width:530px;"-->
+									<highchart  id="invstGrntBarChart" config="invstGrntBarChart" ></highchart>
+								</div>
+								<!-- <div class="col-md-4">
+									<p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p>
+										<p><h4>{{sctyEduInvstmntGrwthRateComment}}</h4></p>
+									</div>
+								</div> -->
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							 教育拨款
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  style="width:550px;" id="pubFinEduChart" config="pubFinEduChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption>{{lastYear}} 年教育拨款/财政收入</caption>
+										<thead class="ioc-thead">
+											<tr>
+												<th>统计项目</th>
+												<th class="t-right">统计值</th>
+												<th>比上年同期增长</th>
+											</tr>
+										</thead>
+	    								<tr>
+	    									<td>公共财政预算教育拨款（万元）</td>
+	    									<td class="t-right">{{investGrntLastYearList[0].number}} 万元</td>
+	    									<td class="t-right">{{investGrntLastYearList[1].number}} %</td>
+	    								</tr>
+	    								
+									</table>
+			
+									<p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<!-- <p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+						<div class="panel panel-primary">
+						<div class="panel-heading">
+							 财政收入
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  style="width:550px;" id="financeRegIncomeChart" config="financeRegIncomeChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption>{{lastYear}} 年财政收入</caption>
+										<thead class="ioc-thead">
+											<tr>
+												<th>统计项目</th>
+												<th class="t-right">统计值</th>
+												<th>比上年同期增长</th>
+											</tr>
+										</thead>
+	    								<tr>
+	    									<td>财政经常性收入（亿元）</td>
+	    									<td class="t-right">{{investGrntLastYearList[2].number}} 亿元</td>
+	    									<td class="t-right">{{investGrntLastYearList[3].number}} %</td>
+	    								</tr>
+	    								
+									</table>
+			
+									<p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<!-- <p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							 公共财政预算教育拨款增长高于财政经常性收入增长
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  style="width:550px;" id="HigherChart" config="HigherChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption>{{lastYear}} 年公共财政预算教育拨款增长高于财政经常性收入增长</caption>
+										<thead class="ioc-thead">
+											<tr>
+												<th>统计项目</th>
+												
+												<th>比上年同期增长</th>
+											</tr>
+										</thead>
+	    								<tr>
+	    									<td>公共财政预算教育拨款增长高于财政经常性收入增长增减率</td>
+	    									
+	    									<td class="t-right">{{investGrntLastYearList[4].number}} %</td>
+	    								</tr>
+	    								
+									</table>
+			
+									<p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<!-- <p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								生均公共财政预算教育事业费支出增长情况
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="perEduFundChart" style="width:550px;" config="perEduFundChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption><h4>{{lastYear}} 年生均公共财政预算教育事业费支出增长情况</h4></caption>
+									</table>
+									<h4>学校类别选择</h4>
+									<div class="radio" ng-repeat="investGrntOne in perEduFundGrntList">
+										<label>
+											<input type="radio" ng-model="investGrntKindSelected" ng-value="investGrntOne.name" name="perEduFundGrntList" ng-click="investGrntKindChange(investGrntOne)">
+								            <font size="3">{{investGrntOne.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+							<div>
+								<!-- <p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p>
+										<p><h4>{{tchrGrntListCommentSelected}}</h4></p>
+									</div> -->
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								生均公共财政预算教育事业费支出增长增减率情况
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="perEduFundRateChart" style="width:550px;" config="perEduFundRateChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption><h4>{{lastYear}} 年生均公共财政预算教育事业费支出增长增减率情况</h4></caption>
+									</table>
+									<h4>学校类别选择</h4>
+									<div class="radio" ng-repeat="investGrntTwo in perEduFundGrntRateList">
+										<label>
+											<input type="radio" ng-model="investGrntRateKindSelected" ng-value="investGrntTwo.name" name="perEduFundGrntRateList" ng-click="investGrntRateKindChange(investGrntTwo)">
+								            <font size="3">{{investGrntTwo.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+							<div>
+								<!-- <p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p>
+										<p><h4>{{tchrGrntListCommentSelected}}</h4></p>
+									</div> -->
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								生均公共财政预算公用经费支出增长情况
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="perFundChart" style="width:550px;" config="perFundChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption><h4>{{lastYear}} 年生均公共财政预算公用经费支出增长情况</h4></caption>
+									</table>
+									<h4>学校类别选择</h4>
+									<div class="radio" ng-repeat="investpubGrntOne in perFundGrntList">
+										<label>
+											<input type="radio" ng-model="investpubGrntKindSelected" ng-value="investpubGrntOne.name" name="perFundGrntList" ng-click="investpubGrntKindChange(investpubGrntOne)">
+								            <font size="3">{{investpubGrntOne.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+							<div>
+								<!-- <p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p>
+										<p><h4>{{tchrGrntListCommentSelected}}</h4></p>
+									</div> -->
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								生均公共财政预算公用经费支出增长增减率情况
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="perFundRateChart" style="width:550px;" config="perFundRateChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption><h4>{{lastYear}} 年生均公共财政预算公用经费支出增长增减率情况</h4></caption>
+									</table>
+									<h4>学校类别选择</h4>
+									<div class="radio" ng-repeat="investpubGrntTwo in perFundGrntRateList">
+										<label>
+											<input type="radio" ng-model="investpubGrntRateKindSelected" ng-value="investpubGrntTwo.name" name="perFundGrntRateList" ng-click="investpubGrntRateKindChange(investpubGrntTwo)">
+								            <font size="3">{{investpubGrntTwo.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+							<div>
+								<!-- <p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p>
+										<p><h4>{{tchrGrntListCommentSelected}}</h4></p>
+									</div> -->
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							 国家财政性教育经费占国内生产总值的比例
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  style="width:550px;" id="stateChart" config="stateChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption>{{lastYear}} 年国家财政性教育经费占国内生产总值的比例</caption>
+										<thead class="ioc-thead">
+											<tr>
+												<th>统计项目</th>
+												<th class="t-right">统计值</th>
+												<th>比上年同期增长</th>
+											</tr>
+										</thead>
+	    								<tr>
+	    									<td>国家财政性教育经费占国内生产总值的比例增减率</td>
+	    									<td class="t-right">{{investGrntLastYearList[21].number}} %</td>
+	    									<td class="t-right">{{investGrntLastYearList[22].number}} %</td>
+	    								</tr>
+	    								
+									</table>
+			
+									<p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<!-- <p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							 公共财政预算教育经费占公共财政预算支出的比例
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  style="width:550px;" id="pubEduFinanceChart" config="pubEduFinanceChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption>{{lastYear}} 年公共财政预算教育经费占公共财政预算支出的比例</caption>
+										<thead class="ioc-thead">
+											<tr>
+												<th>统计项目</th>
+												<th class="t-right">统计值</th>
+												<th>比上年同期增长</th>
+											</tr>
+										</thead>
+	    								<tr>
+	    									<td>公共财政预算教育经费占公共财政预算支出的比例增减率</td>
+	    									<td class="t-right">{{investGrntLastYearList[23].number}} %</td>
+	    									<td class="t-right">{{investGrntLastYearList[24].number}} %</td>
+	    								</tr>
+	    								
+									</table>
+			
+									<p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<!-- <p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+			</tab>
+		</tabset>
+	</div>
+</div>

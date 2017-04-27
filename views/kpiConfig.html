@@ -1,0 +1,402 @@
+<div class="banner details-banner">
+
+	<div class="container" style="background-image: url(../images/banner/environment_banner.png);">
+		<ol class="breadcrumb">
+			<li>
+				<a href="/">首页</a>
+			</li>
+			<li>KPI配置</li>
+
+		</ol>
+		<h2>KPI配置</h2>
+	</div>
+</div>
+<div>
+	<div class="container">
+		<div class="" style="margin-top: 20px;">
+			
+			<div class="panel-body" style="padding:10px 0px;">
+				<div class="col-sm-12 well">
+				<div class="col-sm-3" style="align:right;margin:10px;width:250px"><h4>请选择想要查看的部门：</h4></div>
+				<div class="col-sm-3" style="align:right;margin:10px;width:150px">
+					<select class="form-control" ng-model="departmentSelected" ng-options="department.name for department in departmentArr">
+					</select>
+				</div>
+				</div>
+				<table class="table table-bordered" style="margin-bottom:0px">
+					<thead class="ioc-thead ">
+						<tr>
+							<th style="width:180px">
+								KPI名称
+							</th>
+							<th style="width:100px">
+								KPI类型
+							</th>
+							<th style="width:100px">
+								所属部门
+							</th>
+							<th style="width:180px">
+								描述
+							</th>
+							<th>
+								操作
+							</th>
+						</tr>
+					</thead>
+				</table>
+				<div  style="overflow: auto; overflow-x:hidden;height:450px">
+					<div class="ioc-panel-table">
+						<table class="table table-bordered">
+							<tbody>
+								<tr ng-repeat="kpi in kpiArr|filter: departmentFilter">
+									<td style="width:180px">
+										<h5>{{kpi.name}}</h5>
+									</td>
+									<td style="width:100px">
+										<h5>{{getChineseKpiType(kpi.type)}}</h5>
+									</td>
+									<td style="width:100px">
+										<h5>{{kpi.department.name}}</h5>
+									</td>
+									<td  style="width:180px">
+										<h5>{{kpi.description}}</h5>
+									</td>
+									<td>
+										<button class="btn btn-primary" ng-click="kpiQuery(kpi)">查看</button>
+										<button class="btn btn-primary" ng-click="kpiModify(kpi)">修改</button>
+										<button class="btn btn-primary" ng-click="kpiDelConfirmPre(kpi)">删除</button>
+										<button class="btn btn-primary" ng-click="kpiTargetYearSelect(kpi)">目标值</button>
+										<button class="btn btn-primary" ng-click="kpiScope(kpi)">区间设置</button>
+										<button class="btn btn-primary" ng-click="kpiDepartmentConfig(kpi)">局设置</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="kpiQueryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header"><label>查看KPI</label></div>
+				<div class="modal-body" style="height: 110px;padding:15px 0 0 0">
+					<div class="col-md-12 well">
+						<form role="form">
+							<div class="col-md-12">
+							<div class="form-group col-md-6">
+							    <div class="col-sm-4">KPI名称:</div>
+							    <div class="col-sm-8">
+							    	{{kpiQueryTemp.name}}
+								</div>
+							</div>
+							<div class="form-group col-md-6">
+								<div class="col-sm-4">KPI类型:</div>
+								<div class="col-sm-8">
+									{{getChineseKpiType(kpiQueryTemp.type)}}
+								</div>
+							</div>
+							</div>
+							<div class="col-md-12">
+							<div class="form-group col-md-6">
+								<div class="col-sm-4">描述:</div>
+								<div class="col-sm-8">
+									{{kpiQueryTemp.description}}
+								</div>
+							</div>
+							<div class="form-group col-md-6">
+							    <div class="col-sm-4">所属部门:</div>
+							    <div class="col-sm-8">
+							    	{{kpiQueryTemp.department.name}}
+								</div>
+							</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="kpiModifyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header"><label>修改KPI</label></div>
+				<div class="modal-body" style="height: 110px;padding:15px 0 0 0">
+					<form role="form" name="kpiModifyForm">
+						<div class="form-group col-md-6">
+						    <div class="col-sm-4">KPI名称:*</div>
+						    <div class="col-sm-8">
+								<input ng-model="kpiModifyTemp.name" class="form-control input-sm" required>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">KPI类型:*</div>
+							<div class="col-sm-8">
+								<input ng-model="kpiModifyTemp.type" class="form-control input-sm" disabled="disabled">
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">描述:*</div>
+							<div class="col-sm-8">
+								<input ng-model="kpiModifyTemp.description" class="form-control input-sm" required>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+						    <div class="col-sm-4">所属部门:*</div>
+						    <div class="col-sm-8">
+								<input ng-model="kpiModifyTemp.department.name" class="form-control input-sm" disabled="disabled">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div>
+					<div class="modal-footer">
+						<button ng-click="kpiModifyConfirmPre()" type="submit" class="btn btn-primary" ng-disabled="kpiModifyForm.$invalid">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="kpiModifyConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+	
+				<div class="modal-body" align="center">
+					<label>是否确认更新KPI？</label>
+				</div>
+	
+				<div>
+					<div class="modal-footer">
+						<button ng-click="kpiModifyProcess()" class="btn btn-primary" data-dismiss="modal">确定</button>
+						<button ng-click="kpiModifyCancel()" class="btn btn-default">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="kpiDelConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+	
+				<div class="modal-body" align="center">
+					<label>是否确认删除KPI？</label>
+				</div>
+	
+				<div>
+					<div class="modal-footer">
+						<button ng-click="kpiDelProcess()" class="btn btn-primary" data-dismiss="modal">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="kpiScopeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="min-width: 900px;">
+			<div class="modal-content">
+				<div class="modal-header"><label>KPI区间设置</label></div>
+
+					<div role="form" name="kpiScopeForm">
+					
+						<div class="form-group col-md-12 well">
+						<div class="form-group col-md-6">
+						    <div class="col-sm-3">KPI名称:</div>
+						    <div class="col-sm-8">
+								{{kpiScopeTemp.kpi.name}}
+							</div>
+						</div>
+						</div>
+						
+						<div class="form-group col-md-12">
+						    <div class="col-sm-2">区间设置:</div><div class="col-sm-6"><h5>(目标插值 ＝ 目标值 － kpi值)</h5></div>
+						    <div class="col-sm-12" align="center">
+						    	<div class="form-inline " style="margin-top:10px" ng-repeat="kpiScope in kpiScopeTemp.kpiScopeArr">
+						    		<div class="col-sm-12">
+						    		<label class="label status" ng-class="getLabelClass(kpiScope.kpiStatus)">{{getChineseStatus(kpiScope.kpiStatus)}}</label>
+						    		&nbsp&nbsp&nbsp&nbsp
+						    		<input type="text" class="form-control" style="width:80px" ng-model="kpiScope.data1">
+						    		<select class="form-control" style="-moz-appearance: none;-webkit-appearance: none;appearance: none;" ng-model="kpiScope.operator1">
+						    			<option>≤</option>
+						    			<option>&lt</option>
+						    		</select>
+						    		<span style="display:inline-block;width:100px;text-align: center"><h5>目标差值</h5></span>
+						    		<select class="form-control" style="-moz-appearance: none;-webkit-appearance: none;appearance: none;" ng-model="kpiScope.operator2">
+						    			<option>≤</option>
+						    			<option>&lt</option>
+						    		</select>
+						    		<input type="text" class="form-control" style="width:80px" ng-model="kpiScope.data2">
+						    		&nbsp&nbsp
+									<span class="glyphicon glyphicon-remove" style="cursor:pointer" ng-click="deleteScope(kpiScope)"></span>
+									<span style="display:inline-block;width:120px;text-align: center"><h5>(点击“x”删除)</h5></span>
+									</div>
+					    		</div>
+						    </div>
+						    <div class="col-sm-12" style="margin-top:20px;" align="center">
+						    	<button class="btn btn-success" ng-click="addScope('GREEN')" data-toggle="tooltip" data-placement="top" title="添加“正常”区间">添加区间&nbsp&nbsp<span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+						    	<button class="btn btn-warning" ng-click="addScope('YELLOW')" data-toggle="tooltip" data-placement="top" title="添加“轻微问题”区间">添加区间&nbsp&nbsp<span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+						    	<button class="btn btn-danger" ng-click="addScope('RED')" data-toggle="tooltip" data-placement="top" title="添加“问题”区间">添加区间&nbsp&nbsp<span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+						    </div>
+						</div>
+					
+					</div>
+				
+				<div>
+					<div class="modal-footer">
+						<button ng-click="kpiScopeConfirmPre()" type="submit" class="btn btn-primary" ng-disabled="kpiScopeForm.$invalid">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="kpiScopeConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+	
+				<div class="modal-body" align="center">
+					<label>是否确认修改KPI区间？</label>
+				</div>
+	
+				<div>
+					<div class="modal-footer">
+						<button ng-click="kpiScopeProcess()" class="btn btn-primary" data-dismiss="modal">确定</button>
+						<button ng-click="kpiScopeCancel()" class="btn btn-default">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="kpiTargetYearSelectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 600px;">
+			<div class="modal-content">
+				<div class="modal-header"><label>KPI目标值设置</label></div>
+				<div class="modal-body" style="overflow-y: auto;max-height: 400px;padding:15px 0 0 0">
+					<form role="form">
+						<div class="form-group col-md-8">
+						    <div class="col-sm-4">年份选择:*</div>
+						    <div class="col-sm-6">
+						    	<select class="form-control" ng-model="kpiTargetYearSelected" ng-options="year for year in kpiTargetYearArr">
+								</select>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div>
+					<div class="modal-footer">
+						<button ng-click="kpiTarget()" type="submit" class="btn btn-primary">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="kpiTargetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 600px;">
+			<div class="modal-content">
+				<div class="modal-header"><label>KPI目标值设置</label></div>
+				<div class="modal-body" style="overflow-y: auto;padding:15px 0 0 0">
+					<div class="col-md-12">
+						<table class="table table-bordered" style="margin-bottom:0px">
+							<thead class="ioc-thead ">
+							<tr align="center">
+								<td style="width:100px">年份</td>
+								<td style="width:100px" ng-show="!(kpiTargetTemp.kpi.type == 'YEARLY')">月份</td>
+								<td style="width:200px">目标值</td>
+								<td >单位</td>
+							</tr>
+							</thead>
+						</table>
+						<div  style="overflow: auto; overflow-x:hidden;max-height:450px">
+						<div class="ioc-panel-table">
+						<table class="table table-bordered">
+							<tr ng-repeat="kpiTarget in kpiTargetTemp.kpiTargetArr">
+								<td style="width:100px">{{formatDateTime(kpiTarget.applyDate).split('-')[0]}}</td>
+								<td style="width:100px" ng-show="!(kpiTargetTemp.kpi.type == 'YEARLY')">{{formatDateTime(kpiTarget.applyDate).split('-')[1]}}</td>
+								<td style="width:200px"><input ng-model="kpiTarget.value" class="form-control input-sm"></td>
+								<td>{{kpiTargetTemp.kpi.unit|unit_val}}</td>
+							</tr>
+						</table>
+						</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="modal-footer">
+						<button ng-click="kpiTargetConfirmPre()" class="btn btn-primary">确定</button>
+						<button ng-click="kpiTargetCancel1()" class="btn btn-default">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="kpiTargetConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+	
+				<div class="modal-body" align="center">
+					<label>是否确认修改KPI区间？</label>
+				</div>
+	
+				<div>
+					<div class="modal-footer">
+						<button ng-click="kpiTargetProcess()" class="btn btn-primary" data-dismiss="modal">确定</button>
+						<button ng-click="kpiTargetCancel2()" class="btn btn-default">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="kpiDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="height: 850px;">
+		<div class="modal-dialog" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header"><label>KPI局配置</label></div>
+				<div class="modal-body" style="min-height: 60px;padding:15px 0 0 0">
+					<form role="form" name="kpiDepartmentForm">
+					<div class="form-group col-md-6">
+						<div class="col-sm-4"><h5>KPI名称:</h5></div>
+						<div class="col-sm-8">
+							<h5>{{kpiDepartmentConfigkpi.name}}</h5>
+						</div>
+					</div>
+					<div class="form-group col-md-6">
+					    <div class="col-sm-4"><h5>所属局:</h5></div>
+					    <div class="col-sm-8">
+							<select class="form-control" ng-model="kpiDepartmentTemp" ng-options="department.name for department in departmentFactAll"></select>
+						</div>
+					</div>
+					</form>
+				</div>
+				<div>
+					<div class="modal-footer">
+						<button ng-click="kpiDepartmentConfigConfirmPre()" class="btn btn-primary" ng-disabled="kpiDepartmentForm.$invalid">确定</button>
+						<button class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="kpiDepartmentConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+	
+				<div class="modal-body" align="center">
+					<label>是否确认更新KPI局配置？</label>
+				</div>
+	
+				<div>
+					<div class="modal-footer">
+						<button ng-click="kpiDepartmentConfigProcess()" class="btn btn-primary">确定</button>
+						<button ng-click="kpiDepartmentConfigCancel()" class="btn btn-default">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

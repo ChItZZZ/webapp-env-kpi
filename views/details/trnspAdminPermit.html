@@ -1,0 +1,93 @@
+
+<div class="banner details-banner">
+	<div class="container"  style="background-image: url(../images/banner/publicservice_banner.png);">
+		<ol class="breadcrumb">
+			<li><a href="/">首页</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6003})">公共事业</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6003})">交通</a></li>
+			<li class="active">交通行政执法与许可</li>
+		</ol>
+		<h2>交通行政执法与许可</h2>
+	</div>
+</div>
+<div class="details-content">
+	<div class="container">
+		<tabset>
+			<tab heading="行政执法" id="tab_MedicalInstitutions">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								行政执法
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-6 chart-panel">
+									<highchart  id="transAdminPenaltyPieChart" config="transAdminPenaltyPieChart" ></highchart>
+								</div>
+								<div class="col-md-6">
+									<highchart  id="transAdminHandlePieChart" config="transAdminHandlePieChart" ></highchart>
+								</div>
+							</div>
+							<div><br><hr><br></div>
+							<div class="row">
+								<div class="col-md-8 chart-panel">
+									<highchart  id="transAdminColumnChart"  config="transAdminColumnChart" ></highchart>
+								</div>
+								<div class="col-md-4">
+									<h4>交通行政案件类别选择</h4>
+									<div class="radio" ng-repeat="transAdminOne in transAdminSumList">
+										<label>
+											<input type="radio" ng-model="transAdminKindSelected" ng-value="transAdminOne.name" name="transAdminSumList" ng-click="transAdminKindChange(transAdminOne)">
+								            <font size="3">{{transAdminOne.name}}</font>
+								        </label>
+									</div>
+									<!-- <p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p>
+										<p><h4>{{transAdminSumCommentSelected}}</h4></p>
+									</div> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</tab>
+			<tab heading="行政许可" id="tab_MedicalInstitutions">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								许可
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-6 chart-panel">
+									<highchart  id=transAdminPrmsnPieChart style="width:480px;" config="transAdminPrmsnPieChart" ></highchart>
+								</div>
+								<div class="col-md-6">
+									<highchart  id=transSrvcPrmsnPieChart style="width:480px;" config="transSrvcPrmsnPieChart" ></highchart>
+								</div>
+							</div>
+							<div><br><hr><br></div>
+							<div class="row">
+								<div class="col-md-8 chart-panel">
+									<highchart  id="transPrmsnColumnChart"  config="transPrmsnColumnChart" ></highchart>
+								</div>
+								<div class="col-md-4">
+									<h4>交通许可类别选择</h4>
+									<div class="radio" ng-repeat="permissionOne in permissionList">
+										<label>
+											<input type="radio" ng-model="permissionKindSelected" ng-value="permissionOne.name" name="permissionList" ng-click="permissionKindChange(permissionOne)">
+								            <font size="3">{{permissionOne.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</tab>
+		</tabset>
+	</div>
+</div>

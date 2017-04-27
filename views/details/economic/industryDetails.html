@@ -1,0 +1,287 @@
+ <div class="banner details-banner">
+	<div class="container"  style="background-image: url(../images/banner/economic_banner.png);">
+		<ol class="breadcrumb">
+			<li><a href="/">首页</a></li>
+			
+			<li><a ui-sref="app.kpicategory({categoryId:5})">经济</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:5})">工业和产业</a></li>
+			<li class="active">工业产值和利润</li>
+		</ol>
+		<h2>工业产值和利润</h2>
+	</div>
+</div>
+<div class="details-content">
+	<div class="container">
+		<tabset>
+			<tab heading="工业总产值" id="tab_eduQuality">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							 工业总产值(累计值)
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<span ng-show="false">{{ai = dataMap.Ivalue.lastestObject}}</span>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  style="width:550px;" id="chart1" config="IndustryValueChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption>{{ai.year}} 年 {{ai.month}} 月工业总产值</caption>
+										<thead class="ioc-thead">
+											<tr>
+												<th>统计项目</th>
+												<th class="t-right">统计值</th>
+												<th>同比增长</th>
+											</tr>
+										</thead>
+	    								<tr>
+	    									<td>本年累计额</td>
+	    									<td class="t-right">{{ai.accmAmount}} 万元</td>
+	    									<td class="t-right">{{ai.accmRate | number:2}} %</td>
+	    								</tr>
+	    								<tr>
+	    									<td>规模以上工业统计额</td>
+	    									<td class="t-right">{{ai.uaccmAmount}} 万元</td>
+	    									<td class="t-right">{{ai.uaccmRate | number:2}} %</td>
+	    								</tr>
+									</table>
+									<h4></h4>
+									<div class="radio" ng-repeat="studyQualityOne in studyQuality">
+										<label>
+											<input type="radio" ng-model="studyQualityKindSelected" ng-value="studyQualityOne.name" name="studyQuality" ng-click="studyQualityKindChange(studyQualityOne)">
+								            {{studyQualityOne.name}}
+								        </label>
+									</div>
+									<p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<!-- <p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								规模以上新兴产业产值(累计值)
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<span ng-show="false">{{bi = dataMap.NIvalue.lastestObject}}</span>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="schoolQualityByKindColumnChart" style="width:550px;" config="NewIndustryValueChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+
+										<caption>{{bi.year}} 年 {{bi.month}} 月规模以上新兴产业产值</caption>
+										<thead class="ioc-thead">
+											<tr>
+												<th>统计项目</th>
+												<th class="t-right">统计值</th>
+												<th>同比增长</th>
+											</tr>
+										</thead>
+	    								<tr>
+	    									<td>全市</td>
+	    									<td class="t-right">{{bi.accmAmount}} 万元</td>
+	    									<td class="t-right">{{bi.accmRate | number:2}} %</td>
+	    								</tr>
+	    								<tr>
+	    									<td>新能源</td>
+	    									<td class="t-right">{{bi.naccmAmount}} 万元</td>
+	    									<td class="t-right">{{bi.naccmRate | number:2}} %</td>
+	    								</tr>
+	    								<tr>
+	    									<td>新材料</td>
+	    									<td class="t-right">{{bi.maccmAmount}} 万元</td>
+	    									<td class="t-right">{{bi.maccmRate | number:2}} %</td>
+	    								</tr>
+	    								<tr>
+	    									<td>生物技术和新医药</td>
+	    									<td class="t-right">{{bi.bioaccmAmount}} 万元</td>
+	    									<td class="t-right">{{bi.bioaccmRate | number:2}} %</td>
+	    								</tr>
+	    								<tr>
+	    									<td>节能环保</td>
+	    									<td class="t-right">{{bi.eeaccmAmount}} 万元</td>
+	    									<td class="t-right">{{bi.eeaccmRate | number:2}} %</td>
+	    								</tr>
+	    								<tr>
+	    									<td>智能电网和物联网</td>
+	    									<td class="t-right">{{bi.elcaccmAmount}} 万元</td>
+	    									<td class="t-right">{{bi.elcaccmRate | number:2}} %</td>
+	    								</tr>
+									</table>
+									<h4></h4>
+									<div class="radio" ng-repeat="schoolQualityOne in schoolQuality">
+										<label>
+											<input type="radio" ng-model="schoolQualityKindSelected" ng-value="schoolQualityOne.name" name="schoolQualityLastYearList" ng-click="schoolQualityKindChange(schoolQualityOne)">
+								            {{schoolQualityOne.name}}
+								        </label>
+									</div>
+									<p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<!-- <p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</tab>
+			<tab heading="工业销售、利润、利税" id="tab_eduContrib" ng-click="loadIndustryProfit();">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								工业主营业务收入(累计值)
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<span ng-show="false">{{ci = dataMap.NSvalue.lastestObject}}</span>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="eduContribByKindBarChart" style="width:550px;" config="industryIncomeValueChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+
+										<caption>{{ci.year}} 年 {{ci.month}} 月工业主营业务收入</caption>
+										<thead class="ioc-thead">
+											<tr>
+												<th width="40%">统计项目</th>
+												<th class="t-right">统计值</th>
+												<th>同比增长</th>
+											</tr>
+										</thead>
+	    								<tr>
+	    									<td>工业销售累计额</td>
+	    									<td class="t-right">{{ci.accmAmount}} 万元</td>
+	    									<td class="t-right">{{ci.accmRate | number:2}} %</td>
+	    								</tr>
+	    								<tr>
+	    									<td>规模以上工业销售累计额</td>
+	    									<td class="t-right">{{ci.uaccmAmount}} 万元</td>
+	    									<td class="t-right">{{ci.uaccmRate | number:2}} %</td>
+	    								</tr>
+									</table>
+
+									<h4></h4>
+									<div class="radio" ng-repeat="contribOne in contrib">
+										<label>
+											<input type="radio" ng-model="eduContribKindSelected" ng-value="contribOne.name" name="contrib" ng-click="contribKindChange(contribOne)">
+								            {{contribOne.name}}
+								        </label>
+									</div>
+									<p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<!-- <p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								工业利润(累计值)
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<span ng-show="false">{{di = dataMap.NPvalue.lastestObject}}</span>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="eduContribByKindBarChart" style="width:550px;" config="industryProfitValueChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+
+										<caption>{{di.year}} 年 {{di.month}} 月工业利润</caption>
+										<thead class="ioc-thead">
+											<tr>
+												<th width="40%">统计项目</th>
+												<th class="t-right">统计值</th>
+												<th>同比增长</th>
+											</tr>
+										</thead>
+	    								<tr>
+	    									<td>工业利润计额</td>
+	    									<td class="t-right">{{di.accmAmount}} 万元</td>
+	    									<td class="t-right">{{di.accmRate | number:2}} %</td>
+	    								</tr>
+	    								<tr>
+	    									<td>规模以上工业利润累计额</td>
+	    									<td class="t-right">{{di.uaccmAmount}} 万元</td>
+	    									<td class="t-right">{{di.uaccmRate | number:2}} %</td>
+	    								</tr>
+									</table>
+									<h4></h4>
+									<div class="radio" ng-repeat="contribOne in contrib">
+										<label>
+											<input type="radio" ng-model="eduContribKindSelected" ng-value="contribOne.name" name="contrib" ng-click="contribKindChange(contribOne)">
+								            {{contribOne.name}}
+								        </label>
+									</div>
+									<p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<!-- <p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								工业利税(累计值)
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<span ng-show="false">{{ei = dataMap.NProfitvalue.lastestObject}}</span>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="eduContribByKindBarChart" style="width:550px;" config="industryTaxValueChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+
+										<caption>{{ei.year}} 年 {{ei.month}} 月工业利税</caption>
+										<thead class="ioc-thead">
+											<tr>
+												<th width="40%">统计项目</th>
+												<th class="t-right">统计值</th>
+												<th>同比增长</th>
+											</tr>
+										</thead>
+	    								<tr>
+	    									<td>工业利税累计额</td>
+	    									<td class="t-right">{{ei.accmAmount}} 万元</td>
+	    									<td class="t-right">{{ei.accmRate | number:2}} %</td>
+	    								</tr>
+	    								<tr>
+	    									<td>规模以上工业利税累计额</td>
+	    									<td class="t-right">{{ei.uaccmAmount}} 万元</td>
+	    									<td class="t-right">{{ei.uaccmRate | number:2}} %</td>
+	    								</tr>
+									</table>
+									<h4></h4>
+									<div class="radio" ng-repeat="contribOne in contrib">
+										<label>
+											<input type="radio" ng-model="eduContribKindSelected" ng-value="contribOne.name" name="contrib" ng-click="contribKindChange(contribOne)">
+								            {{contribOne.name}}
+								        </label>
+									</div>
+									<p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<!-- <p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</tab>
+		</tabset>
+	</div>
+</div>

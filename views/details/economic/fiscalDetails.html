@@ -1,0 +1,141 @@
+<div class="banner details-banner">
+  <div class="container"  style="background-image: url(../images/banner/tax_banner.png);">
+    <ol class="breadcrumb">
+      <li>
+        <a href="/">首页</a>
+      </li>
+      <li>
+        <a ui-sref="app.kpicategory({categoryId:1})">经济</a>
+      </li>
+      <li>
+        <a ui-sref="app.kpicategory({categoryId:1})">财税</a>
+      </li>
+      <li class="active">财税</li>
+    </ol>
+    <h2>财税 </h2>
+  </div>
+</div>
+<div class="details-content">
+  <div class="container">
+    <tabset>
+      <tab heading="财政" id="tab_eduQuality">
+        <div class="row" style="margin-top: 20px;">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              财政收入 
+              <span ng-show="ai.iaccmAmount==0">（2017年1月开始未上报）</span>
+              <span class="glyphicon glyphicon-question-sign pull-right"></span>
+            </div>
+            <span ng-show="false">{{ai = dataMap.FiscalData.lastestObject}}</span>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-7 chart-panel">
+                  <highchart  style="width:550px;" id="chart1" config="fiscalInChart" ></highchart>
+                </div>
+                <div class="col-md-5">
+                  <table class="table table-hover">
+                    <caption>{{ai.year}} 年 {{ai.month}} 月财政收入情况</caption>
+                    <thead class="ioc-thead">
+                      <tr>
+                        <th width="35%">统计项目</th>
+                        <th class="t-right">统计值</th>
+                        <th class="t-right">比上年同期增长</th>
+                      </tr>
+                    </thead>
+                      <tr>
+                        <td>财政本年累计收入</td>
+                        <td class="t-right">{{ai.iaccmAmount}} 万元</td>
+                        <td class="t-right">{{ai.iaccmRate | number:2}} %</td>
+                      </tr>
+                      
+
+                  </table>
+                  <p class="fill-margin"></p>
+                  <div class="ioc-panel-desc"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              财政支出
+              <span class="glyphicon glyphicon-question-sign pull-right"></span>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-7 chart-panel">
+                  <highchart  id="schoolQualityByKindColumnChart" style="width:550px;" config="fiscalOutChart" ></highchart>
+                </div>
+                <div class="col-md-5">
+                  <table class="table table-hover">
+                   <caption>{{ai.year}} 年 {{ai.month}} 月财政支出情况</caption>
+                    <thead class="ioc-thead">
+                      <tr>
+                        <th width="35%">统计项目</th>
+                        <th class="t-right">统计值</th>
+                        <th class="t-right">比上年同期增长</th>
+                      </tr>
+                    </thead>
+                      <tr>
+                        <td>财政本年累计支出</td>
+                        <td class="t-right">{{ai.oaccmAmount}} 万元</td>
+                        <td class="t-right">{{ai.oaccmRate | number:2}} %</td>
+                      </tr>
+                  </table>
+
+                  <p class="fill-margin"></p>
+                  <div class="ioc-panel-desc">
+                    <!-- <p class="ioc-panel-desc-title">
+                    <img src="/images/common/titles/one-sentence.png"/>
+                  </p>
+                  -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </tab>
+
+    <tab heading="税收" id="tax_eduQuality">
+        <div class="row" style="margin-top: 20px;">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              税收
+              <span class="glyphicon glyphicon-question-sign pull-right"></span>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-7 chart-panel">
+                  <highchart  style="width:550px;" id="chart1" config="taxChart" ></highchart>
+                </div>
+                <div class="col-md-5">
+                  <table class="table table-hover">
+                    <caption>{{ai.year}} 年 {{ai.month}} 月税收收入情况</caption>
+                    <thead class="ioc-thead">
+                      <tr>
+                        <th width="35%">统计项目</th>
+                        <th class="t-right">统计值</th>
+                        <th class="t-right">比上年同期增长</th>
+                      </tr>
+                    </thead>
+                      <tr>
+                        <td>税收本年累计收入</td>
+                        <td class="t-right">{{ai.taxAccmAmount}} 万元</td>
+                        <td class="t-right">{{ai.taxAccmRate | number:2}} %</td>
+                      </tr>
+
+                  </table>
+                  <p class="fill-margin"></p>
+                  <div class="ioc-panel-desc"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </tab>
+  </tabset>
+</div>
+</div>

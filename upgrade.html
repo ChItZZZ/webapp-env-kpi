@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>智慧城市-太仓关键业绩指标系统</title>
+    <meta name="description" content="">
+    <link href="images/icon/favicon.ico" type="image/x-icon" rel="icon">
+    <style type="text/css">
+      #browserInfo{
+        width: 633px;
+        height: 46px;
+        margin: 100px auto 0px;
+        padding: 0px;
+        font-size: 30px;
+      }
+      .cdi-upgrade-text {
+        width: 633px;
+        height: 76px;
+        margin: 0px auto 60px;
+        padding: 0px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url(images/upgrade/cdi-upgrade-text.png);
+      }
+      #browserRec{
+        width: 700px;
+        height: 40px;
+        margin: 10px auto 0px;
+        padding: 0px;
+        font-size: 20px;
+      }
+      .cdi-upgrade-image {
+        width: 808px;
+        height: 168px;
+        margin: 0 auto 0px;
+      }
+      .cdi-upgrade-image a {
+        width: 258px;
+        height: 168px;
+        display: block;
+        float: left;
+        text-decoration: none;
+        
+      }
+      .cdi-upgrade-image a img {
+        border: none;
+      }
+      .cdi-upgrade-icon {
+        width: 312px;
+        height: 54px;
+        margin: 0 auto 80px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url(images/bg/logo.png);
+      }
+    </style>
+  </head>
+ 
+  <body>
+    <div id="browserInfo"></div>
+    <div class="cdi-upgrade-text"></div>
+    <div class="cdi-upgrade-image">
+        <a href="http://www.firefox.com.cn/download/" style="margin-right:17px;">
+            <img src="images/upgrade/cdi-upgrade-firefox.png">
+        </a>
+        <a href="http://www.baidu.com/s?ie=utf-8&wd=chrome%E4%B8%8B%E8%BD%BD" style="margin-right:17px;">
+            <img src="images/upgrade/cdi-upgrade-chrome.png">
+        </a>
+        <a href="http://www.apple.com/cn/safari/">
+            <img src="images/upgrade/cdi-upgrade-safari.png">
+        </a>
+    </div>
+    <div id="browserRec">IE浏览器<a href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie">点击此处升级</a>，建议升至IE10以上，其他浏览器建议升至最新版本</div>
+    <script>
+    var getBrowser = function(){ 
+      var browser = { 
+        msie: false, firefox: false, opera: false, safari: false, 
+        chrome: false, netscape: false, appname: 'unknown', version: 0 
+      }, 
+      userAgent = window.navigator.userAgent.toLowerCase(); 
+      if ( /(msie|firefox|opera|chrome|netscape)\D+(\d[\d.]*)/.test( userAgent ) ){ 
+        browser[RegExp.$1] = true; 
+        browser.appname = RegExp.$1; 
+        browser.version = RegExp.$2; 
+      } else if ( /version\D+(\d[\d.]*).*safari/.test( userAgent ) ){ // safari 
+        browser.safari = true; 
+        browser.appname = 'safari'; 
+        browser.version = RegExp.$2; 
+      } 
+      return '您使用的浏览器为'+browser.appname.replace('msie','IE') + '&nbsp'+''+browser.version ; 
+    } 
+    var result = getBrowser();
+    document.getElementById('browserInfo').innerHTML = result;
+  </script>
+  </body>
+
+</html>

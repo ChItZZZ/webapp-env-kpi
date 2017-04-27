@@ -1,0 +1,248 @@
+
+<div class="banner details-banner">
+
+	<div class="container" style="background-image: url(../images/banner/tax_banner.png);">
+		<ol class="breadcrumb">
+			<li>
+				<a href="/">首页</a>
+			</li>
+
+			<li>
+				<a href="/kpicategory/1">经济</a>
+			</li>
+
+			<li class="active">
+				克强指数分析工具
+			</li>
+
+		</ol>
+		<h2>克强指数</h2>
+
+	</div>
+</div>
+
+<div class="details-content">
+	<div class="container keqiang-panel">
+		<div class="row">
+
+			<div class="col-md-12">
+				<div class="panel panel-primary" style="margin-top: 50px;">
+					<div class="panel-heading">
+						太仓市克强指数
+						<span class="glyphicon glyphicon-question-sign pull-right"></span>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-8 main-chart">
+								<highchart config="mainChart"></highchart>
+							</div>
+
+							<div class="col-md-4 desc-content">
+								<div class="ioc-panel-desc">
+									<p class="ioc-panel-desc-title">
+										<img src="/images/common/titles/ioc-key-index1.png"/>
+									</p>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="clear"></div>
+										<div class="data-tile">
+											<div class="" style="padding-bottom:10px;">
+												<img src="/images/icon/key-data-icon/Line.png" width="50" style="margin-left:35px;"  />
+											</div>
+											<div class="">
+												<div class="key-title" style="text-align:center;">本月指数</div>
+												<div class="content">
+													{{keqiangIndex[month-1]}} <i class="ioc-icon ioc-icon-red-down"></i>
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+									<div class="col-md-6">
+										<div class="data-tile">
+											<div class="" style="padding-bottom:10px;">
+												<img src="/images/icon/key-data-icon/Line.png" width="50" style="margin-left:35px;" />
+											</div>
+											<div class="">
+												<div class="key-title" style="text-align:center;">上月指数</div>
+												<div class="content">
+													{{keqiangIndex[month-2]}} <i class="ioc-icon ioc-icon-green-up"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<p class="fill-margin"></p>
+								<div class="ioc-panel-desc">
+									<p class="ioc-panel-desc-title">
+										<img src="/images/common/titles/ioc-index-mean.png"/>
+									</p>
+									<p class="ioc-panel-desc-body">
+										“克强指数”的由来，源于李克强总理2007年任职辽宁省委书记时，喜欢通过耗电量、铁路货运量和贷款发放量三个指标分析当时辽宁省经济状况，英国《经济学人》自2010年底正式推出这一指数后，受到包括花旗银行在内的众多国际机构认可。
+									</p>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+				<div class="panel panel-primary" style="margin-top: 50px;">
+					<div class="panel-heading">
+						克强指数与GDP的预测分析
+						<span class="glyphicon glyphicon-question-sign pull-right"></span>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-8 main-chart">
+								<highchart style="height:400px;" config="predictChart"></highchart>
+							</div>
+
+							<div class="col-md-4 desc-content">
+								<div class="ioc-panel-desc">
+									<p class="ioc-panel-desc-title">
+										<img src="/images/common/titles/ioc-key-index1.png"/>
+									</p>
+								</div>
+								<div class="row">
+
+									<div class="col-md-6">
+
+										<div class="clear"></div>
+										<div class="data-tile">
+											<div class="" style="padding-bottom:10px;">
+												<img src="/images/icon/key-data-icon/column.png" width="50" style="margin-left:35px;" />
+											</div>
+											<div class="">
+												<div class="key-title" style="text-align:center;">年末GDP模拟</div>
+												<div class="content">
+													{{gdpData.sumPredict}} (亿元)
+													<i class="ioc-icon ioc-icon-green-up"></i>
+												</div>
+											</div>
+
+										</div>
+
+									</div>
+									<div class="col-md-6">
+										<div class="data-tile">
+											<div class="" style="padding-bottom:10px;">
+												<img src="/images/icon/key-data-icon/column.png" width="50" style="margin-left:35px;" />
+											</div>
+											<div class="">
+												<div class="key-title" style="text-align:center;">年末税收值模拟</div>
+												<div class="content">
+													{{taxData.sumPredict}} (亿元)
+													<i class="ioc-icon ioc-icon-red-down"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- <p class="fill-margin"></p>
+							<div class="ioc-panel-desc">
+								<p class="ioc-panel-desc-title">
+									<img src="/images/common/titles/one-sentence.png"/>
+								</p>
+								<p class="ioc-panel-desc-body">本年度税收额稳步增长，保持平均5%的增长趋势，人民群众一片喜乐</p>
+
+							</div>
+							-->
+							<p class="fill-margin"></p>
+							<div class="ioc-panel-desc">
+								<p class="ioc-panel-desc-title">
+									<img src="/images/common/titles/ioc-manaul1.png"/>
+								</p>
+								<p class="ioc-panel-desc-body">
+									可手动调节 <strong>银行中长期贷款量</strong>
+									各个指标值,观察该经济指标变化情况。
+								</p>
+							</div>
+							<div class="handler">
+								<div class="row">
+									<div class="col-md-5">
+										<p class="handler-title">中长期贷款</p>
+									</div>
+									<div class="col-md-7">
+										<div class="progress-box" ng-app>
+											<div class="percentage-cur">
+												<span class="num">{{ selectedRange }}.00%</span>
+											</div>
+											<div class="progress-bar progress-bar-slider">
+												<input class="progress-slider" type="range" min="-100" max="100" ng-model="selectedRange">
+												<div class="inner" ng-style="{ width: (selectedRange/2 +50) + '%' || '50%' }" ></div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-5">
+										<p class="handler-title">工业用电量</p>
+									</div>
+									<div class="col-md-7">
+										<div class="progress-box" ng-app>
+											<div class="percentage-cur" ng-init="selectedRange2=0">
+												<span class="num">{{ selectedRange2 }}%</span>
+											</div>
+											<div class="progress-bar progress-bar-slider">
+												<input class="progress-slider" type="range" min="-100" max="100" ng-model="selectedRange2"  disabled="true">
+												<div class="inner" ng-style="{ width: (selectedRange2/2 +50) + '%' || '50%' }"></div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-5">
+										<p class="handler-title">货运量</p>
+									</div>
+									<div class="col-md-7">
+										<div class="progress-box" ng-app>
+											<div class="percentage-cur" ng-init="selectedRange3=0">
+												<span class="num">{{ selectedRange3 }}%</span>
+											</div>
+											<div class="progress-bar progress-bar-slider">
+												<input class="progress-slider" type="range" min="0" max="100" ng-model="selectedRange3" disabled="true">
+												<div class="inner" ng-style="{ width: (selectedRange3/2 +50) + '%' || '50%' }"></div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<button class="btn btn-primary" ng-show="preOffset" ng-click="indexOffset(2)">月份偏移</button>
+										<button class="btn btn-primary" ng-show="preReset" ng-click="offsetReset(2)">恢复默认</button>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+					<p class="fill-margin"></p>
+					<p class="fill-margin bordered"></p>
+					<div class="row">
+						<div class="col-md-4 details-chart">
+							<highchart style="height:300px;" config="loanChart"></highchart>
+						</div>
+						<div class="col-md-4 details-chart">
+							<highchart style="height:300px;" config="elecChart"></highchart>
+						</div>
+						<div class="col-md-4 details-chart">
+							<highchart style="height:300px;" config="transChart"></highchart>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

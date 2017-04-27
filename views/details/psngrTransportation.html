@@ -1,0 +1,122 @@
+
+<div class="banner details-banner">
+	<div class="container"  style="background-image: url(../images/banner/publicservice_banner.png);">
+		<ol class="breadcrumb">
+			<li><a href="/">首页</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6003})">公共事业</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6003})">交通</a></li>
+			<li class="active">旅客运输</li>
+		</ol>
+		<h2>旅客运输</h2>
+	</div>
+</div>
+<div class="details-content">
+	<div class="container">
+		<tabset>
+			<tab heading="旅客运输量" id="tab_MedicalInstitutions">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								按月客运量
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-8 chart-panel">
+									<highchart  id="passengerCapacitySumChart" config="passengerCapacitySumChart" ></highchart>
+								</div>
+								<div class="col-md-4">
+									<table class="table table-hover">
+										<caption><h4>{{displayYear}} 年 {{passengerCapacityLastMonth}} 月全市客运量分布情况</h4></caption>
+	    								<tr ng-repeat="capacity in passengerCapacity">
+	    									<td><font size="3">{{capacity.name}}</font></td>
+	    									<td class="t-right"><font size="3">{{capacity.number}}人次</font></td>
+	    								</tr>
+									</table>
+								</div>
+							</div>
+							<div><hr></div>
+							<div class="row">
+								<div class="col-md-8 chart-panel">
+									<highchart  id="passengerCapacityByKindChart"  config="passengerCapacityByKindChart" ></highchart>
+								</div>
+								<div class="col-md-4">
+									<h4>客运车辆类别选择</h4>
+									<div class="radio" ng-repeat="passengerCapacityOne in passengerCapacityByKindList">
+										<label>
+											<input type="radio" ng-model="passengerCapacitySelected" ng-value="passengerCapacityOne.name" name="passengerCapacityByKindList" ng-click="passengerCapacityKindChange(passengerCapacityOne)">
+								            <font size="3">{{passengerCapacityOne.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								节假日客运量
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-6 chart-panel">
+									<highchart  id="festivalPassengerBusCapacityChart" style="width:480px;" config="festivalPassengerBusCapacityChart"></highchart>
+								</div>
+								<div class="col-md-6 chart-panel">
+									<highchart  id="festivalPassengerLongDistanceBusCapacityChart" style="width:480px;" config="festivalPassengerLongDistanceBusCapacityChart" ></highchart>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</tab>
+			<tab heading="客运车辆" id="tab_MedicalInstitutions">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								客运车辆
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id=vehicleByKindColumnChart style="width:530px;" config="vehicleByKindColumnChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption><h4>{{vehicleYear}} 年全市客运车辆分布情况</h4></caption>
+										<tr>
+											<td><font size="3">类别</font></td>
+											<td class="t-right"><font size="3">总数</font></td>
+											<td class="t-right"><font size="3">新(清洁)能源车辆数</font></td>
+										</tr>
+	    								<tr ng-repeat="vehicle in vehicleLastYearList">
+	    									<td><font size="3">{{vehicle.name}}</font></td>
+	    									<td class="t-right"><font size="3">{{vehicle.sum}}辆</font></td>
+	    									<td class="t-right"><font size="3">{{vehicle.newEnerge}}辆</font></td>
+	    								</tr>
+									</table>
+								</div>
+							</div>
+							<div><hr></div>
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="newVehicleByKindAreaChart" style="width:530px;" config="newVehicleByKindAreaChart" ></highchart>
+								</div>
+								<div class="col-md-5"> 
+									<h4>新(清洁)能源客运车辆类别选择</h4>
+									<div class="radio" ng-repeat="vehicleOne in vehicleByKindSumList">
+										<label>
+											<input type="radio" ng-model="vehicleKindSelected" ng-value="vehicleOne.name" name="vehicleByKindSumList" ng-click="vehicleKindChange(vehicleOne)">
+								            <font size="3">{{vehicleOne.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</tab>
+		</tabset>
+	</div>
+</div>

@@ -1,0 +1,183 @@
+
+<div class="banner details-banner">
+	<div class="container"  style="background-image: url(../images/banner/publicservice_banner.png);">
+		<ol class="breadcrumb">
+			<li><a href="/">首页</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6001})">公共事业</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6001})">教育</a></li>
+			<li class="active">教育质量与贡献</li>
+		</ol>
+		<h2>教育质量与贡献</h2>
+	</div>
+</div>
+<div class="details-content">
+	<div class="container">
+		<tabset>
+			<tab heading="教育质量" id="tab_eduQuality">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								学业质量
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="studyQualityByKindColumnChart" style="width:500px;" config="studyQualityByKindColumnChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption><h4>{{lastYear}} 年学业质量情况</h4></caption>
+	    								<tr ng-repeat="studyQuality in studyQualityLastYearList">
+	    									<td style="width:65%"><font size="3">{{studyQuality.name}}</font></td>
+	    									<td style="width:35%" class="t-right"><font size="3">{{studyQuality.number}}%</font></td>
+	    								</tr>
+									</table>
+									<h4>学业质量类别选择</h4>
+									<div class="radio" ng-repeat="studyQualityOne in studyQuality">
+										<label>
+											<input type="radio" ng-model="studyQualityKindSelected" ng-value="studyQualityOne.name" name="studyQuality" ng-click="studyQualityKindChange(studyQualityOne)">
+								            <font size="3">{{studyQualityOne.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+							<div>
+								<!-- <p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p>
+										<p><h4>{{studyQualityCommentSelected}}</h4></p>
+									</div> -->
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								学校质量
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="schoolQualityByKindColumnChart" style="width:500px;" config="schoolQualityByKindColumnChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption><h4>{{lastYear}} 年学校质量情况</h4></caption>
+	    								<tr ng-repeat="schoolQuality in schoolQualityLastYearList">
+	    									<td style="width:65%"><font size="3">{{schoolQuality.name}}</font></td>
+	    									<td style="width:35%" class="t-right"><font size="3">{{schoolQuality.number}}%</font></td>
+	    								</tr>
+									</table>
+									<h4>学校质量类别选择</h4>
+									<div class="radio" ng-repeat="schoolQualityOne in schoolQuality">
+										<label>
+											<input type="radio" ng-model="schoolQualityKindSelected" ng-value="schoolQualityOne.name" name="schoolQualityLastYearList" ng-click="schoolQualityKindChange(schoolQualityOne)">
+								            <font size="3">{{schoolQualityOne.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+							<div>
+								<!-- <p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p>
+										<p><h4>{{schoolQualityCommentSelected}}</h4></p>
+									</div> -->
+							</div>
+						</div>
+					</div>
+								<div class="panel panel-primary">
+						<div class="panel-heading">
+								教学成果
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="eduEnrollByKindBarChart" style="width:500px;" config="eduEnrollByKindBarChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption><h4>{{lastYear}} 年学校教学成果</h4></caption>
+	    								<tr ng-repeat="enroll in enrollLastYearList">
+	    									<td style="width:65%"><font size="3">{{enroll.name}}</font></td>
+	    									<td style="width:35%" class="t-right"><font size="3">{{enroll.number}}%</font></td>
+	    								</tr>
+									</table>
+									<h4>教学成果类别选择</h4>
+									<div class="radio" ng-repeat="enrollOne in enroll">
+										<label>
+											<input type="radio" ng-model="eduEnrollKindSelected" ng-value="enrollOne.name" name="enrollLastYearList" ng-click="enrollKindChange(enrollOne)">
+								            <font size="3">{{enrollOne.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+							<div>
+								<!-- <p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p>
+										<p><h4>{{schoolQualityCommentSelected}}</h4></p>
+									</div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</tab>
+			<tab heading="教育贡献" id="tab_eduContrib">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								教育贡献
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="eduContribByKindBarChart" style="width:500px;" config="eduContribByKindBarChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption><h4>{{lastYear}} 年教育贡献情况</h4></caption>
+	    								<tr>
+	    									<td style="width:65%"><font size="3">{{contribLastYearList[0].name}}</font></td>
+	    									<td style="width:35%" class="t-right"><font size="3">{{contribLastYearList[0].number}}年</font></td>
+	    								</tr>
+	    								<tr>
+	    									<td style="width:65%"><font size="3">{{contribLastYearList[1].name}}</font></td>
+	    									<td style="width:35%" class="t-right"><font size="3">{{contribLastYearList[1].number}}年</font></td>
+	    								</tr>
+	    								<tr>
+	    									<td style="width:65%"><font size="3">{{contribLastYearList[2].name}}</font></td>
+	    									<td style="width:35%" class="t-right"><font size="3">{{contribLastYearList[2].number}}%</font></td>
+	    								</tr>
+	    								<tr>
+	    									<td style="width:65%"><font size="3">{{contribLastYearList[3].name}}</font></td>
+	    									<td style="width:35%" class="t-right"><font size="3">{{contribLastYearList[3].number}}%</font></td>
+	    								</tr>
+									</table>
+									<h4>教育贡献类别选择</h4>
+									<div class="radio" ng-repeat="contribOne in contrib">
+										<label>
+											<input type="radio" ng-model="eduContribKindSelected" ng-value="contribOne.name" name="contrib" ng-click="contribKindChange(contribOne)">
+								            <font size="3">{{contribOne.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+							<div>
+								
+									<!-- <p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p>
+										<p><h4>{{contribCommentSelected}}<font size="3"></p>
+									</div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</tab>
+		</tabset>
+	</div>
+</div>

@@ -1,0 +1,451 @@
+
+<link rel="stylesheet" href="/styles/map.css" />
+<div class="banner details-banner">
+    <div class="container"  style="background-image: url(../images/banner/environment_banner.png);">
+        <ol class="breadcrumb">
+            <li><a href="#/">首页</a></li>
+            <li><a ui-sref="app.kpicategory({categoryId:4002})">资源环境</a></li>
+            <li><a ui-sref="app.kpicategory({categoryId:4002})">大气环境</a></li>
+            <li>大气环境KPI详情</li>
+
+        </ol>
+        <h2>大气环境</h2>
+    </div>
+</div>
+
+<div class="details-content">
+    <div class="container">
+        <tabset><tab heading="大气环境概况">
+            <div class="row" style="margin-top: 20px;">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="panel panel-default" style="height: 650px">
+                            <div class="panel-body">
+                                <!--百度地图容器-->
+                                <div style="height: 620px; border: #ccc solid 1px;"
+                                    id="map_canvas"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="panel panel-default">
+                            <div class="panel-body" style="height: 650px">
+                                <h4>空气质量</h4>
+
+                                <div style="margin-top:5px;font-size:16px">
+                                    <button class="btn" ng-class="getButtonStatus(airQualityStatus.status)" ng-click="airQualityBtn()"><span class="glyphicon glyphicon-hand-right"></span>&nbsp城区空气质量</button>
+                                    {{airQualityStatus.sentence}}
+                                </div>
+                                <hr/>
+                               <!--  <h4>气象因素</h4>
+
+                                <div style="margin-top:5px;font-size:16px">
+                                    <button class="btn" ng-class="getButtonStatus(airConditionStatus.status)" ng-click="airConditionBtn()"><span class="glyphicon glyphicon-hand-right"></span>&nbsp全市气象状况</button>
+                                    {{airConditionStatus.sentence}}
+                                </div>
+                                <hr/> -->
+                                <h4>废气排放</h4>
+
+                                <div style="margin-top:5px;font-size:16px">
+                                    <button class="btn" ng-class="getButtonStatus(wasteAirStatus.status)" ng-click="wasteAirBtn()"><span class="glyphicon glyphicon-hand-right"></span>&nbsp工业废气排放</button>
+                                    {{wasteAirStatus.sentence}}
+                                </div>
+                                <hr>
+                                <div ng-show="mapTableStatus.airQuality">
+                                    <h5 align="right" style="padding-top: 0px">(更新时间:&nbsp{{airQualityCurrentDateTime.year + '-'
+                                            + airQualityCurrentDateTime.month + '-'
+                                            + airQualityCurrentDateTime.day + ' '
+                                            + airQualityCurrentDateTime.hour + '时'}}&nbsp&nbsp单位：μg/m³)</h5>
+                                    <table class="table table-hover table-responsive" style="font-size:14px;margin-bottom:0px">
+                                        <tr>
+                                            <th style="width:30%">监测点</th>
+                                            <th style="width:14%">AQI</th>
+                                            <th style="width:14%">PM2.5</th>
+                                            <th style="width:14%">PM10</th>
+                                            <th style="width:14%">NO2</th>
+                                            <th style="width:14%">SO2</th>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                <div style="overflow: auto; overflow-x:hidden;height: 340px" ng-show="mapTableStatus.airQuality">
+                                    <table class="table table-hover table-responsive" style="font-size:14px">
+                                        <tr ng-repeat="airQualityOne in airQualityMarkerList">
+                                            <td style="width:30%">{{airQualityOne.monitor}}</td>
+                                            <td style="width:14%"><span>{{airQualityOne.index_aqi}}</span></td>
+                                            <td style="width:14%"><span>{{airQualityOne.index_pm25}}</span></td>
+                                            <td style="width:14%"><span>{{airQualityOne.index_pm10}}</span></td>
+                                            <td style="width:14%"><span>{{airQualityOne.index_no2}}</span></td>
+                                            <td style="width:14%"><span>{{airQualityOne.index_so2}}</span></td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                <!-- <div ng-show="mapTableStatus.airCondition">
+                                    <h5 align="right" style="padding-top: 0px">(更新时间:&nbsp{{airConditionCurrentDateTime.year + '-'
+                                        + airConditionCurrentDateTime.month + '-'
+                                        + airConditionCurrentDateTime.day + ' '
+                                        + airConditionCurrentDateTime.hour + '时'}})</h5>
+                                    <table class="table table-hover table-responsive" style="font-size:14px;margin-bottom:0px">
+                                        <tr>
+                                            <th style="width:20%">监测点</th>
+                                            <th style="width:20%">气温(℃)</th>
+                                            <th style="width:30%">相对湿度(%)</th>
+                                            <th style="width:15%">风级</th>
+                                            <th style="width:15%">风向</th>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div style="overflow: scroll;overflow-x:hidden;height:340px" ng-show="mapTableStatus.airCondition">
+                                    <table class="table table-hover table-responsive" style="font-size:14px">
+                                        <tr ng-repeat="airConditionOne in airConditionMarkerList">
+                                            <td style="width:20%">{{airConditionOne.monitor}}</td>
+                                            <td style="width:20%"><span>{{airConditionOne.index_temperature}}</span></td>
+                                            <td style="width:30%"><span>{{airConditionOne.index_humidity}}</span></td>
+                                            <td style="width:15%"><span>{{airConditionOne.index_windLevel}}</span></td>
+                                            <td style="width:15%"><span>{{airConditionOne.index_windDire}}</span></td>
+                                        </tr>
+                                    </table>
+                                </div> -->
+                                <div ng-show="mapTableStatus.wasteAir">
+                                    <h5 align="right" style="padding-top: 0px">(更新时间:&nbsp{{wasteAirCurrentDateTime.year + '-'
+                                        + wasteAirCurrentDateTime.month + '-'
+                                        + wasteAirCurrentDateTime.day }})</h5>
+                                    <table class="table table-hover table-responsive" style="font-size:14px;margin-bottom:0px">
+                                        <tr>
+                                            <th style="width:20%">企业</th>
+                                            <th style="width:20%">流量(m³)</th>
+                                            <th style="width:20%">烟尘<br>(mg/m³)</th>
+                                            <th style="width:20%">SO2<br>(mg/m³)</th>
+                                            <th style="width:20%">氮氧化物<br>(mg/m³)</th>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div style="overflow: auto; overflow-x:hidden;height: 320px" ng-show="mapTableStatus.wasteAir">
+                                    <table class="table table-hover table-responsive" style="font-size:14px">
+                                        <tr ng-repeat="wasteAirOne in wasteAirMarkerList">
+                                            <td style="width:20%">{{wasteAirOne.monitor.slice(0,6)}}</td>
+                                            <td style="width:20%"><span>{{(wasteAirOne.index_discharge[1]/100000000).toFixed(2)}}亿</span></td>
+                                            <td style="width:20%"><span>{{wasteAirOne.index_smoke.toFixed(2)}}</span></td>
+                                            <td style="width:20%"><span>{{wasteAirOne.index_so2.toFixed(2)}}</span></td>
+                                            <td style="width:20%"><span>{{wasteAirOne.index_no.toFixed(2)}}</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="大气环境分析">
+            <div class="row" style="margin-top: 20px;">
+                <div>
+                    <div class="col-md-12">
+                        <div class="panel panel-primary" style="margin-top: 20px;">
+                            <div class="panel-heading">
+                                空气质量分析 <span
+                                    class="glyphicon glyphicon-question-sign pull-right"></span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-9 chart-panel">
+                                        <nav class="navbar navbar-default" role="navigation" du-scroll-container="scroll-container">
+                                            <a class="navbar-brand" href="#airQualityAnchorTop"  du-smooth-scroll>空气质量指标</a>
+                                            <a href="#airQualityAnchor1" class="btn btn-default navbar-btn" role="button" du-smooth-scroll>AQI</a>
+                                            <a href="#airQualityAnchor2" class="btn btn-default navbar-btn" role="button" du-smooth-scroll>PM2.5</a>
+                                            <a href="#airQualityAnchor3" class="btn btn-default navbar-btn " role="button" du-smooth-scroll>PM10</a>
+                                            <a href="#airQualityAnchor4" class="btn btn-default navbar-btn " role="button" du-smooth-scroll>二氧化硫</a>
+                                            <a href="#airQualityAnchor5" class="btn btn-default navbar-btn " role="button" du-smooth-scroll>二氧化氮</a>
+                                            <a href="#airQualityAnchor6" class="btn btn-default navbar-btn " role="button" du-smooth-scroll>一氧化碳</a>
+                                            <a href="#airQualityAnchor7" class="btn btn-default navbar-btn " role="button" du-smooth-scroll>臭氧</a>
+                                        </nav>
+                                        <div  style="overflow: auto; overflow-x:hidden;height:450px"  id="scroll-container" >
+                                            <p id="airQualityAnchorTop"></p>
+                                            <div class="col-md-12">
+                                                <div class="col-md-3" id="airQualityAnchor1">
+                                                    <highchart config="airQualityOptions.aqiOption"></highchart>
+                                                </div>
+                                                <div class="col-md-9" style="left:10px">
+                                                    <highchart config="airQualityOptions.currentAqiLineOption"></highchart>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-3" id="airQualityAnchor2">
+                                                    <highchart config="airQualityOptions.pm25Option"></highchart>
+                                                </div>
+                                                <div class="col-md-9" style="left:10px">
+                                                    <highchart config="airQualityOptions.currentPm25LineOption"></highchart>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-3" id="airQualityAnchor3">
+                                                    <highchart config="airQualityOptions.pm10Option"></highchart>
+                                                </div>
+                                                <div class="col-md-9" style="left:10px">
+                                                    <highchart config="airQualityOptions.currentPm10LineOption"></highchart>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-3" id="airQualityAnchor4">
+                                                    <highchart config="airQualityOptions.so2Option">SO2</highchart>
+                                                </div>
+                                                <div class="col-md-9" style="left:10px">
+                                                    <highchart config="airQualityOptions.currentSo2LineOption"></highchart>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-3" id="airQualityAnchor5">
+                                                    <highchart config="airQualityOptions.no2Option"></highchart>
+                                                </div>
+                                                <div class="col-md-9" style="left:10px">
+                                                    <highchart config="airQualityOptions.currentNo2LineOption"></highchart>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-3" id="airQualityAnchor6">
+                                                    <highchart config="airQualityOptions.coOption"></highchart>
+                                                </div>
+                                                <div class="col-md-9" style="left:10px">
+                                                    <highchart config="airQualityOptions.currentCoLineOption"></highchart>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-3" id="airQualityAnchor7">
+                                                    <highchart config="airQualityOptions.o3Option"></highchart>
+                                                </div>
+                                                <div class="col-md-9" style="left:10px">
+                                                    <highchart config="airQualityOptions.currentO3LineOption"></highchart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h4>空气质量监测点选择</h4>
+                                        <div style="font-size:14px;">
+                                            <div class="radio" ng-repeat="airQualityOne in airQualityCurrentList"><label>
+                                                <input type="radio" ng-model="airQualityCurrentListSelected" ng-value="airQualityOne.monitor" name="airQualityCurrentListRadio" ng-click="airQualityCurrentChange(airQualityOne)">{{airQualityOne.monitor}}
+                                            </label></div>
+                                        </div>
+                                        <hr>
+                                        <div class="ioc-panel-desc">
+                                            <p class="ioc-panel-desc-title">
+                                                <img src="/images/common/titles/one-sentence.png" />
+                                            </p>
+                                            <p class="ioc-panel-desc-body">
+                                                <h5><h5>{{airQualityCurrentDateTime.year}}年{{airQualityCurrentDateTime.month}}月{{airQualityCurrentDateTime.day}}日{{airQualityCurrentDateTime.hour}}时</h5></h5>
+                                                <h5>{{airQualityOneSentence.monitor}}</h5>
+                                                <h5>空气质量等级:&nbsp{{airQualityOneSentence.level}} 级</h5>
+                                                <h5>首要污染物:&nbsp{{airQualityOneSentence.firstElement}}</h5>
+                                                <h5>
+                                                    <span class="glyphicon" ng-class="getOneSentenceStatus(airQualityOneSentence.aqiStatus.status)"></span>
+                                                    &nbsp{{airQualityOneSentence.aqiStatus.sentence}}
+                                                </h5>
+                                                <h5>
+                                                    <span class="glyphicon" ng-class="getOneSentenceStatus(airQualityOneSentence.pm25Status.status)"></span>
+                                                    &nbsp{{airQualityOneSentence.pm25Status.sentence}}
+                                                </h5>
+                                                <h5>
+                                                    <span class="glyphicon" ng-class="getOneSentenceStatus(airQualityOneSentence.pm10Status.status)"></span>
+                                                    &nbsp{{airQualityOneSentence.pm10Status.sentence}}
+                                                </h5>
+                                                <h5>
+                                                    <span class="glyphicon" ng-class="getOneSentenceStatus(airQualityOneSentence.so2Status.status)"></span>
+                                                    &nbsp{{airQualityOneSentence.so2Status.sentence}}
+                                                </h5>
+                                                <h5>
+                                                    <span class="glyphicon" ng-class="getOneSentenceStatus(airQualityOneSentence.no2Status.status)"></span>
+                                                    &nbsp{{airQualityOneSentence.no2Status.sentence}}
+                                                </h5>
+                                                <h5>
+                                                    <span class="glyphicon" ng-class="getOneSentenceStatus(airQualityOneSentence.coStatus.status)"></span>
+                                                    &nbsp{{airQualityOneSentence.coStatus.sentence}}
+                                                </h5>
+                                                <h5>
+                                                    <span class="glyphicon" ng-class="getOneSentenceStatus(airQualityOneSentence.o3Status.status)"></span>
+                                                    &nbsp{{airQualityOneSentence.o3Status.sentence}}
+                                                </h5>
+                                            </p>
+                                            <p style="margin-top:20px">
+                                                <h5><span style="color:#DDDF0D">黄色线----</span> 代表轻微问题界线</h5>
+                                                <h5><span style="color:#DF5353">红色线----</span> 代表问题界线</h5>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="panel panel-primary" style="margin-top: 20px;">
+                            <div class="panel-heading">
+                                废气排放分析 <span
+                                    class="glyphicon glyphicon-question-sign pull-right"></span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-9 chart-panel">
+                                        <highchart class="col-md-12" style="width: 550px" config="wasteAirOptions.wasteAirCurrentOption">废气排放</highchart>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h4>废气排放指标选择</h4>
+                                        <div style="font-size:14px;">
+                                            <div class="radio" ng-repeat="wasteAirOne in wasteAirCurrentList"><label>
+                                                <input type="radio" ng-model="wasteAirCurrentListSelected" ng-value="wasteAirOne" name="wasteAirCurrentListRadio" ng-click="wasteAirCurrentChange(wasteAirOne)">{{wasteAirOne}}
+                                            </label></div>
+                                        </div>
+                                        <hr>
+                                        <div class="ioc-panel-desc">
+                                            <p class="ioc-panel-desc-title">
+                                                <img src="/images/common/titles/one-sentence.png" />
+                                            </p>
+                                            <p class="ioc-panel-desc-body">
+                                                <h5>{{wasteAirCurrentDateTime.year}}年{{wasteAirCurrentDateTime.month}}月{{wasteAirCurrentDateTime.day}}日</h5>
+                                                <div ng-show="wasteAirDischargeOneSentenceStatus">
+                                                    <h5>废气排放量正常</h5>
+                                                </div>
+                                                <div ng-show="!wasteAirDischargeOneSentenceStatus">
+                                                <h5>所有污染源中</h5>
+                                                <h5>{{wasteAirOneSentence.index}}</h5>
+
+                                                <h5>
+                                                    <span class="glyphicon glyphicon-ok-sign"></span>
+                                                    &nbsp正常：{{wasteAirOneSentence.countResult.accept}}个污染源
+                                                </h5>
+                                                <h5>
+                                                    <span class="glyphicon glyphicon-exclamation-sign"></span>
+                                                    &nbsp轻微问题：{{wasteAirOneSentence.countResult.caution}}个污染源
+                                                </h5>
+                                                <h5>
+                                                    <span class="glyphicon glyphicon-remove-sign"></span>
+                                                    &nbsp问题：{{wasteAirOneSentence.countResult.take_action}}个污染源
+                                                </h5>
+                                                <h5>
+                                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                                    &nbsp无数据：{{wasteAirOneSentence.countResult.invalid}}个污染源
+                                                </h5>
+                                                </div>
+                                            </p>
+                                            <p style="margin-top:20px">
+                                                <h5 ng-show="!wasteAirDischargeOneSentenceStatus"><span style="color:#DF5353">红色线----</span> 代表问题界线</h5>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="panel panel-primary" style="margin-top: 20px;">
+                            <div class="panel-heading">
+                                气象信息分析 <span
+                                    class="glyphicon glyphicon-question-sign pull-right"></span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-9 chart-panel">
+                                        <highchart class="col-md-12" style="width: 550px;height:400px" config="airConditionOptions.airConditionCurrentOption">气象因素</highchart>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h4>气象指标选择</h4>
+                                        <div style="font-size:14px;">
+                                            <div class="radio" ng-repeat="airConditionOne in airConditionCurrentList"><label>
+                                                <input type="radio" ng-model="airConditionCurrentListSelected" ng-value="airConditionOne" name="airConditionCurrentListRadio" ng-click="airConditionCurrentChange(airConditionOne)">{{airConditionOne}}
+                                            </label></div>
+                                        </div>
+                                        <hr>
+                                        <div class="ioc-panel-desc">
+                                            <p class="ioc-panel-desc-title">
+                                                <img src="/images/common/titles/one-sentence.png" />
+                                            </p>
+                                            <p class="ioc-panel-desc-body">
+                                                <h5>{{airConditionCurrentDateTime.year}}年{{airConditionCurrentDateTime.month}}月{{airConditionCurrentDateTime.day}}日{{airConditionCurrentDateTime.hour}}时</h5>
+                                                <h5>{{airConditionOneSentence.monitor}}</h5>
+                                                <h5>
+                                                    <span class="glyphicon" ng-class="getOneSentenceStatus(airConditionOneSentence.index_temperature.status)"></span>
+                                                    &nbsp{{airConditionOneSentence.index_temperature.sentence}}
+                                                </h5>
+                                                <h5>
+                                                    <span class="glyphicon" ng-class="getOneSentenceStatus(airConditionOneSentence.index_windLevel.status)"></span>
+                                                    &nbsp{{airConditionOneSentence.index_windLevel.sentence}}
+                                                </h5>
+                                                <h5>
+                                                    <span class="glyphicon" ng-class="getOneSentenceStatus(airConditionOneSentence.index_humidity.status)"></span>
+                                                    &nbsp{{airConditionOneSentence.index_humidity.sentence}}
+                                                </h5>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-primary" style="margin-top:20px">
+                            <div class="panel-heading">关键数据</div>
+                            <div class="panel-body" style="padding: 0;">
+
+                                <div class="data-tile">
+                                    <div class="col-md-4">
+                                        <img src="/images/environment/air_quality.png" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="key-title">
+                                            <h5 style="margin:5px">空气质量监测点</h5>
+                                            <h5 style="margin:5px">正常数/总数:</h5>
+                                            <h5 style="margin:5px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{airQualityQualified}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data-tile">
+                                    <div class="col-md-4">
+                                        <img src="/images/environment/air_pollution.png" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="key-title">
+                                            <h5 style="margin:5px">废气排放监测点</h5>
+                                            <h5 style="margin:5px">正常数/总数:</h5>
+                                            <h5 style="margin:5px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{airPollutionQualified}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="data-tile">
+                                    <div class="col-md-4">
+                                        <img src="/images/environment/air_condition.png" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="key-title">
+                                            <h5 style="margin:5px">气象监测点</h5>
+                                            <h5 style="margin:5px">正常数/总数:</h5>
+                                            <h5 style="margin:5px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{airConditionQualified}}</h5>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="panel panel-primary" style="margin-top:25px">
+                            <div class="panel-heading">本月大气环境报告</div>
+                            <div class="panel-body" style="padding: 0;">
+                                <div class="data-tile">
+                                    <div class="col-md-4">
+                                        <img src="/images/environment/report.png" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="key-title"><a href="http://www.tcshbj.gov.cn/news/hjjce/dqhjzl.html" target="_blank"><h5>{{currentDateTime.year + '-' +currentDateTime.month}}<br/>官方空气质量月报</h5></a></div>
+                                    </div>
+                                </div>
+                                <div class="data-tile">
+                                    <div class="col-md-4">
+                                        <img src="/images/environment/report.png" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="key-title"><a href="http://www.tcshbj.gov.cn/news/wryjgxx/index_01.html" target="_blank"><h5>{{currentDateTime.year + '-' +currentDateTime.month}}<br/>官方污染源监测月报</h5></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </tab></tabset>
+    </div>
+</div>

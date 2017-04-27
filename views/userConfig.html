@@ -1,0 +1,663 @@
+<div class="banner details-banner">
+
+	<div class="container" style="background-image: url(../images/banner/environment_banner.png);">
+		<ol class="breadcrumb">
+			<li>
+				<a href="/">首页</a>
+			</li>
+			<li>权限配置</li>
+
+		</ol>
+		<h2>权限配置</h2>
+
+	</div>
+</div>
+<div>
+	<div class="details-content">
+		<div class="container">
+			<tabset>
+				<tab heading="用户管理">
+					<div class="panel-body" style="padding:10px 0px">
+						<div style="text-align:right;margin:10px">
+							<button  class="btn btn-primary" ng-click="userAdd()">添加用户</button>
+						</div>
+						<table class="table table-bordered" style="margin-bottom:0px">
+							<thead class="ioc-thead ">
+								<tr>
+									<th style="width:100px">
+										用户名
+									</th>
+									<th style="width:170px">
+										创建时间
+									</th>
+									<th style="width:170px">
+										修改时间
+									</th>
+									<th style="width:80px">
+										职务
+									</th>
+									<th style="width:80px">
+										昵称
+									</th>
+									<th>
+										操作
+									</th>
+								</tr>
+							</thead>
+						</table>
+						<div  style="overflow: auto; overflow-x:hidden;height:450px">
+							<div class="ioc-panel-table">
+								<table class="table table-bordered" id="datatableuser">
+									<tbody>
+										<tr ng-repeat="user in userArr">
+											<td style="width:100px">
+												<h5>{{user.account}}</h5>
+											</td>
+											<td style="width:170px">
+												<h5>{{formatDateTime(user.create_time)}}</h5>
+											</td>
+											<td style="width:170px">
+												<h5>{{formatDateTime(user.modify_time)}}</h5>
+											</td>
+											<td style="width:80px">
+												<h5>{{user.title}}</h5>
+											</td>
+											<td style="width:80px">
+												<h5>{{user.name}}</h5>
+											</td>
+											<td>
+												<button  class="btn btn-primary" ng-click="userQuery(user)">查看</button>
+												<button  class="btn btn-primary" ng-click="userModify(user)">修改</button>
+												<button  class="btn btn-primary" ng-click="userDelConfirmPre(user)">删除</button>
+												<button  class="btn btn-primary" ng-click="userIdResetPassword(user)">密码重置</button>
+												<button  class="btn btn-primary" ng-click="userDepartmentConfig(user)">用户组配置</button>
+											</td>
+										</tr>
+									</tbody>
+									
+								</table>
+							</div>
+						</div>
+					</div>
+				</tab>
+				<tab heading="组管理">
+					<div class="panel-body"  style="padding:10px 0px">
+						<div style="text-align:right;margin: 10px">
+							<button  class="btn btn-primary" ng-click="departmentAdd()">添加组</button>
+						</div>
+						<table class="table table-bordered" style="margin-bottom:0px">
+							<thead class="ioc-thead ">
+								<tr>
+									<th style="width:180px">
+										组名称
+									</th>
+									<th style="width:180px">
+										描述
+									</th>
+									<th style="width:180px">
+										创建时间	
+									</th>
+									<th style="width:180px">
+										修改时间
+									</th>
+									<th>
+										操作
+									</th>
+								</tr>
+							</thead>
+						</table>
+						<div  style="overflow: auto; overflow-x:hidden;height:450px">
+							<div class="ioc-panel-table">
+								<table class="table table-bordered">
+									<thead class="ioc-thead ">
+										
+									</thead>
+									<tbody>
+										<tr ng-repeat="department in departmentArr">
+											<td style="width:180px">
+												<h5>{{department.name}}</h5>
+											</td>
+											<td style="width:180px">
+												<h5>{{department.description}}</h5>
+											</td>
+											<td style="width:180px">
+												<h5>{{formatDateTime(department.create_time)}}</h5>
+											</td>
+											<td style="width:180px">
+												<h5>{{formatDateTime(department.modify_time)}}</h5>
+											</td>
+											<td>
+												<button  class="btn btn-primary" ng-click="departmentQuery(department)">查看</button>
+												<button  class="btn btn-primary" ng-click="departmentModify(department)">修改</button>
+												<button  class="btn btn-primary" ng-click="departmentDelConfirmPre(department)">删除</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</tab>
+			</tabset>
+		</div>
+	</div>
+	<div class="modal fade" id="userAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header"><label>添加用户</label></div>
+
+				<div class="modal-body" style="height: 340px;padding:15px 0 0 0">
+					<form role="form" name="userAddForm">
+						<div class="form-group col-md-12" align="left"><label>主要信息</label></div>
+						
+						<div class="form-group col-md-6">
+						    <div class="col-sm-4">用户名:*</div>
+						    <div class="col-sm-8">
+								<input name="accountName" ng-model="userAddTemp.account" class="form-control input-sm" ng-valid="userIsExistStatus" required>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">角色:*</div>
+							<div class="col-sm-8">
+								<select class="form-control" name="accountRole" ng-model="userAddTemp.role" required>
+								  <option>管理员</option>
+								  <option>市长、市委书记</option>
+								  <option>分管局长</option>
+								  <option>操作员</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<hr>
+						</div>
+						<div class="form-group col-md-12" align="left"><label>基本信息</label></div>
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">姓名:</div>
+							<div class="col-sm-8">
+								<input ng-model="userAddTemp.name" class="form-control input-sm">
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">头衔:</div>
+							<div class="col-sm-8">
+								<input ng-model="userAddTemp.title" class="form-control input-sm">
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">昵称:</div>
+							<div class="col-sm-8">
+								<input ng-model="userAddTemp.systemName" class="form-control input-sm">
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">手机:</div>
+							<div class="col-sm-8">
+								<input ng-model="userAddTemp.mobilePhone" class="form-control input-sm" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/^\d]/g,'')">
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">工作电话:</div>
+							<div class="col-sm-8">
+								<input ng-model="userAddTemp.workPhone" class="form-control input-sm" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/^\d]/g,'')">
+							</div>
+						</div>
+					</form>
+				</div>
+
+				<div>
+					<div class="modal-footer">
+						<button ng-click="userAddConfirmPre()" type="submit" class="btn btn-primary" ng-disabled="userAddForm.$invalid">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="userQueryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header"><label>查看用户</label></div>
+				<div class="modal-body" style="height:450px;padding:15px 0 0 0">
+					<form role="form">
+						<div class="form-group col-md-12" align="left"><label>主要信息</label></div>
+						
+						<div class="col-md-12 well">
+						<div class="col-md-12">
+						    <div class="col-sm-2">用户名:*</div>
+						    <div class="col-sm-4">
+								<label>{{userQueryTemp.account}}</label>
+							</div>
+						</div>
+						<div class=" col-md-12">
+							<div class="col-sm-2">角色:*</div>
+							<div class="col-sm-4">
+								<label>{{userQueryTemp.role}}</label>
+							</div>
+						</div>
+						</div>
+						
+						<div class="col-md-12">
+							<hr>
+						</div>
+						<div class="form-group col-md-12" align="left"><label>基本信息</label></div>
+						<div class="col-md-12 well">
+						<div class="col-md-12">
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">姓名:</div>
+							<div class="col-sm-8">
+								<label>{{userQueryTemp.name}}</label>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">头衔:</div>
+							<div class="col-sm-8">
+								<label>{{userQueryTemp.title}}</label>
+							</div>
+						</div>
+						</div>
+						
+						<div class="col-md-12">
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">昵称:</div>
+							<div class="col-sm-8">
+								<label>{{userQueryTemp.systemName}}</label>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">手机:</div>
+							<div class="col-sm-8">
+								<label>{{userQueryTemp.mobilePhone}}</label>
+							</div>
+						</div>
+						</div>
+						
+						<div class="col-md-12">
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">工作电话:</div>
+							<div class="col-sm-8">
+								<label>{{userQueryTemp.workPhone}}</label>
+							</div>
+						</div>
+						</div>
+						</div>
+					</form>
+				</div>
+				<div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="userModifyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header"><label>修改用户</label></div>
+				<div class="modal-body" style="height: 340px;padding:15px 0 0 0">
+					<form role="form" name="userModifyForm">
+						<div class="form-group col-md-12" align="left"><label>主要信息</label></div>
+						
+						<div class="form-group col-md-12">
+						<div class="form-group col-md-6">
+						    <div class="col-sm-4">用户名:*</div>
+						    <div class="col-sm-8">
+								<input name="accountName" ng-model="userModifyTemp.account" class="form-control input-sm" ng-valid="userIsExistStatus" disabled="disabled" required>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">角色:*</div>
+							<div class="col-sm-8">
+								  <select class="form-control" name="accountRole" ng-model="userModifyTemp.role" disabled="disabled" required>
+								  <option>管理员</option>
+								  <option>市长、市委书记</option>
+								  <option>分管局长</option>
+								  <option>操作员</option>
+								  </select>
+							</div>
+						</div>
+						</div>
+						
+						<div class="col-md-12">
+							<hr>
+						</div>
+						<div class="form-group col-md-12" align="left"><label>基本信息</label></div>
+						
+						<div class="form-group col-md-12">
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">姓名:</div>
+							<div class="col-sm-8">
+								<input ng-model="userModifyTemp.name" class="form-control input-sm">
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">头衔:</div>
+							<div class="col-sm-8">
+								<input ng-model="userModifyTemp.title" class="form-control input-sm">
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">昵称:</div>
+							<div class="col-sm-8">
+								<input ng-model="userModifyTemp.systemName" class="form-control input-sm">
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">手机:</div>
+							<div class="col-sm-8">
+								<input ng-model="userModifyTemp.mobilePhone" class="form-control input-sm" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/^\d]/g,'')" \>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">工作电话:</div>
+							<div class="col-sm-8">
+								<input ng-model="userModifyTemp.workPhone" class="form-control input-sm" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/^\d]/g,'')" \>
+							</div>
+						</div>
+						</div>
+					</form>
+				</div>
+				<div>
+					<div class="modal-footer">
+						<button ng-click="userModifyConfirmPre()" type="submit" class="btn btn-primary" ng-disabled="userModifyForm.$invalid">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="userAddConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+	
+				<div class="modal-body" align="center">
+					<label>是否确认添加用户？</label>
+				</div>
+	
+				<div>
+					<div class="modal-footer">
+						<button ng-click="userAddProcess()" class="btn btn-primary">确定</button>
+						<button ng-click="userAddCancel()" class="btn btn-default">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="userModifyConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+	
+				<div class="modal-body" align="center">
+					<label>是否确认更新用户？</label>
+				</div>
+	
+				<div>
+					<div class="modal-footer">
+						<button ng-click="userModifyProcess()" class="btn btn-primary">确定</button>
+						<button ng-click="userModifyCancel()" class="btn btn-default">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="userDelConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+	
+				<div class="modal-body" align="center">
+					<label>是否确认删除用户？</label>
+				</div>
+	
+				<div>
+					<div class="modal-footer">
+						<button ng-click="userDelProcess()" class="btn btn-primary" data-dismiss="modal">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="userDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="height: 850px;">
+		<div class="modal-dialog" style="width: 500px;">
+			<div class="modal-content">
+				<div class="modal-header"><label>用户组配置</label></div>
+		
+					
+						<div class="form-group col-md-12" align="left"><h5>用户名: {{userDepartmentConfigUser.account}}</h5></div>
+						<div class="col-md-12" style="margin-bottom:30px">
+							<form class="form-horizontal" role="form" name="userDepartmentForm">
+							
+							<table class="table table-bordered" style="margin-bottom:0px">
+								<thead class="ioc-thead ">
+									<tr>
+										<th style="text-align:center;width:200px"><h4>组名称</h4></th>
+										<th style="text-align:center;"><h4>该用户是否属于对应组</h4></th>
+									</tr>
+								</thead>
+							</table>
+							<div  style="overflow: auto; overflow-x:hidden;height:300px">
+							<table class="table table-bordered">
+								<tbody>
+									<tr ng-repeat="userDepartment in userDepartmentArr">
+										<td style="text-align:center;width:200px"><h4>{{userDepartment.name}}</h4></td>									
+										<td style="text-align:center;">
+											<input type="checkbox" name="favoriteColors" ng-model="userDepartment.isSelected" style="zoom: 150%">															
+										</td>																				
+									</tr>
+								</tbody>
+							</table>
+							</div>
+							
+							</form>
+						</div>	
+				<div>
+				<div class="modal-footer">
+					<button ng-click="userDepartmentConfigConfirmPre()" class="btn btn-primary" ng-disabled="userDepartmentForm.$invalid">确定</button>
+					<button class="btn btn-default" data-dismiss="modal">取消</button>
+				</div></div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="userDepartmentConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+	
+				<div class="modal-body" align="center">
+					<label>是否确认更新用户组配置？</label>
+				</div>
+	
+				<div>
+					<div class="modal-footer">
+						<button ng-click="userDepartmentConfigProcess()" class="btn btn-primary">确定</button>
+						<button ng-click="userDepartmentConfigCancel()" class="btn btn-default">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="departmentAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header"><label>添加用户组</label></div>
+				<div class="modal-body" style="height: 60px;padding:15px 0 0 0">
+					<form role="form" name="departmentAddForm">
+						
+						<div class="form-group col-md-6">
+						    <div class="col-sm-4">用户名:*</div>
+						    <div class="col-sm-8">
+								<input name="accountName" ng-model="departmentAddTemp.name" class="form-control input-sm" required>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">描述:*</div>
+							<div class="col-sm-8">
+								<input name="accountName" ng-model="departmentAddTemp.description" class="form-control input-sm" required>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div>
+					<div class="modal-footer">
+						<button ng-click="departmentAddConfirmPre()" type="submit" class="btn btn-primary" ng-disabled="departmentAddForm.$invalid">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="departmentQueryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+				<div class="modal-header"><label>查看用户组</label></div>
+				<div class="modal-body" style="height: 150px;padding:15px 0 0 0">
+					<form role="form">
+						
+						<div class="col-md-12 well">
+						<div class="form-group col-md-12">
+						    <div class="col-sm-4">用户名:*</div>
+						    <div class="col-sm-8">
+						    	<label>{{departmentQueryTemp.name}}</label>
+							</div>
+						</div>
+						<div class="form-group col-md-12">
+							<div class="col-sm-4">描述:*</div>
+							<div class="col-sm-8">
+								<label>{{departmentQueryTemp.description}}</label>
+							</div>
+						</div>
+						
+						</div>
+					</form>
+				</div>
+				<div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="departmentModifyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header"><label>修改用户组</label></div>
+				<div class="modal-body" style="height: 60px;padding:15px 0 0 0">
+					<form role="form" name="departmentModifyForm">
+						
+						<div class="form-group col-md-6">
+						    <div class="col-sm-4">用户名:*</div>
+						    <div class="col-sm-8">
+								<input name="accountName" ng-model="departmentModifyTemp.name" class="form-control input-sm" required>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<div class="col-sm-4">描述:*</div>
+							<div class="col-sm-8">
+								<input name="accountName" ng-model="departmentModifyTemp.description" class="form-control input-sm">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div>
+					<div class="modal-footer">
+						<button ng-click="departmentModifyConfirmPre()" type="submit" class="btn btn-primary" ng-disabled="departmentModifyForm.$invalid">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="departmentAddConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+	
+				<div class="modal-body" align="center">
+					<label>是否确认添加用户组？</label>
+				</div>
+	
+				<div>
+					<div class="modal-footer">
+						<button ng-click="departmentAddProcess()" class="btn btn-primary">确定</button>
+						<button ng-click="departmentAddCancel()" class="btn btn-default">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="departmentModifyConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+	
+				<div class="modal-body" align="center">
+					<label>是否确认更新用户组？</label>
+				</div>
+	
+				<div>
+					<div class="modal-footer">
+						<button ng-click="departmentModifyProcess()" class="btn btn-primary">确定</button>
+						<button ng-click="departmentModifyCancel()" class="btn btn-default">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="departmentDelConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+	
+				<div class="modal-body" align="center">
+					<label>是否确认删除用户组？</label>
+				</div>
+	
+				<div>
+					<div class="modal-footer">
+						<button ng-click="departmentDelProcess()" class="btn btn-primary" data-dismiss="modal">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="userResetIdPasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header"><label>密码重置</label></div>
+				<div class="modal-body" style="height: 60px;padding:15px 0 0 0">
+					<form role="form" name="userResetIdPasswordForm">
+						
+						<div class="form-group col-md-6">
+						    <div class="col-sm-4">新密码:*</div>
+						    <div class="col-sm-8">
+								<input name="accountName" ng-model="newIdInfo.password" class="form-control input-sm" required>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div>
+					<div class="modal-footer">
+						<button ng-click="userIdResetPasswordPre()" type="submit" class="btn btn-primary" ng-disabled="userResetIdPasswordForm.$invalid">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="userResetIdPasswordConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 400px;">
+			<div class="modal-content">
+	
+				<div class="modal-body" align="center">
+					<label>确定修改密码？</label>
+				</div>
+	
+				<div>
+					<div class="modal-footer">
+						<button ng-click="userIdResetPasswordProcess()" class="btn btn-primary" data-dismiss="modal">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

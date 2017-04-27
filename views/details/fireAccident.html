@@ -1,0 +1,118 @@
+- 
+	<style type="text/css">
+      #allmap {width: 400px;height: 400px;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<div class="banner details-banner">
+
+	<div class="container" style="background-image: url(../images/banner/police_banner.png);">
+
+
+		<ol class="breadcrumb">
+			<li>
+				<a href="/">首页</a>
+			</li>
+			<li>
+				<a ui-sref="app.kpicategory({categoryId:3001})">公安</a>
+			</li>
+			<li>
+				<a ui-sref="app.kpicategory({categoryId:3002})">消防</a>
+			</li>
+			<li>
+				<a>火灾事故KPI详情</a>
+			</li>
+
+		</ol>
+		<h2>火灾事故KPI详情</h2>
+
+	</div>
+</div>
+
+<div class="details-content">
+	<div class="container" >
+
+		<tabset>
+			<tab heading="火灾事故详情">
+				<div class="row" style="margin-top: 20px;">
+					<div class="col-md-11">
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										火灾事故警情动态
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+											<div class="row">
+											<div class="col-md-12 chart-panel" >
+	
+                                            		 <p class="ioc-panel-desc-title">
+													<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<div class="well">
+													<p class="ioc-panel-desc-body">{{getDate.year}}年{{getDate.month}}月份全市发生各类火灾事故总数 {{amountData.thisMonthAmount}} 起。</p>
+													</div>
+													<hr>
+											</div>
+
+								<div class="col-md-6 chart-panel">
+									<highchart  id="barCount"  config="barCount"  style="width:450px;height:400px"></highchart>
+								</div>
+								<div class="col-md-6 chart-panel">
+									<highchart  id="barInjury"  config="barInjury"  style="width:450px;height:400px"></highchart>
+								</div>
+									<div class="col-md-6 chart-panel">
+									<highchart  id="barDead"  config="barDead"  style="width:450px;height:400px"></highchart>
+								</div>
+								<div class="col-md-6 chart-panel">
+									<highchart  id="barDamage"  config="barDamage"  style="width:450px;height:400px"></highchart>
+								</div>
+										</div>
+									</div>
+								</div>
+									
+									<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										本年度火灾事故趋势
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+									     <label class="">
+										  <input type="radio"  value="0" checked ng-model="lineChartData.selected" ng-change ='trendInfoChanged()'>
+												  查看事故发生数
+												</label>
+									     <label class="">
+										  <input type="radio"  value="1"  ng-model="lineChartData.selected" ng-change ='trendInfoChanged()'>
+												  查看受伤人数
+												</label>
+		
+												<label class="">
+												  <input type="radio" value="2" ng-model="lineChartData.selected" ng-change ='trendInfoChanged()'>
+												  查看死亡人数
+												</label>
+
+								            <label class="">
+										  <input type="radio"  value="3" ng-model="lineChartData.selected" ng-change='trendInfoChanged()' >
+												  查看直接财产损失
+												</label>
+												<hr>
+												<div class="row">
+								<div class="col-md-12 chart-panel">
+									<highchart  id="columnChart" config="columnChart" style="width:900px;height:450px"></highchart>
+								</div>
+
+								       
+								
+							
+							</div>
+							<div><hr>
+
+							</div>
+						
+									</div>
+								</div>
+								</div>
+								</div>
+						</tab>
+			
+					</tabset>
+
+	</div></div>
+

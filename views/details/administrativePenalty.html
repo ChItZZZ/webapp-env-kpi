@@ -1,0 +1,181 @@
+
+	<style type="text/css">
+      #criminalMap {width: 900px;height: 500px;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<div class="banner details-banner">
+
+	<div class="container" style="background-image: url(../images/banner/citymanager_laji_banner.png);">
+
+
+		<ol class="breadcrumb">
+			<li>
+				<a href="/">首页</a>
+			</li>
+			<li>
+				<a ui-sref="app.kpicategory({categoryId:7003})">城市管理</a>
+			</li>
+			<li>
+				<a>行政处罚KPI详情</a>
+			</li>
+
+		</ol>
+		<h2>行政处罚KPI详情</h2>
+
+	</div>
+</div>
+
+<div class="details-content">
+	<div class="container" >
+
+		<tabset>
+			<tab heading="行政处罚详情">
+				<div class="row" style="margin-top: 20px;">
+					<div class="col-md-11">
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										行政处罚动态
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+								<div class="row">
+											<div class="col-md-12 chart-panel" >
+	
+                                            		 <p class="ioc-panel-desc-title">
+													<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<p class="ioc-panel-desc-body">
+													<div class="well">
+													{{getDate.year}}年{{getDate.month}}月份全市城市管理行政处罚案件数 {{amountData.thisMonthAmount}} 起 , 处罚金额共 {{amountData.thisMonthMoney}} 元。
+													</div>
+													</p>
+													<hr>
+											</div>
+											<div class="col-md-12 ">
+													<div class="col-md-6 chart-panel">
+										<highchart    config="columnChart1" style="width:400px;height:300px"></highchart>
+								</div>
+								<div class="col-md-6">
+								       	<highchart    config="columnChart2" style="width:400px;height:300px"></highchart>
+								</div>
+								<hr>
+							</div>
+				  
+										</div>
+									</div>
+								</div>
+
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										行政处罚案由统计
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+								<div class="row">
+									<div class="col-md-12 " >
+									<tabset>
+									<tab heading="案件数量">
+											<div class="col-md-12 ">
+										<highchart  id="casePieChart" config="casePieChart" style="width:800px;height:550px"></highchart>
+									</div>
+									</tab>
+									<tab heading="处罚金额">
+											<div class="col-md-12 ">
+										<highchart  id="cashPieChart" config="cashPieChart" style="width:800px;height:550px"></highchart>
+									</div>
+									</tab>
+									</tabset>
+									  		
+								
+									</div>
+								</div>
+										</div>
+							</div>
+
+							<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										各城管执法中队处理案件详情
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+								<div class="row">
+											<div class="col-md-12 " >
+	
+															     <label class="">
+										  <input type="radio"  value="0" checked ng-model="barData.selected" ng-change ='typeChange()'>
+												  案件数量
+												</label>
+									     <label class="">
+										  <input type="radio"  value="1"  ng-model="barData.selected" ng-change ='typeChange()'>
+												  处罚金额
+												</label>
+												<hr>
+								<div class="col-md-12 ">
+									<highchart  id="barChart" config="barChart" style="width:800px;height:550px"></highchart>
+								</div>
+								</div>
+					  
+										</div>
+										</div>
+							</div>
+			
+					
+								</div>
+								</div>
+						</tab>
+						<tab heading="全年行政处罚趋势">
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										行政处罚趋势图
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+			
+									<div class="row">
+										<div class="col-md-9 chart-panel">
+									<highchart  id="lineChart1"  config="lineChart1"  style="width:600px;height:400px"></highchart>
+										<hr>
+								       </div>
+								       	<div class="col-md-3">
+											
+												<p class="fill-margin"></p>
+												<div class="ioc-panel-desc" style="height:380px">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<div class="well">
+													<p class="ioc-panel-desc-body">{{getDate.year}}年截止{{getDate.month}}月份太仓市城管局共处理行政处罚案件 {{amountData.allYearAmount}} 起。</p>
+												    </div>
+                                                    </div>
+                                                    <hr>
+											</div>
+										
+								      	<div class="col-md-9 chart-panel">
+									<highchart  id="lineChart2"  config="lineChart2"  style="width:600px;height:400px"></highchart>
+									
+								       </div>
+								       	<div class="col-md-3">
+											
+												<p class="fill-margin"></p>
+												<div class="ioc-panel-desc">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<div class="well">
+													<p class="ioc-panel-desc-body">{{getDate.year}}年截止{{getDate.month}}月份太仓市城管局共处罚金额 {{amountData.allYearMoney}} 元。</p>
+												    </div>
+                                                    </div>
+											</div>
+		
+														</div>
+							       <div>
+
+							</div>
+						
+									</div>
+								</div>
+						</tab>
+			
+					</tabset>
+
+	</div></div>
+

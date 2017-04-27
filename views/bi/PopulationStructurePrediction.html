@@ -1,0 +1,97 @@
+
+<div class="banner details-banner">
+  <div class="container" style="background-image: url(../images/banner/minsheng_banner.png);">
+    <ol class="breadcrumb">
+      <li><a href="#/main">首页</a></li>
+      <li><a href="#/kpicategory?categoryId=2001">民生</a></li>
+      <li class="active">常住人口人口预测分析</li>
+    </ol>
+    <h1>常住人口人口预测分析</h1>
+  </div>
+</div>
+
+<div class="details-content">
+  <div class="container">
+    <tabset>
+      <tab ng-repeat="tab in tabMap" active="tab.active" heading="{{tab.label}}" id="{{tab.id}}" ng-click="tab_change('{{tab.name}}')" name="{{tab.name}}">
+      </tab>
+    </tabset>
+    <div class="row col-md-12" style="margin-top: 20px;">
+      <div class="panel panel-primary" style="margin-top: 20px;" id="populationStructurePrediction">
+        <div class="panel-heading">
+          常住人口人口结构预测分析
+          <!-- <span class="glyphicon glyphicon-question-sign pull-right"></span> -->
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="span12 col-md-12">
+              <button ng-repeat="bttn in buttonMap" class="btn btn-primary col-md-2" ng-model="predictionModal" style="margin-left: 25px;" btn-radio="bttn.radio" ng-click="btn_click(bttn)">{{bttn.label}}</button>
+            </div>
+            <div class="span12 col-md-12">
+              <div class="span8 col-md-8 chart-panel">
+
+                <!-- <button type="button" class="btn btn-default col-md-3" id="prediction_5year_btn" style="margin-right: 10px; margin-left: 118px;" ng-click="btn_click5()">
+                          5年后人口结构预测
+                        </button>
+                        <button type="button" class="btn btn-default col-md-3" id="prediction_10year_btn" style="margin-right: 10px;" ng-click="btn_click10()">10年后人口结构预测
+                        </button>
+                        <button type="button" class="btn btn-default col-md-3" id="prediction_15year_btn" ng-click="btn_click15()">15年后人口结构预测
+                        </button> -->
+                <div id="age_ration" style="height: 500px" style="float:left"></div>
+              </div>
+              <div class="col-md-4">
+                <div class="ioc-panel-desc">
+                  <p class="ioc-panel-desc-title">
+                    <img src="/images/common/titles/data_details.png" />
+                  </p>
+                  <p class="ioc-panel-desc-body">
+                    <div>
+                      <h4>太仓市{{predictionEndYear}}年人口结构预测结果解读</h4>
+                      <blockquote>
+                        <p id="age_range_prediction_interpretation"></p>
+                      </blockquote>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="span6 col-md-6 chart-panel">
+              <div id="current_age_distribution"></div>
+            </div>
+            <p class="fill-margin"></p>
+
+            <div class="span6 col-md-6 chart-panel">
+              <div id="prediction_age_distribution"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-primary" style="margin-top: 20px;" id="populationTotalPrediction">
+        <div class="panel-heading">
+          常住人口人口总量预测分析
+          <!-- <span class="glyphicon glyphicon-question-sign pull-right"></span> -->
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-8 chart-panel">
+              <div id="population_prediction_year" style="height: 500px"></div>
+            </div>
+            <div class="col-md-4">
+              <div class="ioc-panel-desc">
+                <p class="ioc-panel-desc-title">
+                  <img src="/images/common/titles/data_details.png" />
+                </p>
+                <p class="ioc-panel-desc-body">
+                  <div>
+                    <h4 id="year_detail_title">{{predictionStartYear}}至{{predictionEndYear}}常住人口人口总量预测数据详情解读</h4>
+                    <blockquote>
+                      <p id="population_prediction_interpretation"></p>
+                    </blockquote>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

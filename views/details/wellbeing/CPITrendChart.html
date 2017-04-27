@@ -1,0 +1,182 @@
+<div class="banner details-banner">
+  <div class="container" style="background-image: url(../images/banner/minsheng_banner.png);">
+    <ol class="breadcrumb">
+      <li><a href="#/main">首页</a></li>
+      <li><a href="#/kpicategory?categoryId=2001">民生</a></li>
+      <li><a href="#/kpicategory?categoryId=2001">价格指数</a></li>
+      <li class="active">{{current_tab_label}}</li>
+    </ol>
+    <h1>{{current_tab_label}}</h1>
+  </div>
+</div>
+
+<div class="details-content">
+  <div class="container">
+    <tabset>
+      <tab ng-repeat="tab in tabMapData" active="tab.active" heading="{{tab.label}}" id="{{tab.id}}" ng-click="tabChangeFunction('{{tab.name}}')" name="{{tab.name}}"></tab>
+    </tabset>
+  </div>
+</div>
+
+<div class="container" id="cpi_container">
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-md-12">
+      <div class="panel panel-primary" style="margin-top: 20px;">
+        <div class="panel-heading">
+          居民消费价格指数趋势
+          <!--  <span
+                  class="glyphicon glyphicon-question-sign pull-right"></span> -->
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-8 chart-panel">
+              <highchart config="cpiHighChartOptions.cpiTrendOption"></highchart>
+              <div class="col-md-4"></div>
+              <img src="/images/common/titles/click-to-chart-detail.png" alt="点击图标可以查看详情" />
+            </div>
+            <div class="col-md-4">
+              <div class="ioc-panel-desc">
+                <p class="ioc-panel-desc-title">
+                  <img src="/images/common/titles/data_details.png" />
+                </p>
+                <table class="table table-hover">
+                  <caption></caption>
+                  <thead class="ioc-thead">
+                    <tr>
+                      <th>时间</th>
+                      <th class="t-right">同比</th>
+                      <th class="t-right">累计比</th>
+                    </tr>
+                  </thead>
+                  <tr ng-repeat="index in cpiDetailIndexList">
+                    <td>{{cpiDetailHeaderList[index]}}</td>
+                    <td class="t-right">{{cpiDetailDataList[0].data[index] | number:2}}</td>
+                    <td class="t-right">{{cpiDetailDataList[1].data[index] | number:2}}</td>
+                  </tr>
+                </table>
+              </div>
+              <highchart config="cpiHighChartOptions.cpiTrendDetailOption"></highchart>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-primary" style="margin-top: 20px;">
+        <div class="panel-heading">
+          居民消费价格指数类别同比累计比
+          <!--  <span
+                    class="glyphicon glyphicon-question-sign pull-right"></span> -->
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="span8 col-md-8 chart-panel">
+              <highchart config="cpiHighChartOptions.categoryDetailOption"></highchart>
+              <div class="col-md-4"></div>
+              <img src="/images/common/titles/click-to-chart-detail.png" alt="点击图标可以查看详情" />
+            </div>
+            <div class="col-md-4">
+              <p class="ioc-panel-desc-title">
+                <img src="/images/common/titles/data_details.png" />
+              </p>
+              <table class="table table-hover">
+                <thead class="ioc-thead">
+                  <tr>
+                    <th>价格指数</th>
+                    <th class="t-right">同比</th>
+                    <th class="t-right">累计比</th>
+                  </tr>
+                </thead>
+                <tr ng-repeat="index in [0,1,2,3,4,5,6,7]">
+                  <td>{{CPIDATA.columnXAxis[index]}}</td>
+                  <td class="t-right">{{cpiDataList[0].data[index] | number:2}}</td>
+                  <td class="t-right">{{cpiDataList[1].data[index] | number:2}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-primary" style="margin-top: 20px;" id="tax-type-panel">
+        <div class="panel-heading">
+          {{currentCategory}}居民消费价格指数趋势
+          <!--  <span
+                    class="glyphicon glyphicon-question-sign pull-right"></span> -->
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="span8 col-md-8 chart-panel">
+              <highchart config="cpiHighChartOptions.detailTrendOption"></highchart>
+              <div class="col-md-4"></div>
+              <img src="/images/common/titles/click-to-chart-detail.png" alt="点击图标可以查看详情" />
+            </div>
+            <div class="span4 col-md-4">
+              <div class="ioc-panel-desc">
+                <p class="ioc-panel-desc-title">
+                  <img src="/images/common/titles/data_details.png" />
+                </p>
+              </div>
+              <p class="ioc-panel-desc-body"></p>
+              <table class="table table-hover">
+                <caption></caption>
+                <thead class="ioc-thead">
+                  <tr>
+                    <th>时间</th>
+                    <th class="t-right">同比</th>
+                    <th class="t-right">累计比</th>
+                  </tr>
+                </thead>
+                <tr ng-repeat="index in detailTrendIndexList">
+                  <td>{{detailTrendHeaderList[index]}}</td>
+                  <td class="t-right">{{detailTrendDataList[0].data[index] | number:2}}</td>
+                  <td class="t-right">{{detailTrendDataList[1].data[index] | number:2}}</td>
+                </tr>
+              </table>
+              <highchart config="cpiHighChartOptions.detailTrendDetailOption"></highchart>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="daily_price_container">
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-md-12">
+      <div class="panel panel-primary" style="margin-top: 20px;" id="tax-type-panel">
+        <div class="panel-heading">
+          太仓市农副产品市场价格走势
+          <!--  <span
+                                          class="glyphicon glyphicon-question-sign pull-right"></span> -->
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="span9 col-md-9 chart-panel">
+              <highchart id="foodPriceHighChart" config="foodPriceHighChartOption"></highchart>
+            </div>
+            <div class="span3 col-md-3">
+              <button class="btn btn-default btn-block" ng-click="initFoodPriceHighChart()" style="background-color:lightgreen">恢复图表至默认</button>
+              <hr>
+              <h4 style="padding-left:60px">农副产品种类</h4>
+              <p style="padding-left:30px;font-size:14px">
+                请选择您想查看的副食品种类
+              </p>
+              <div class="row">
+                <div ng-repeat="tempFoodType in PRICEDATA" style="margin-bottom: 10px">
+                  <button class="btn btn-default btn-block" ng-click="tempFoodType.isCollapsed = !tempFoodType.isCollapsed">{{tempFoodType.name}}</button>
+                  <div collapse="!tempFoodType.isCollapsed" style="border: 1px solid black; background-color:skyblue">
+                    <div class="row">
+                      <div class="col-md-6" ng-repeat="tempFood in tempFoodType.data" style="font-size: 14px">
+                        <label class="col-md-10">{{tempFood.name}}</label>
+                        <input class="col-md-2" type="checkbox" ng-model="tempFood.model" ng-change="checkBoxChange(tempFood)">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

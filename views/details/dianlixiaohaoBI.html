@@ -1,0 +1,167 @@
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" style="width: 1000px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				{{name}}电耗与产值详情									
+			</div>
+			
+			<div class="modal-body" style="height: 700px">
+				<div class="col-md-12 well">	
+					<div class="col-md-6" align="center">	
+						<p>{{name}}电力消耗和产值情况</p>									 
+						<highchart style="height:300px;width:400px" config="dianli_chanzhi_shijian_one_option"></highchart>
+					</div>
+					<div class="col-md-6" align="center">	
+						<p>{{name}}电力消耗与产值拟合情况</p>									 
+						<highchart style="height:300px;width:400px" config="dianli_chanzhi_one_option"></highchart>
+					</div>
+				</div>
+				<hr>
+		
+				<div class="col-md-12 well ">	
+					<div class="col-md-6" align="center">		
+						<p>{{name}}电力消耗量占全市比重</p>								 
+						<highchart style="height:300px;width:400px" config="epp_dianli_option"></highchart>
+					</div>
+					<div class="col-md-6" align="center">	
+						<p>{{name}}产值占全市比重</p>									 
+						<highchart style="height:300px;width:400px" config="epp_chanzhi_option"></highchart>
+					</div>
+				</div>
+				<div class="col-md-12 well ">	
+					<div class="col-md-6" align="center">										 
+						<div class="col-md-6" align="center">
+								下月预测用电量
+						</div>
+						<div class="col-md-6" align="center">
+								环比增长
+						</div>
+						<div class="col-md-6" align="center">
+								<label class="btn btn-primary" >{{elc}}</label>
+						</div>
+						<div class="col-md-6" align="center">
+								<label class="btn btn-primary" >{{elc_rate}}%</label>
+						</div>
+					</div>
+					<div class="col-md-6" align="center">										 									 
+						<div class="col-md-6" align="center">
+								下月预测产值
+						</div>
+						<div class="col-md-6" align="center">
+								环比增长
+						</div>
+						<div class="col-md-6" align="center">
+								<label class="btn btn-primary" >{{eco}}</label>
+						</div>
+						<div class="col-md-6" align="center">
+								<label class="btn btn-primary" >{{eco_rate}}%</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>
+
+
+	<div class="container">
+			<tabset class="sub-nav-tabs-conatainer">
+				<tab heading="企业电力消耗特征分析与产值预测">
+					<div class="" style="margin-top: 20px;">
+				
+						<div class="panel-body">
+							<div class="">
+								<div class="row ioc-panel-desc-body">
+									<div class="col-md-12">
+										<div class="col-md-6 well " align="center">		
+											<p>全市规模以上企业电力消耗和产值情况</p>					 
+											<highchart style="height:300px;width:400px" config="dianli_chanzhi_shijian_option"></highchart>
+											<div class="ioc-panel-desc" style="margin-top: 20px;" align="left">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<div class="well">
+													<p class="ioc-panel-desc-body">下月全市规模以上企业用电量约为{{nextelc}}wkwh，产值约为{{nexteco}}万元</p>
+												    </div>
+                                             </div>
+										</div>
+										<div class="col-md-6 well" align="center">
+											<p>全市规模以上企业电力消耗与产值拟合情况</p>											 
+											<highchart style="height:300px;width:400px" config="dianli_chanzhi_option"></highchart>
+											<div class="ioc-panel-desc" style="margin-top: 20px;" align="left">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<div class="well">
+													<p class="ioc-panel-desc-body">下月规模以上企业产业和用电量比值为{{bizhi}},下月预计{{an}}出现较大偏差</p>
+												    </div>
+                                             </div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+											<div>
+												<div class="row">
+													<div class="col-md-12">
+														
+															<div class="panel-body">
+															<div  style="overflow: auto; overflow-x:hidden;height:450px">
+																<div class="ioc-panel-table">
+																	<table class="table table-bordered">
+																		<thead class="ioc-thead ">
+																			<tr>
+																				<th><h5>企业名称</h5></th>
+																				<th><h5>本月用电(kwh)</h5></th>
+																				<th><h5>本月产值(万元)</h5></th>
+																				<th><h5>下月预测用电(kwh)</h5></th>
+																				<th><h5>下月预测产值(万元)</h5></th>
+																				<th><h5>操作</h5></th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr ng-repeat="ep in eps">
+																				<th><h5>{{ep.name}}</h5></th>
+																				<th><h5>{{ep.benyueelc}}</h5></th>
+																				<th><h5>{{ep.benyueeco}}</h5></th>
+																				<th><h5>{{ep.xiayueelc}}</h5></th>
+																				<th><h5>{{ep.xiayueeco}}</h5></th>
+																				<th>
+																					<button class="btn btn-primary" ng-click="epdetails(ep)">查看详情</button>
+																				</th>
+																				
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+																</div>
+															</div>
+													</div>
+												</div>
+											</div>							
+									</div>					
+								</div>
+							</div>				
+						</div>	
+					</div>
+				</tab>
+				<tab heading="地图展示">
+					<div class="panel panel-primary" style="margin-top: 20px;">
+						<div class="panel-heading">
+							地图展示
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="">
+							</div>				
+						</div>	
+					</div>	
+				</tab>
+			</tabset>
+	</div>
+

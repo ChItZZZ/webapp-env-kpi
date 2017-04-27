@@ -1,0 +1,181 @@
+<style>
+  .details-content .nav-tabs li a {
+    font-size: 14px;
+    color: #000;
+    background-color: #E3E3E3;
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+</style>
+<div class="banner details-banner">
+  <div class="container" style="background-image: url(../images/banner/minsheng_banner.png);">
+    <ol class="breadcrumb">
+      <li><a href="#/main">首页</a>
+        <li><a href="#/kpicategory?categoryId=2001">民生</a></li>
+        <li><a href="#/kpicategory?categoryId=2004">社会保险</a></li>
+        <li class="active">{{CURRENTINSURANCE}}</li>
+    </ol>
+    <h1>{{CURRENTINSURANCE}}</h1>
+  </div>
+</div>
+
+<div class="details-content">
+  <div class="container">
+    <tabset>
+      <tab ng-repeat="tab in tabMap" active="tab.active" heading="{{tab.label}}" id="{{tab.id}}" ng-click="tabChangeFunction('{{tab.name}}')" name="{{tab.name}}"></tab>
+    </tabset>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-md-12">
+      <div class="panel-operation">
+        <div class="panel panel-primary">
+          <div class="panel-heading">{{LATESTYEAR}}年关键数据</div>
+          <div class="panel-body" style="padding: 0;">
+            <div class="data-tile row" style="height: 100px">
+              <div class="col-md-3  chart-panel">
+                <img src="/images/icon/general-icon/insurance_balance.png" style="margin-left: 60px" />
+                <div class="key-title" style="margin-left: 60px">
+                  <b style="font-size: 14px; padding-left: 6px">基金收支情况</b>
+                </div>
+              </div>
+              <div class="col-md-9" style="margin-top: 10px">
+                <table class="table">
+                  <thead>
+                    <th class="col-md-4">基金收入</th>
+                    <th class="col-md-4">基金支出</th>
+                    <th class="col-md-4">基金累计结余</th>
+                  </thead>
+                  <tbody>
+                    <tr align="center">
+                      <td>{{balance[0]}}{{BALANCEUNIT}}</td>
+                      <td>{{balance[1]}}{{BALANCEUNIT}}</td>
+                      <td>{{balance[3]}}{{BALANCEUNIT}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <hr />
+            <div class="data-tile row" style="height: 100px">
+              <div class="col-md-3 chart-panel">
+                <img src="/images/icon/general-icon/insurance_population.png" style="margin-left: 60px" />
+                <div class="key-title" style="margin-left: 60px">
+                  <b style="font-size: 14px; padding-left: 6px">参保人员情况</b>
+                </div>
+              </div>
+              <div class="col-md-9" style="margin-top: 10px">
+                <table class="table">
+                  <thead>
+                    <th class="col-md-4" ng-repeat="title in participatedTitle">{{title}}</th>
+                  </thead>
+                  <tbody>
+                    <tr align="center">
+                      <td>{{insuranceParticapted[0]}}{{PARTICAPTEDUNIT}}</td>
+                      <td>{{insuranceParticapted[1]}}{{PARTICAPTEDUNIT}}</td>
+                      <td>{{insuranceParticapted[2]}}{{PARTICAPTEDUNITNEW}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="panel panel-primary" style="margin-top: 20px;">
+          <div class="panel-heading">
+            {{CURRENTINSURANCE}}收支情况
+            <!-- <span
+              class="glyphicon glyphicon-question-sign pull-right"></span> -->
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-8 chart-panel">
+                <highchart config="ALLOPTION.INCOMESPLINE"></highchart>
+                <div class="span4 col-md-4"></div>
+                <img src="/images/common/titles/click-to-chart-detail.png" alt="点击图标可以查看详情" />
+              </div>
+              <div class="col-md-4">
+                <div class="ioc-panel-desc">
+                  <p class="ioc-panel-desc-title">
+                    <img src="/images/common/titles/data_details.png" style="margin-left:30%" />
+                  </p>
+                  <p class="ioc-panel-desc-body"></p>
+                  <table class="table">
+                    <caption class="ioc-thead">
+                      {{balanceSelectYear}}年{{CURRENTINSURANCE}}收支
+                    </caption>
+                    <tr align="right">
+                      <th class="col-md-6">基金收入</th>
+                      <td class="col-md-6">{{yearBalance[0]}}{{BALANCEUNIT}}</td>
+                    </tr>
+                    <tr align="right">
+                      <th class="col-md-6">基金支出</th>
+                      <td class="col-md-6">{{yearBalance[1]}}{{BALANCEUNIT}}</td>
+                    </tr>
+                    <tr align="right">
+                      <th class="col-md-6">该年基金结余</th>
+                      <td class="col-md-6">{{yearBalance[2]}}{{BALANCEUNIT}}</td>
+                    </tr>
+                    <tr align="right">
+                      <th class="col-md-6">基金累计结余</th>
+                      <td class="col-md-6">{{yearBalance[3]}}{{BALANCEUNIT}}</td>
+                    </tr>
+                  </table>
+                  <highchart config="ALLOPTION.BALANCECOLUMN"></highchart>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-primary" style="margin-top: 20px;" id="tax-type-panel">
+          <div class="panel-heading">
+            {{CURRENTINSURANCE}}{{PARTICAPTEDNAME}}情况
+            <!-- <span
+                class="glyphicon glyphicon-question-sign pull-right"></span> -->
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="span8 col-md-8 chart-panel">
+                <highchart config="ALLOPTION.ENGAGESTACKCOLUMN"></highchart>
+                <div class="span4 col-md-4"></div>
+                <img src="/images/common/titles/click-to-chart-detail.png" alt="点击图标可以查看详情" />
+              </div>
+              <p class="fill-margin"></p>
+              <div class="col-md-4">
+                <div class="ioc-panel-desc">
+                  <p class="ioc-panel-desc-title">
+                    <img src="/images/common/titles/data_details.png" style="margin-left:30%" />
+                  </p>
+                  <p class="ioc-panel-desc-body"></p>
+                  <table class="table">
+                    <caption class="ioc-thead">
+                      {{engageSelectYear}}年{{CURRENTINSURANCE}}{{PARTICAPTEDNAME}}组成
+                    </caption>
+                    <tr align="right">
+                      <th class="col-md-8">{{yearParticipatedTitle[0]}}</th>
+                      <td class="col-md-4">{{insuranceDetailParticipated[0]}}{{PARTICAPTEDUNIT}}</td>
+                    </tr>
+                    <tr align="right">
+                      <th class="col-md-8">{{yearParticipatedTitle[1]}}</th>
+                      <td class="col-md-4">{{insuranceDetailParticipated[1]}}{{PARTICAPTEDUNIT}}</td>
+                    </tr>
+                    <tr align="right">
+                      <th class="col-md-8">{{yearParticipatedTitle[2]}}</th>
+                      <td class="col-md-4">{{insuranceDetailParticipated[2]}}{{PARTICAPTEDUNITNEW}}</td>
+                    </tr>
+                  </table>
+                  <highchart config="ALLOPTION.ENGAGEPIE"></highchart>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<ul class="ioc-scroll-nav">
+  <li ng-repeat="navItem in navList">
+    <a href="#{{navItem.id}}" class="{{navItem.css}} {{navItem.status | navCssStatus}}" du-smooth-scroll du-scrollspy>{{navItem.name}}</a>
+  </li>
+</ul>

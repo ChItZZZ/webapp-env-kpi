@@ -1,0 +1,181 @@
+<div class="banner details-banner">
+	<div class="container" style="background-image: url(images/banner/citymanager_laji_banner.png);">
+		<ol class="breadcrumb">
+			<li><a href="#">首页</a></li>
+			<li>
+				<a ui-sref="app.kpicategory({categoryId:7001})">城市管理</a>
+			</li>
+			<li>
+				<a ui-sref="app.kpicategory({categoryId:7001})">垃圾清运</a>
+			</li>
+			<li class="active">垃圾清运详情</li>
+		</ol>
+		<h2>垃圾清运情况</h2>
+	</div>
+</div>
+
+<div class="details-content">
+	<div class="container">
+		<tabset>
+			<tab heading="垃圾清运">
+				<div class="row" style="margin-top: 20px;">
+					<div class="col-md-12">
+						<tabset class="sub-nav-tabs-conatainer">
+							<tab heading="垃圾清运车次">
+				
+								<div class="panel panel-primary" style="margin-top:20px">
+										<div class="panel-heading">关键数据-{{nowdate}}</div>
+										<div class="panel-body" style="padding: 0;">
+											<div class="col-md-6">
+												<div class="col-md-4">
+													<img style="height: 50px;width:50px;" src="/images/citymanager/lajicar.png" />
+												</div>
+												<div class="col-md-8">
+													<div class="key-title"><h5>垃圾清运总车次</h5></div>
+													<div class="content">
+													<h5>{{cheshu}} 车次</h5>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="col-md-4">
+													<img style="height: 50px;width:50px;" src="/images/citymanager/lajidun.png" />
+												</div>
+												<div class="col-md-8">
+													<div class="key-title"><h5>垃圾清运总吨数</h5></div>
+													<div class="content">
+													<h5>{{dunshu}} 吨</h5>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+			
+								
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										垃圾清运车次										
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9 chart-panel">											 
+												<highchart class="col-md-6" style="width:700px;height:500px" config="citymanager_laji_cheshu_option"></highchart>												
+											</div>
+											<div class="col-md-3">
+												<p class="fill-margin"></p>
+												<div class="ioc-panel-desc">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<p>{{laji_cheshu_jieguo}},{{laji_cheshu_jieguo02}}</p>                                                  
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>	
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										垃圾清运车次-分清运点										
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9 chart-panel">											 
+												<highchart class="col-md-6" style="width:700px;height:500px" config="citymanager_laji_cheshu_lajiqingyundian_option"></highchart>
+											</div>
+											<div class="col-md-3">
+												<h4>垃圾清运点选择</h4>
+												<div  style="overflow: auto; overflow-x:hidden;height:450px">
+												<div class="radio" style="left:10px" ng-repeat="lajiqingyundianone in lajiqingyundianlist"><label>
+													<input type="radio" ng-model="lajiqingyundian" ng-value="lajiqingyundianone" name="lajiqingyundian" ng-click="lajiqingyundianClick(lajiqingyundianone)">{{lajiqingyundianone}}
+												</label></div>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+								</div>								
+							</tab>						
+							<tab heading="垃圾清运吨数">
+			
+								<div class="panel panel-primary" style="margin-top:20px">
+									<div class="panel-heading">关键数据-{{nowdate}}</div>
+									<div class="panel-body" style="padding: 0;">
+										<div class="col-md-6">
+											<div class="col-md-4">
+												<img style="height: 50px;width:50px;" src="/images/citymanager/lajicar.png" />
+											</div>
+											<div class="col-md-8">
+												<div class="key-title"><h5>垃圾清运总车次</h5></div>
+												<div class="content">
+												<h5>{{cheshu}} 车次</h5>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="col-md-4">
+												<img style="height: 50px;width:50px;" src="/images/citymanager/lajidun.png" />
+											</div>
+											<div class="col-md-8">
+												<div class="key-title"><h5>垃圾清运总吨数</h5></div>
+												<div class="content">
+												<h5>{{dunshu}} 吨</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										垃圾清运吨数
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9 chart-panel">											 
+	                                			<highchart class="col-md-6" style="width:700px;height:500px" config="citymanager_laji_dunshu_option"></highchart>	                                			
+											</div>
+											<div class="col-md-3">
+												<p class="fill-margin"></p>
+												<div class="ioc-panel-desc">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>    
+													<p>{{laji_dunshu_jieguo}},{{laji_dunshu_jieguo02}}</p>                                            
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										垃圾清运吨数-分清运点
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9 chart-panel">											 
+	                                			<highchart class="col-md-6" style="width:700px;height:500px" config="citymanager_laji_dunshu_lajiqingyundian_option"></highchart>	                                			
+											</div>
+											<div class="col-md-3">
+												<h4>垃圾清运点选择</h4>
+												<div  style="overflow: auto; overflow-x:hidden;height:450px">
+												<div class="radio" style="left:10px" ng-repeat="lajiqingyundianone in lajiqingyundian_01list"><label>
+													<input type="radio" ng-model="lajiqingyundian_01" ng-value="lajiqingyundianone" name="lajiqingyundian_01" ng-click="lajiqingyundian_01Click(lajiqingyundianone)">{{lajiqingyundianone}}
+												</label></div>
+												</div>
+												<p class="fill-margin"></p>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</tab>
+						</tabset>
+					</div>
+				</div>
+		</tabset>
+	</div>
+</div>

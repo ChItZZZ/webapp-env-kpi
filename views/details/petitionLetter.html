@@ -1,0 +1,139 @@
+<style type="text/css">
+      #criminalMap {width: 900px;height: 500px;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<div class="banner details-banner">
+
+	<div class="container" style="background-image: url(../images/banner/police_banner.png);">
+
+
+		<ol class="breadcrumb">
+			<li>
+				<a href="/">首页</a>
+			</li>
+			<li>
+				<a ui-sref="app.kpicategory({categoryId:3001})">公安</a>
+			</li>
+			<li>
+				<a ui-sref="app.kpicategory({categoryId:3004})">信访</a>
+			</li>
+			<li>
+				<a>信访KPI详情</a>
+			</li>
+
+		</ol>
+		<h2>信访KPI详情</h2>
+
+	</div>
+</div>
+
+<div class="details-content">
+	<div class="container" >
+
+		<tabset>
+			<tab heading="信访详情">
+				<div class="row" style="margin-top: 20px;">
+					<div class="col-md-11">
+					
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										信访信件统计
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+								<div class="row">
+									<div class="col-md-12 " >
+									<tabset>
+									<tab heading="信件数量">
+											<div class="col-md-12 ">
+										<highchart  id="columnChart2" config="columnChart2" style="width:800px;height:550px"></highchart>
+									</div>
+									</tab>
+								    <tab heading="结案率">
+								    <div class="col-md-9 chart-panel">
+									<highchart  id="PieChart"  config="PieChart"  style="width:600px;height:400px"></highchart>
+										<hr>
+								       </div>
+								    	<div class="col-md-3">
+											
+												<p class="fill-margin"></p>
+												<div class="ioc-panel-desc" style="height:380px">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<div class="well">
+													<p class="ioc-panel-desc-body">{{getDate.year}}年截止{{getDate.month}}月份太仓市群众上访信件结案率{{totalData.qnafs}} </p>
+												    </div>
+                                                    </div>
+                                                    <hr>
+											</div>
+								    </tab>
+									</tabset>
+									  		
+								
+									</div>
+								</div>
+										</div>
+							</div>
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										越级上访动态
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+								<div class="row">
+											 	<div class="col-md-9 chart-panel">
+									<highchart    config="columnChart1" style="width:600px;height:300px"></highchart>
+									
+								       </div>
+								       	<div class="col-md-3">
+											
+												<p class="fill-margin"></p>
+												<div class="ioc-panel-desc">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<div class="well">
+													<p class="ioc-panel-desc-body">{{getDate.year}}年截止{{getDate.month}}月份太仓市越级上访信件{{totalData.bypassletter}}起。</p>
+												    </div>
+                                                    </div>
+											</div>
+				  
+										</div>
+									</div>
+								</div>
+
+
+							<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										全年上访信件趋势
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+								<div class="row">
+											<div class="col-md-12 " >
+											<tabset>
+											<tab heading="越级上访信件趋势">
+											<div class="col-md-12 ">
+										<highchart  id="lineChart" config="lineChart" style="width:800px;height:550px"></highchart>
+									</div>
+									</tab>
+									<tab heading="群众上访信件趋势">
+											<div class="col-md-12 ">
+										<highchart  id="lineChart1" config="lineChart1" style="width:800px;height:550px"></highchart>
+									</div>
+									</tab>
+									</tabset>
+								</div>
+					  
+										</div>
+										</div>
+							</div>
+			
+					
+								</div>
+								</div>
+						</tab>
+					</tabset>
+
+	</div></div>
+

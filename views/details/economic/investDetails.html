@@ -1,0 +1,235 @@
+<div class="banner details-banner">
+	<div class="container"  style="background-image: url(../images/banner/tax_banner.png);">
+		<ol class="breadcrumb">
+			<li><a href="/">首页</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:4})">经济</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:4})">投资和贸易</a></li>
+			<li class="active">投资</li>
+		</ol>
+		<h2>投资</h2>
+	</div>
+</div>
+<div class="details-content">
+	<div class="container">
+		<tabset>
+			<tab heading="固定资产投资" id="tab_eduQuality">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							 全社会固定资产投资(累计值)	
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  style="width:550px;" id="chart1" config="InvestValueChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<span ng-show="false">{{gi = dataMap.InvestData.lastestObject}}</span>
+										<caption>{{gi.year}} 年 {{gi.month}} 月全社会固定资产投资</caption>
+										<thead class="ioc-thead">
+											<tr>
+												<th>统计项目</th>
+												<th class="t-right">统计值</th>
+												<th></th>
+											</tr>
+										</thead>
+	    								<tr>
+	    									<td>年累计值</td>
+	    									<td class="t-right">{{gi.gaccmAmount}} 万元</td>
+	    									<td></td>
+	    								</tr>
+	    								<tr>
+	    									<td>上年同期值</td>
+	    									<td class="t-right">{{gi.glastAccmAmount}} 万元</td>
+	    									<td></td>
+	    								</tr>
+	    								<tr>
+	    									<td>同比增长</td>
+	    									<td class="t-right">{{gi.glastAccmRate| number:2}} %</td>
+	    									<td></td>
+	    								</tr>
+	    								<tr>
+	    									<td>本年度目标</td>
+	    									<td class="t-right">{{gi.gyearTarget}} 万元</td>
+	    									<td></td>
+	    								</tr>
+	    								<tr>
+	    									<td>目标完成率</td>
+	    									<td class="t-right">{{gi.gyearCompleteRate | number:2}} %</td>
+	    									<td></td>
+	    								</tr>
+									</table>
+									<h4></h4>
+									<div class="radio" ng-repeat="studyQualityOne in studyQuality">
+										<label>
+											<input type="radio" ng-model="studyQualityKindSelected" ng-value="studyQualityOne.name" name="studyQuality" ng-click="studyQualityKindChange(studyQualityOne)">
+								            {{studyQualityOne.name}}
+								        </label>
+									</div>
+									<p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<!-- <p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								主要分类固定资产投资(累计值)
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="schoolQualityByKindColumnChart" style="width:550px;" config="ClassInvestValueChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+
+										<caption>{{gi.year}} 年 {{gi.month}} 月主要分类固定资产投资</caption>
+										<thead class="ioc-thead">
+											<tr>
+												<th>统计项目</th>
+												<th class="t-right">统计值</th>
+												<th class="t-right">同比增长</th>
+											</tr>
+										</thead>
+	    								<tr>
+	    									<td>本月工业投资</td>
+	    									<td class="t-right">{{gi.giaccmAmount}} 万元</td>
+	    									<td class="t-right">{{gi.gilastAccmRate | number:2}} %</td>
+	    								</tr>
+	    								<tr>
+	    									<td>本月服务业投资</td>
+	    									<td class="t-right">{{gi.gsaccmAmount}}万元</td>
+	    									<td class="t-right">{{gi.gslastAccmRate | number:2}} %</td>
+	    								</tr>
+	    								<tr>
+	    									<td>本月房地产投资</td>
+	    									<td class="t-right">{{gi.gfaccmAmount}}万元</td>
+	    									<td class="t-right">{{gi.gflastAccmRate | number:2}} %</td>
+	    								</tr>
+									</table>
+									<h4></h4>
+									<div class="radio" ng-repeat="schoolQualityOne in schoolQuality">
+										<label>
+											<input type="radio" ng-model="schoolQualityKindSelected" ng-value="schoolQualityOne.name" name="schoolQualityLastYearList" ng-click="schoolQualityKindChange(schoolQualityOne)">
+								            {{schoolQualityOne.name}}
+								        </label>
+									</div>
+									<p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<!-- <p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</tab>
+			<tab heading="招商引资" id="tab_eduContrib" ng-click="loadCapitalPage();">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								引进外资(累计值)
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<span ng-show="false">{{ci = dataMap.ImportData.lastestObject}}</span>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="eduContribByKindBarChart" style="width:550px;" config="CapitalValueChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+
+										<caption>{{ci.year}} 年 {{ci.month}} 月引进外资(累计值)</caption>
+										<thead class="ioc-thead">
+											<tr>
+												<th>统计项目</th>
+												<th class="t-right">统计值</th>
+												<th>同比增长</th>
+											</tr>
+										</thead>
+	    								<tr>
+	    									<td>注册外资</td>
+	    									<td class="t-right">{{ci.rAccm}} 万美元</td>
+	    									<td class="t-right">{{ci.rAccmRate | number:2}} %</td>
+	    								</tr>
+	    								<tr>
+	    									<td>实际利用外资</td>
+	    									<td class="t-right">{{ci.uAccm}} 万美元</td>
+	    									<td class="t-right">{{ci.uAccmRate | number:2}} %</td>
+	    								</tr>
+									</table>
+									<h4></h4>
+									<div class="radio" ng-repeat="contribOne in contrib">
+										<label>
+											<input type="radio" ng-model="eduContribKindSelected" ng-value="contribOne.name" name="contrib" ng-click="contribKindChange(contribOne)">
+								            {{contribOne.name}}
+								        </label>
+									</div>
+									<p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<!-- <p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								引进内资(累计值)
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="eduContribByKindBarChart" style="width:550px;" config="ImportCapitalValueChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+
+										<caption>{{ci.year}} 年 {{ci.month}} 月引进内资(累计值)</caption>
+										<thead class="ioc-thead">
+											<tr>
+												<th>统计项目</th>
+												<th class="t-right">统计值</th>
+												<th></th>
+											</tr>
+										</thead>
+	    								<tr>
+	    									<td>新增注册资金</td>
+	    									<td class="t-right">{{ci.addFund}} 万元</td>
+	    									<td class="t-right"></td>
+	    								</tr>
+	    								<tr>
+	    									<td>到账资金</td>
+	    									<td class="t-right">{{ci.inFund}} 万元</td>
+	    									<td class="t-right"></td>
+	    								</tr>
+									</table>
+									<h4></h4>
+									<div class="radio" ng-repeat="contribOne in contrib">
+										<label>
+											<input type="radio" ng-model="eduContribKindSelected" ng-value="contribOne.name" name="contrib" ng-click="contribKindChange(contribOne)">
+								            {{contribOne.name}}
+								        </label>
+									</div>
+									<p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<!-- <p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</tab>
+		</tabset>
+	</div>
+</div>

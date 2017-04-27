@@ -1,0 +1,96 @@
+
+<div class="banner details-banner">
+	<div class="container"  style="background-image: url(../images/banner/publicservice_banner.png);">
+		<ol class="breadcrumb">
+			<li><a href="/">首页</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6002})">公共事业</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6002})">电信</a></li>
+			<li class="active">电信</li>
+		</ol>
+		<h2>电信</h2>
+	</div>
+</div>
+<div class="details-content">
+	<div class="container">
+		<tabset>
+			<tab heading="基础用户" id="tab_teleOperation">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								基础用户
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-8 chart-panel">
+									<highchart  id="inforUserTotalLineChart" style="width:530px;" config="inforUserTotalLineChart" ></highchart>
+								</div>
+								<div class="col-md-4">
+									<table class="table table-hover">
+										<caption><h4>{{displayYear}} 年{{userListLastYearTitle}}</h4></caption>
+	    								<tr ng-repeat="userOne in userListLastYearSelected">
+	    									<td><font size="3">{{userOne.name}}</font></td>
+	    									<td class="t-right"><font size="3">{{userOne.number}}人</font></td>
+	    								</tr>
+									</table>
+									<h4>用户类别选择</h4>
+									<div class="radio" ng-repeat="user in userList">
+										<label>
+											<input type="radio" ng-model="userKindSelected" ng-value="user.name" name="userList" ng-click="userKindChange(user)">
+								            <font size="3">{{user.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+							<div><br><br><br></div>
+							<div class="row">
+								<div class="col-md-12 chart-panel">
+									<highchart  id="userPercentageByKindAreaChart" style="width:900px; height:450px" config="userPercentageByKindAreaChart" ></highchart>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</tab>
+			<tab heading="基础设施" id="tab_infrstrct">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								基础设施
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-8 chart-panel">
+									<highchart  id="infrstrctTotalLineChart" style="width:530px;" config="infrstrctTotalLineChart" ></highchart>
+								</div>
+								<div class="col-md-4">
+									<table class="table table-hover">
+										<caption><h4>{{displayYear}} 年{{infrstrctTotalLastYearTitle}}</h4></caption>
+	    								<tr ng-repeat="infrstrct in infrstrctListLastYearSelected">
+	    									<td><font size="3">{{infrstrct.name}}</font></td>
+	    									<td class="t-right"><font size="3">{{infrstrct.number}}{{infrstrctTotalLastYearUnion}}</font></td>
+	    								</tr>
+									</table>
+									<h4>基础设施选择</h4>
+									<div class="radio" ng-repeat="infrstrct in infrstrctTotalList">
+										<label>
+											<input type="radio" ng-model="infrstrctKindSelected" ng-value="infrstrct.name" name="infrstrctTotalList" ng-click="infrstrctKindChange(infrstrct)">
+								            <font size="3">{{infrstrct.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+							<div><br><br><br></div>
+							<div class="row">
+								<div class="col-md-12 chart-panel">
+									<highchart  id="infrstrctPercentageByKindAreaChart" style="width:900px; height:450px" config="infrstrctPercentageByKindAreaChart" ></highchart>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</tab>
+		</tabset>
+	</div>
+</div>

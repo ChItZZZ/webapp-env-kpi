@@ -1,0 +1,133 @@
+
+<div class="banner details-banner">
+	<div class="container"  style="background-image: url(../images/banner/publicservice_banner.png);">
+		<ol class="breadcrumb">
+			<li><a href="/">首页</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6004})">公共事业</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6004})">医疗卫生</a></li>
+			<li class="active">公共卫生</li>
+		</ol>
+		<h2>公共卫生</h2>
+	</div>
+</div>
+<div class="details-content">
+	<div class="container">
+		<tabset>
+			<tab heading="传染病" id="tab_MedicalInstitutions">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								传染病情况
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-8 chart-panel">
+									<highchart  id="infectiousDiseasesPieChart" config="infectiousDiseasesPieChart" ></highchart>
+								</div>
+								<div class="col-md-4">
+									<table class="table table-hover">
+										<caption><h4>{{displayYear}} 年 {{infectiousDiseasesLastMonth}} 月全市主要传染病分布情况</h4></caption>
+	    								<tr ng-repeat="disease in infectiousDiseases">
+	    									<td><font size="3">{{disease.name}}</font></td>
+	    									<td class="t-right"><font size="3">{{disease.number}}人次</font></td>
+	    								</tr>
+									</table>
+									<!-- <p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p>
+										<p><h4>{{infectiousDiseasesComment}}</h4></p>
+									</div> -->
+								</div>
+							</div>
+							<div><br><hr><br></div>
+							<div class="row">
+								<div class="col-md-8 chart-panel">
+									<highchart  id="infectiousDiseasesByKindLineChart"  config="infectiousDiseasesByKindLineChart" ></highchart>
+								</div>
+								<div class="col-md-4">
+									<h4>传染病类别选择</h4>
+									<div class="radio" ng-repeat="infectiousDiseasesOne in infectiousDiseasesByKindList">
+										<label>
+											<input type="radio" ng-model="infectiousDiseasesKindSelected" ng-value="infectiousDiseasesOne.name" name="infectiousDiseasesByKindList" ng-click="infectiousDiseasesKindChange(infectiousDiseasesOne)">
+								            <font size="3">{{infectiousDiseasesOne.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</tab>
+			<tab heading="期望寿命" id="tab_MedicalInstitutions">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								期望寿命
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-8 chart-panel">
+									<highchart  id="averageExpectedLifeLineChart" config="averageExpectedLifeLineChart" ></highchart>
+								</div>
+								<div class="col-md-4">
+									<h4>期望寿命类别选择</h4>
+									<div class="radio" ng-repeat="averageExpectedLifeOne in averageExpectedLifeByKindList">
+										<label>
+											<input type="radio" ng-model="averageExpectedLifeKindSelected" ng-value="averageExpectedLifeOne.name" name="averageExpectedLifeByKindList" ng-click="averageExpectedLifeKindChange(averageExpectedLifeOne)">
+								            <font size="3">{{averageExpectedLifeOne.name}}</font>
+								        </label>
+									</div>
+									<!-- <p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p>
+										<p><h4>{{averageExpectedLifeComment}}</h4></p>
+									</div> -->
+								</div>
+							</div>
+							<div><hr></div>
+							<div class="row">
+								<div class="col-md-12">
+									<highchart  id="averageExpectedLifeComparedColumnChart" style="width:900px; height:450px" config="averageExpectedLifeComparedColumnChart" ></highchart>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</tab>
+			<tab heading="妇幼" id="tab_MedicalInstitutions">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								妇幼
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-8 chart-panel">
+									<highchart  id="womenAndChildrenDeathRateColumnChart" config="womenAndChildrenDeathRateColumnChart" ></highchart>
+								</div>
+								<div class="col-md-4">
+									<h4>妇幼死亡率类别选择</h4>
+									<div class="radio" ng-repeat="womenAndChildrenDeathRateOne in womenAndChildrenDeathRateByKindList">
+										<label>
+											<input type="radio" ng-model="womenAndChildrenDeathRateKindSelected" ng-value="womenAndChildrenDeathRateOne.name" name="womenAndChildrenDeathRateByKindList" ng-click="womenAndChildrenDeathRateKindChange(womenAndChildrenDeathRateOne)">
+								            <font size="3">{{womenAndChildrenDeathRateOne.name}}</font>
+								        </label>
+									</div>
+									<!-- <p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p>
+										<p><h4>{{womenAndChildrenDeathRateComment}}</h4></p>
+									</div> -->
+								</div>
+							</div>
+							<div><br><br><br><br></div>
+						</div>
+					</div>
+				</div>
+			</tab>
+		</tabset>
+	</div>
+</div>

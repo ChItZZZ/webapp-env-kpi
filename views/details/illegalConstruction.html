@@ -1,0 +1,123 @@
+
+    <script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
+	<style type="text/css">
+      #criminalMap {width: 900px;height: 500px;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<div class="banner details-banner">
+
+	<div class="container" style="background-image: url(../images/banner/citymanager_laji_banner.png);">
+
+
+		<ol class="breadcrumb">
+				<li>
+				<a href="/">首页</a>
+			</li>
+			<li>
+				<a ui-sref="app.kpicategory({categoryId:7005})">城市管理</a>
+			</li>
+			<li>
+				<a>违法建设整治KPI详情</a>
+			</li>
+
+		</ol>
+		<h2>违法建设整治KPI详情</h2>
+
+	</div>
+</div>
+
+<div class="details-content">
+	<div class="container" >
+
+		<tabset>
+			<tab heading="违建整治详情">
+				<div class="row" style="margin-top: 20px;">
+					<div class="col-md-11">
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										违建整治动态
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+								<div class="row">
+											<div class="col-md-12 chart-panel" >
+	
+                                            		 <p class="ioc-panel-desc-title">
+													<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<p class="ioc-panel-desc-body">
+													<div class="well">
+													{{getDate.year}}年{{getDate.month}}月份全市违法建设整治共拆除 {{amountData.thisMonthAmount}} 起 , 拆除面积 {{amountData.thisMonthSquare}} 平方米。
+													</div>
+													</p>
+													<hr>
+											</div>
+
+									<div class="col-md-7 chart-panel">
+										<highchart  id="pieChart"  config="pieChart"  style="width:450px;height:400px"></highchart>
+									</div>
+									<div class="col-md-5">
+									       	<highchart  id="columnChart"  config="columnChart" style="width:350px;height:400px"></highchart>
+									</div>
+								</div>
+									</div>
+								</div>
+						
+									<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										违建处置趋势图
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+			
+									<div class="row">
+										<div class="col-md-9 chart-panel">
+									<highchart  id="lineChart1"  config="lineChart1"  style="width:600px;height:400px"></highchart>
+										<hr>
+								       </div>
+								       	<div class="col-md-3">
+											
+												<p class="fill-margin"></p>
+												<div class="ioc-panel-desc" style="height:380px">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<div class="well">
+													<p class="ioc-panel-desc-body">{{getDate.year}}年截止{{getDate.month}}月末太仓市共拆除违建面积 {{amountData.allYearSquare}} 平方米。</p>
+												    </div>
+                                                    </div>
+                                                    <hr>
+											</div>
+										
+								      	<div class="col-md-9 chart-panel">
+									<highchart  id="lineChart2"  config="lineChart2"  style="width:600px;height:400px"></highchart>
+									
+								       </div>
+								       	<div class="col-md-3">
+											
+												<p class="fill-margin"></p>
+												<div class="ioc-panel-desc">
+													<p class="ioc-panel-desc-title">
+														<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<div class="well">
+													<p class="ioc-panel-desc-body">{{getDate.year}}年截止{{getDate.month}}月末太仓市共拆除违建次数 {{amountData.allYearAmount}} 起。</p>
+												    </div>
+                                                    </div>
+											</div>
+		
+							
+							</div>
+							<div>
+
+							</div>
+						
+									</div>
+								</div>
+								</div>
+								</div>
+						</tab>
+			
+					</tabset>
+
+	</div></div>
+

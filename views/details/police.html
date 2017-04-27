@@ -1,0 +1,123 @@
+   <script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
+	<style type="text/css">
+      #criminalMap {width: 900px;height: 500px;overflow: hidden;margin:0;font-family:"微软雅黑";}
+             .anchorBL{  
+       display:none;  }
+	</style>
+	<div class="banner details-banner">
+
+	<div class="container" style="background-image: url(../images/banner/police_banner.png);">
+
+
+		<ol class="breadcrumb">
+			<li>
+				<a href="/">首页</a>
+			</li>
+			<li>
+				<a ui-sref="app.kpicategory({categoryId:3001})">公安</a>
+			</li>
+			<li>
+				<a ui-sref="app.kpicategory({categoryId:3001})">公安</a>
+			</li>
+			<li>
+				<a>治安案件KPI详情</a>
+			</li>
+
+		</ol>
+		<h2>治安案件KPI详情</h2>
+
+	</div>
+</div>
+
+<div class="details-content">
+	<div class="container" >
+
+		<tabset>
+			<tab heading="治安案件详情">
+				<div class="row" style="margin-top: 20px;">
+					<div class="col-md-11">
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										治安案件警情动态
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+											<div class="row">
+											<div class="col-md-12 " >
+													<h4><span class="label label-info">太仓市{{getDate.year}}年{{getDate.month}}月份各地区治安形势图</span></h4>
+													<div id="criminalMap"></div>
+											</div>
+
+										</div>
+										<hr>
+
+														<div class="col-md-12 " >
+	
+                                            		 <p class="ioc-panel-desc-title">
+													<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<div class="well">
+													<p class="ioc-panel-desc-body">{{getDate.year}}年{{getDate.month}}月份全市发生各类治安案件总数 {{totalData.month}} 起。</p>
+													各类治安案件详情如下:
+													</div>
+
+											</div>
+
+													<div class="col-md-12 ">
+									<highchart  id="pieChart"  config="pieChart"  style="width:800px;height:400px"></highchart>
+										<hr>
+								</div>
+
+											<div class="col-md-12 ">
+									<highchart  id="kpiBarChart"  config="kpiBarChart"  style="width:800px;height:650px"></highchart>
+								</div>
+								
+									</div>
+								</div>
+						
+			
+								</div>
+								</div>
+						</tab>
+						<tab heading="全年治安案件发案情况趋势分析">
+												<div class="row" style="margin-top: 20px;">
+					            <div class="col-md-11">
+															<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">
+										本年度治安案件趋势图
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+				
+												<hr>
+												<div class="row">
+														<div class="col-md-12" >
+	
+                                            		 <p class="ioc-panel-desc-title">
+													<img src="/images/common/titles/one-sentence.png"/>
+													</p>
+													<div class="well">
+													<p class="ioc-panel-desc-body">{{getDate.year}}年截止{{getDate.month}}月末受理治安案件总数 {{totalData.year}} 起。
+
+													</p>
+													</div>
+											</div>
+								<div class="col-md-12 chart-panel">
+									<highchart  id="columnChart" config="columnChart" style="width:900px;"></highchart>
+								</div>
+
+
+							</div>
+							<div><hr>
+
+							</div>
+						
+									</div>
+								</div>	
+								</div>
+								</div>		
+						</tab>
+					</tabset>
+
+	</div></div>
+

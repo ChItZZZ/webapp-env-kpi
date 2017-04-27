@@ -1,0 +1,131 @@
+
+<div class="banner details-banner">
+	<div class="container"  style="background-image: url(../images/banner/publicservice_banner.png);">
+		<ol class="breadcrumb">
+			<li><a href="/">首页</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6001})">公共事业</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:6001})">教育</a></li>
+			<li class="active">教育公平与普及</li>
+		</ol>
+		<h2>教育公平与普及</h2>
+	</div>
+</div>
+<div class="details-content">
+	<div class="container">
+		<tabset>
+			<tab heading="教育普及" id="tab_eduUniversal" ng-click="eduUniversalTarget()">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								教育普及
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="eduUniversalByKindColumnChart" style="width:480px;" config="eduUniversalByKindColumnChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption><h4>{{eduUniversalLastYear}} 年教育普及情况</h4></caption>
+	    								<tr ng-repeat="eduUniversal in eduUniversalLastYearList">
+	    									<td style="width:60%"><font size="3">{{eduUniversal.name}}</font></td>
+	    									<td style="width:40%" class="t-right"><font size="3">{{eduUniversal.number}}%</font></td>
+	    								</tr>
+									</table>
+									<h4>教育普及类别选择</h4>
+									<div class="radio" ng-repeat="eduUniversalOne in eduUniversalList">
+										<label>
+											<input type="radio" ng-model="eduUniversalKindSelected" ng-value="eduUniversalOne.name" name="eduUniversalList" ng-click="eduUniversalKindChange(eduUniversalOne)">
+								            <font size="3">{{eduUniversalOne.name}}</font>
+								        </label>
+									</div>
+								</div>
+							</div>
+							<!-- <div>
+								<p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p>
+										<p><h4>{{eduUniversalCommentSelected}}</h4></p>
+									</div>
+							</div> -->
+							<div><br><br></div>
+						</div>
+					</div>
+				</div>
+			</tab>
+			<tab heading="教育公平" id="tab_eduEquity" ng-click="eduEquityTarget()">
+				<div class="row" style="margin-top: 20px;">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+								办学条件校际均衡差异系数
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="eduEquityIndexKindColumnChart" style="width:500px;" config="eduEquityIndexKindColumnChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption><h4>{{eduUniversalLastYear}} 年办学条件校际均衡差异系数情况</h4></caption>
+	    								<tr ng-repeat="eduEquityIndex in eduEquityIndexLastYearList">
+	    									<td style="width:60%"><font size="3">{{eduEquityIndex.name}}</font></td>
+	    									<td style="width:40%" class="t-right"><font size="3">{{eduEquityIndex.number}}</font></td>
+	    								</tr>
+									</table>
+									<h4>校际差异系数类别选择</h4>
+									<div class="radio" ng-repeat="eduEquityIndexOne in eduEquityIndexList">
+										<label>
+											<input type="radio" ng-model="eduEquityIndexKindSelected" ng-value="eduEquityIndexOne.name" name="eduEquityIndexList" ng-click="eduEquityIndexKindChange(eduEquityIndexOne)">
+								            <font size="3">{{eduEquityIndexOne.name}}</font>
+								        </label>
+									</div>
+									<!-- <p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p>
+										<p><h4>{{eduEquityIndexCommentSelected}}</h4></p>
+									</div> -->
+								</div>
+							</div>
+						</div>
+					</div>
+<!-- 					<div class="panel panel-primary">
+						<div class="panel-heading">
+								教育经费
+							<span class="glyphicon glyphicon-question-sign pull-right"></span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-7 chart-panel">
+									<highchart  id="eduEquityFundsKindColumnChart" style="width:500px;" config="eduEquityFundsKindColumnChart" ></highchart>
+								</div>
+								<div class="col-md-5">
+									<table class="table table-hover">
+										<caption><h4>{{eduUniversalLastYear}} 年教育经费占比情况</h4></caption>
+	    								<tr ng-repeat="eduEquityFunds in eduEquityFundsLastYearList">
+	    									<td style="width:60%"><font size="3">{{eduEquityFunds.name}}</font></td>
+	    									<td style="width:40%" class="t-right"><font size="3">{{eduEquityFunds.number}}%</font></td>
+	    								</tr>
+									</table>
+									<h4>教育经费占比类别选择</h4>
+									<div class="radio" ng-repeat="eduEquityFundsOne in eduEquityFundsList">
+										<label>
+											<input type="radio" ng-model="eduEquityFundsKindSelected" ng-value="eduEquityFundsOne.name" name="eduEquityFundsList" ng-click="eduEquityFundsKindChange(eduEquityFundsOne)">
+								            <font size="3">{{eduEquityFundsOne.name}}</font>
+								        </label>
+									</div>
+									<p class="fill-margin"></p>
+									<div class="ioc-panel-desc">
+										<p class="ioc-panel-desc-title"><img src="/images/common/titles/one-sentence.png"/></p>
+										<p><h4>{{eduEquityFundsCommentSelected}}</h4></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> -->
+				</div>
+			</tab>
+		</tabset>
+	</div>
+</div>

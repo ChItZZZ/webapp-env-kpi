@@ -1,0 +1,173 @@
+
+<div class="banner details-banner">
+	<div class="container"  style="background-image: url(../images/banner/environment_banner.png);">
+		<ol class="breadcrumb">
+			<li><a href="#/">首页</a></li>
+			<li><a ui-sref="app.kpicategory({categoryId:4004})">资源环境</a></li>
+            <li><a ui-sref="app.kpicategory({categoryId:4004})">土地环境</a></li>
+			<li>土地资源KPI详情</li>
+		</ol>
+		<h2>土地资源</h2>
+	</div>
+</div>
+<div class="details-content">
+	<div class="container">
+		<tabset> <tab heading="土地使用">
+			<div style="margin-top: 20px;">
+				<div class="panel panel-primary" style="margin-top: 20px;">
+					<div class="panel-heading">
+						土地使用 当前数据 <span
+							class="glyphicon glyphicon-question-sign pull-right"></span>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-4 chart-panel">
+								<highchart style="width:320px;height:400px" config="landUseOption.allOption"></highchart>
+							</div>
+							<div class="col-md-4">
+								<highchart style="width:300px;height:400px" config="landUseOption.increaseOption"></highchart>
+							</div>
+							<div class="col-md-4">
+								<highchart style="width:300px;height:400px" config="landUseOption.decreaseOption"></highchart>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary" style="margin-top: 20px;">
+					<div class="panel-heading">
+						土地使用 历史数据 <span
+							class="glyphicon glyphicon-question-sign pull-right"></span>
+					</div>
+					<div class="panel-body">
+						<div>
+							<div class="row">
+								<div class="col-md-9 chart-panel">
+									<highchart style="width:700px;height:400px" config="landUseOption.grantOption"></highchart>
+								</div>
+								<div class="col-md-3">
+									<h4>土地出让指标选择</h4>
+									<div style="font-size:13px;">
+										<div class="radio" ng-repeat="landUseOne in landUseGrantList"><label>
+											<input type="radio" ng-model="landUseGrantListSelected" ng-value="landUseOne" name="landUseGrantListRadio" ng-click="landUseGrantListChange(landUseOne)">{{landUseOne}}
+										</label></div>
+									</div>
+									<hr>
+									<div class="ioc-panel-desc">
+										<!-- <p class="ioc-panel-desc-title">
+											<img src="/images/common/titles/one-sentence.png" />
+										</p> -->
+										<p class="ioc-panel-desc-body">
+											<h5></h5>
+											<h5>
+												<span class="glyphicon"></span>
+												&nbsp
+											</h5>
+											<h5>
+												<span class="glyphicon"></span>
+												&nbsp
+											</h5>
+										</p>
+									</div>
+								</div>
+							</div>
+							<hr style="height:1px;border:none;border-top:1px solid #555555;" />
+							<div class="row">
+								<div class="col-md-9 chart-panel">
+									<highchart style="width:700px;height:400px" config="landUseOption.detailOption"></highchart>
+								</div>
+								<div class="col-md-3">
+									<h4>土地类型选择</h4>
+									<div style="font-size:13px;">
+										<div class="radio" ng-repeat="landUseOne in landUseDetailList"><label>
+											<input type="radio" ng-model="landUseOneDetailListSelected" ng-value="landUseOne" name="landUseDetailListRadio" ng-click="landUseDetailListChange(landUseOne)">{{landUseOne}}面积
+										</label></div>
+									</div>
+									<hr>
+									<div class="ioc-panel-desc">
+										<!-- <p class="ioc-panel-desc-title">
+											<img src="/images/common/titles/one-sentence.png" />
+										</p> -->
+										<p class="ioc-panel-desc-body">
+											<h5></h5>
+											<h5>
+												<span class="glyphicon"></span>
+												&nbsp
+											</h5>
+											<h5>
+												<span class="glyphicon"></span>
+												&nbsp
+											</h5>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</tab> <tab heading="土地执法">
+			<div style="margin-top: 20px;">
+				<div class="panel panel-primary" style="margin-top: 20px;">
+					<div class="panel-heading">
+						土地执法 当前数据 <span
+							class="glyphicon glyphicon-question-sign pull-right"></span>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-4 chart-panel">
+								<highchart style="width:320px;height:400px" config="landIllegalOption.allOption"></highchart>
+							</div>
+							<div class="col-md-4">
+								<highchart style="width:300px;height:400px" config="landIllegalOption.increaseOption"></highchart>
+							</div>
+							<div class="col-md-4">
+								<highchart style="width:300px;height:400px" config="landIllegalOption.decreaseOption"></highchart>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary" style="margin-top: 20px;">
+					<div class="panel-heading">
+						土地执法 历史数据 <span
+							class="glyphicon glyphicon-question-sign pull-right"></span>
+					</div>
+					<div class="panel-body">
+						<div>
+							<div class="row">
+								<div class="col-md-9 chart-panel">
+									<highchart style="width:700px;height:400px" config="landIllegalOption.detailOption"></highchart>
+								</div>
+								<div class="col-md-3">
+									<h4>土地执法指标选择</h4>
+									<div style="font-size:13px;">
+										<div class="radio" ng-repeat="landIllegalOne in landIllegalIndexList"><label>
+											<input type="radio" ng-model="landIllegalIndexListSelected" ng-value="landIllegalOne" name="landIllegalIndexListRadio" ng-click="landIllegalIndexListChange(landIllegalOne)">违法用地{{landIllegalOne}}
+										</label></div>
+									</div>
+									<hr>
+									<div class="ioc-panel-desc">
+										<!-- <p class="ioc-panel-desc-title">
+											<img src="/images/common/titles/one-sentence.png" />
+										</p> -->
+										<p class="ioc-panel-desc-body">
+											<h5></h5>
+											<h5>
+												<span class="glyphicon"></span>
+												&nbsp
+											</h5>
+											<h5>
+												<span class="glyphicon"></span>
+												&nbsp
+											</h5>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</tab> </tabset>
+	</div>
+</div>
+

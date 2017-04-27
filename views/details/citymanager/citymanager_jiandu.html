@@ -1,0 +1,199 @@
+
+<div class="banner details-banner">
+	<div class="container" style="background-image: url(images/banner/citymanager_laji_banner.png);">
+		<ol class="breadcrumb">
+			<li>
+				<a href="/">首页</a>
+			</li>
+			<li>
+				<a ui-sref="app.kpicategory({categoryId:7006})">城市管理</a>
+			</li>
+			<li>
+				<a ui-sref="app.kpicategory({categoryId:7006})">数字城管</a>
+			</li>
+			<li class="active">数字城管详情</li>
+		</ol>
+		<h2>数字城管</h2>
+	</div>
+</div>
+
+<div class="details-content">
+	<div class="container">
+		<tabset>
+			<tab heading="数字城管">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel panel-primary" style="margin-top:20px">
+							<div class="panel-heading">{{nowdate}} 关键数据</div>
+							<div class="panel-body" style="padding: 0;">
+								<div class="col-md-4">
+									<div class="col-md-4">
+										<img src="/images/citymanager/jiandu_lianshu.png" />
+									</div>
+									<div class="col-md-8">
+										<div class="key-title" style="margin-top:8mm;"><h5>全市数字城管案件立案数</h5></div>
+										<div class="content">
+										<h5>{{lianshu}} 起</h5>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="col-md-4">
+										<img src="/images/citymanager/jiandu_yingchuzhishu.png" />
+									</div>
+									<div class="col-md-8">
+										<div class="key-title" style="margin-top:8mm;"><h5>全市数字城管案件应处置数</h5></div>
+										<div class="content">
+										<h5>{{yingchuzhishu}} 起</h5>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="col-md-4">
+										<img src="/images/citymanager/jiandu_chuzhishu.png" />
+									</div>
+									<div class="col-md-8">
+										<div class="key-title" style="margin-top:8mm;"><h5>全市数字城管案件处置数</h5></div>
+										<div class="content">
+											<h5>{{chuzhishu}} 起</h5>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-12">	
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">		
+										{{nowdate}} 各单位处理数字城管案件情况详情								
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-9 chart-panel">											 
+												<highchart style="width:700px;height:700px" config="citymanager_jiandu_lianshu_option"></highchart>
+											</div>
+											<div class="col-md-3">
+												<div class="radio" ng-repeat="jianduzhibiaoone in jianduzhibiaolist"><label>
+													<input type="radio" ng-model="jianduzhibiao" ng-value="jianduzhibiaoone" name="jianduzhibiao" ng-click="jianduzhibiaoClick(jianduzhibiaoone)">{{jianduzhibiaoone}}
+												</label></div>
+												<p class="fill-margin"></p>
+											</div>
+										</div>
+										<hr>
+										<div class="row">
+											<div class="col-md-9 chart-panel">											 
+												<highchart style="width:700px;height:400px" config="citymanager_jiandu_benyue_option"></highchart>
+											</div>
+											<div class="col-md-3">
+												<div class="radio" ng-repeat="jianduzhibiaoone in jianduzhibiao_benyuelist"><label>
+													<input type="radio" ng-model="jianduzhibiao_benyue" ng-value="jianduzhibiaoone" name="jianduzhibiao_benyue" ng-click="jianduzhibiao_benyueClick(jianduzhibiaoone)">{{jianduzhibiaoone}}
+												</label></div>
+												<p class="fill-margin"></p>
+											</div>
+										</div>
+										
+									</div>
+								</div>							
+					
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">		
+										{{nowdate}} 数字城管案件处理情况(分单位)								
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+										    <div class="col-md-12" align="left">	
+										    	<div class="nav nav-pills col-md-3" style="margin-top:3mm;">请选择想要查看的部门:</div>		
+										    										 
+										    	<ul class="nav nav-pills col-md-4" style="margin-top:3mm;">
+										    	
+										    		<select name="monitor" class="form-control"  ng-model="xuanzedanwei" ng-change="danweiClick(xuanzedanwei)">
+													<option ng-repeat="danwei in danweis">{{danwei.danweiname}}</option>
+					                       			 </select>
+										    	<!-- 
+												    <li class="dropdown all-camera-dropdown">
+												           <a class="dropdown-toggle" data-toggle="dropdown" href="" >
+												            	{{xuanzedanwei}}
+												               <b class="caret"></b>
+												           </a>
+												       		
+												    		<ul class="dropdown-menu">
+												    		 <div  style="overflow: auto; overflow-x:hidden;height:350px">
+												          		<li ng-repeat="danwei in danweis"><a href="" ng-click = "danweiClick(danwei.danweiname)">{{danwei.danweiname}}</a></li>		      
+															</div>
+															</ul>
+														
+													</li>
+													-->
+												</ul>
+											
+										    </div>
+										</div>
+										<hr>
+										{{riqi}} 数字城管案件处置详情:
+										<div class="row">
+											<div class="col-md-6" align="left">											 
+												<highchart style="width:500px;height:500px" config="citymanager_jiandu_gedanwei_option"></highchart>													
+											</div>
+											<div class="col-md-6" align="right">
+												<highchart style="width:500px;height:500px" config="citymanager_jiandu_moudanwei_option"></highchart>
+											</div>
+										</div>
+										<hr>
+										本月初累计至 {{riqi}} 数字城管案件处置详情:
+										<div class="row">
+											<div class="col-md-6" align="left">											 
+												<highchart style="width:500px;height:500px" config="citymanager_jiandu_benyue_gedanwei_option"></highchart>													
+											</div>
+											<div class="col-md-6" align="right">
+												<highchart style="width:500px;height:500px" config="citymanager_jiandu_benyue_moudanwei_option"></highchart>
+											</div>
+										</div>
+									</div>							
+								</div>
+					
+								<div class="panel panel-primary" style="margin-top: 20px;">
+									<div class="panel-heading">		
+										{{nowdate}} 数字城管案件处理情况详情(历史状况)								
+										<span class="glyphicon glyphicon-question-sign pull-right"></span>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+					                        
+										    <div class="col-md-12" align="left">	
+										    	<div class="nav nav-pills col-md-3" style="margin-top:3mm;">请选择想要查看的部门:</div>										 
+										    	<ul class="nav nav-pills col-md-4" style="margin-top:3mm;">
+												   <select name="monitor" class="form-control"  ng-model="xuanzedanwei_shijian" ng-change="danwei_shijianClick(xuanzedanwei_shijian)">
+													<option ng-repeat="danwei in danweis">{{danwei.danweiname}}</option>
+					                       			 </select>
+												</ul>
+										    </div>
+										   
+										    
+										</div>
+										<hr>
+										<div class="row">
+											<div class="col-md-9 chart-panel">	
+													当月数字城管案件处置详情:						 
+													<highchart style="width:700px;height:400px" config="citymanager_jiandu_shijian_option"></highchart>
+													<hr>
+													当月数字城管案件月累计处置详情:
+													<highchart style="width:700px;height:400px" config="citymanager_jiandu_shijian_benyue_option"></highchart>
+												
+											</div>
+											<div class="col-md-3">
+												<div class="radio" ng-repeat="jianduzhibiaoone in jianduzhibiao_shijianlist"><label>
+													<input type="radio" ng-model="jianduzhibiao_shijian" ng-value="jianduzhibiaoone" name="jianduzhibiao_shijian" ng-click="jianduzhibiao_shijianClick(jianduzhibiaoone)">{{jianduzhibiaoone}}
+												</label></div>
+												<p class="fill-margin"></p>
+											</div>
+										</div>
+									</div>
+								</div>							
+						
+					</div>
+		</tabset>
+	</div>
+</div>
