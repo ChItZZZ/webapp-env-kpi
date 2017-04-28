@@ -28,7 +28,6 @@ angular.module('app').controller('MainCtrl',
           };
           $scope.domainMap = kpis.filter(findEnvData);
           $rootScope.domainMap = kpis;
-          initNews()
         });
   };
   function findEnvData(obj) {
@@ -49,27 +48,11 @@ angular.module('app').controller('MainCtrl',
     return category;
   }
 
-  function initNews(){
-    for (var i = 0; i < $scope.domainMap.length; i++) {
-      //var category =  $scope.domainMap[i].selectedCategory;
-      loadCategoryNews($scope.domainMap[i]);
-    };
-  };
-
-  function loadCategoryNews(domain){
-    kpiFactory.kpiCategoryNews(domain.selectedCategory.id).get(null,
-      function success(data){
-        var news = JSOG.parse(JSOG.stringify(data.data));
-        domain.selectedCategory['news'] = news;
-      }
-    );
-  };
 
   $scope.loadAllKpi();
 
   $scope.selectCategory = function(domain, category){
     domain.selectedCategory = category;
     pageCategory(domain.selectedCategory);
-    loadCategoryNews(domain);
   };
 });
