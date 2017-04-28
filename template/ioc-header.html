@@ -1,142 +1,159 @@
-<div class="header-mast-options">
-  <div class="container">
-    <div class="nav navbar-option navbar-right pull-left">
-      <span>感谢访问太仓市智慧城市KPI系统</span>
-    </div>
-    <div class="nav navbar-option navbar-right">
-      <span>欢迎! {{currentUser.nickname}}</span>
-      <span>&nbsp;&nbsp;|&nbsp;</span>
-      <span ng-click="show_datapicker()" style="cursor:pointer;">显示时间 <span style="text-decoration: underline;">{{system_date | date:'yyyy-MM-dd'}}</span></span>
-      <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-      <a href="javascript:void(0);" ng-click="userResetPassword()">密码重置</a>
-      <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-       <datepicker id="date_picker" max-date="curr_date" min-date="min_date" ng-model="system_date"  show-weeks="true" class="well well-sm" style="z-index:1000;position:fixed;display:none;"></datepicker>
-      <a href="javascript:void(0);" ng-click="logout()">退出</a>
-    </div>
+<!--mytop-->
+<!--<div class="header-mast-options">-->
+  <!--<div class="container">-->
+    <!--<div class="nav navbar-option navbar-right pull-left">-->
+      <!--<span>感谢访问太仓市智慧城市KPI系统</span>-->
+    <!--</div>-->
+    <!--<div class="nav navbar-option navbar-right">-->
+      <!--<span>欢迎! {{currentUser.nickname}}</span>-->
+      <!--<span>&nbsp;&nbsp;|&nbsp;</span>-->
+      <!--<span ng-click="show_datapicker()" style="cursor:pointer;">显示时间 <span style="text-decoration: underline;">{{system_date | date:'yyyy-MM-dd'}}</span></span>-->
+      <!--<span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>-->
+      <!--<a href="javascript:void(0);" ng-click="userResetPassword()">密码重置</a>-->
+      <!--<span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>-->
+       <!--<datepicker id="date_picker" max-date="curr_date" min-date="min_date" ng-model="system_date"  show-weeks="true" class="well well-sm" style="z-index:1000;position:fixed;display:none;"></datepicker>-->
+      <!--<a href="javascript:void(0);" ng-click="logout()">退出</a>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<!--myheader-->
+<!--<nav class="navbar navbar-ioc main-nav">-->
+  <!--<div class="container">-->
+    <!--<div class="navbar-header">-->
+      <!--<a class="navbar-brand" href="/">-->
+        <!--<img-->
+        <!--src="/images/icon/ioc-logo.png" height="43"></a>-->
+    <!--</div>-->
+    <!--<ul class="nav navbar-nav">-->
+      <!--<li>-->
+        <!--<a ng-click="showNavPannel('kpi')">关键业绩指标</a>-->
+      <!--</li>-->
+      <!--<li>-->
+        <!--<a ng-click="showNavPannel('bi')">智能分析</a>-->
+      <!--</li>-->
+      <!--<li ng-if="systemManageNavStatus">-->
+        <!--<a ng-click="showNavPannel('peizhi')">系统管理</a>-->
+      <!--</li>-->
+      <!--&lt;!&ndash; <li>-->
+        <!--<a href="/about">帮助</a>-->
+      <!--</li> &ndash;&gt;-->
+
+    <!--</ul>-->
+
+    <!--<div class="nav-pannel" collapse="isNavPannelCollapsed">-->
+      <!--<div class="container">-->
+        <!--<div class="kpi-container">-->
+          <!--<div class="row">-->
+
+            <!--<div class="col-md-2" ng-repeat="domain in blueMap">-->
+              <!--<p>-->
+                <!--<a>{{domain.name}}</a>-->
+              <!--</p>-->
+              <!--<ul>-->
+                <!--<li ng-repeat="category in domain.categories"><a ui-sref="app.kpicategory({categoryId:category.id})">{{category.name}}</a></li>-->
+              <!--</ul>-->
+            <!--</div>-->
+
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="bi-container">-->
+          <!--<div class="row">-->
+             <!--<div class="col-md-2">-->
+              <!--<p>-->
+                <!--<a href="">经济</a>-->
+              <!--</p>-->
+              <!--<ul>-->
+                <!--&lt;!&ndash; <li><a href="/dt/udf/tax">税收预测分析</a></li> &ndash;&gt;-->
+                <!--<li><a ui-sref="app.keqiangIndex">克强指数分析</a></li>-->
+              <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="col-md-2">-->
+              <!--<p>-->
+                <!--<a href="">民生</a>-->
+              <!--</p>-->
+              <!--<ul>-->
+                <!--<li><a ui-sref="app.PopulationStructurePrediction">常住人口预测分析</a></li>-->
+              <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="col-md-2">-->
+              <!--<p>-->
+                <!--<a href="">环境</a>-->
+              <!--</p>-->
+              <!--<ul>-->
+                <!--<li><a href="#/waterEnvironmentBI">水环境预测分析</a></li>-->
+              <!--</ul>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; <div class="col-md-2">-->
+              <!--<p>-->
+                <!--<a href="/kpicategory">公共安全</a>-->
+              <!--</p>-->
+              <!--<ul>-->
+                <!--<li><a href="/dt/policeBI">警务信息预测分析</a></li>-->
+              <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="col-md-2">-->
+              <!--<p>-->
+                <!--<a href="/kpicategory">公共事业</a>-->
+              <!--</p>-->
+              <!--<ul>-->
+                <!--<li><a href="/dt/carToParkingSpace">民用汽车保有量与停车位</a></li>-->
+              <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="col-md-2">-->
+              <!--<p>-->
+                <!--<a href="/kpicategory">能源</a>-->
+              <!--</p>-->
+              <!--<ul>-->
+                <!--<li><a href="/dt/energybitest">节能减排分析</a></li>-->
+              <!--</ul>-->
+            <!--</div> &ndash;&gt;-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="peizhi-container">-->
+          <!--<div class="row">-->
+            <!--<div class="col-md-2">-->
+              <!--<p>-->
+                <!--<a href="">权限管理</a>-->
+              <!--</p>-->
+              <!--<ul>-->
+                <!--<li><a ng-click="closePullInfo()" ui-sref="app.userConfig">权限配置</a></li>-->
+              <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="col-md-2">-->
+              <!--<p>-->
+                <!--<a href="">KPI管理</a>-->
+              <!--</p>-->
+              <!--<ul>-->
+                <!--<li><a ng-click="closePullInfo()" ui-sref="app.kpiConfig">KPI配置</a></li>-->
+              <!--</ul>-->
+            <!--</div>-->
+
+          <!--</div>-->
+        <!--</div>-->
+
+      <!--</div>-->
+      <!--<div class="nav-pannel-bottom">-->
+        <!--<span class="glyphicon glyphicon-eject close-icon"-->
+          <!--ng-click="closeNavPannel()"></span>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</nav>-->
+
+<div class="menu_width">
+  <div class="menu">
+    <div class="menu_logo"><a href="/"></a></div>
+    <ul class="menu_list" style="height: 90px">
+      <!---当前页面是哪个栏目，只用在li的class里再加个" current "就行了-->
+      <li class="menu_1"><a href="/ganzizhou.html"><span>首页</span></a></li>
+      <li class="menu_2"><a class="current" href="/city.html"><span>实时监测</span></a></li>
+      <li class="menu_3"><a href="/rank.html"><span>关键业绩指标</span></a></li>
+      <li class="menu_4"><a href="/news.html"><span>智能分析</span></a></li>
+      <div class="clear"></div>
+    </ul>
   </div>
 </div>
-<nav class="navbar navbar-ioc main-nav">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">
-        <img
-        src="/images/icon/ioc-logo.png" height="43"></a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li>
-        <a ng-click="showNavPannel('kpi')">关键业绩指标</a>
-      </li>
-      <li>
-        <a ng-click="showNavPannel('bi')">智能分析</a>
-      </li>
-      <li ng-if="systemManageNavStatus">
-        <a ng-click="showNavPannel('peizhi')">系统管理</a>
-      </li>
-      <!-- <li>
-        <a href="/about">帮助</a>
-      </li> -->
-
-    </ul>
-
-    <div class="nav-pannel" collapse="isNavPannelCollapsed">
-      <div class="container">
-        <div class="kpi-container">
-          <div class="row">
-
-            <div class="col-md-2" ng-repeat="domain in blueMap">
-              <p>
-                <a>{{domain.name}}</a>
-              </p>
-              <ul>
-                <li ng-repeat="category in domain.categories"><a ui-sref="app.kpicategory({categoryId:category.id})">{{category.name}}</a></li>
-              </ul>
-            </div>
-
-          </div>
-        </div>
-        <div class="bi-container">
-          <div class="row">
-             <div class="col-md-2">
-              <p>
-                <a href="">经济</a>
-              </p>
-              <ul>
-                <!-- <li><a href="/dt/udf/tax">税收预测分析</a></li> -->
-                <li><a ui-sref="app.keqiangIndex">克强指数分析</a></li>
-              </ul>
-            </div>
-            <div class="col-md-2">
-              <p>
-                <a href="">民生</a>
-              </p>
-              <ul>
-                <li><a ui-sref="app.PopulationStructurePrediction">常住人口预测分析</a></li>
-              </ul>
-            </div>
-            <div class="col-md-2">
-              <p>
-                <a href="">环境</a>
-              </p>
-              <ul>
-                <li><a href="#/waterEnvironmentBI">水环境预测分析</a></li>
-              </ul>
-            </div>
-            <!-- <div class="col-md-2">
-              <p>
-                <a href="/kpicategory">公共安全</a>
-              </p>
-              <ul>
-                <li><a href="/dt/policeBI">警务信息预测分析</a></li>
-              </ul>
-            </div>
-            <div class="col-md-2">
-              <p>
-                <a href="/kpicategory">公共事业</a>
-              </p>
-              <ul>
-                <li><a href="/dt/carToParkingSpace">民用汽车保有量与停车位</a></li>
-              </ul>
-            </div>
-            <div class="col-md-2">
-              <p>
-                <a href="/kpicategory">能源</a>
-              </p>
-              <ul>
-                <li><a href="/dt/energybitest">节能减排分析</a></li>
-              </ul>
-            </div> -->
-          </div>
-        </div>
-        <div class="peizhi-container">
-          <div class="row">
-            <div class="col-md-2">
-              <p>
-                <a href="">权限管理</a>
-              </p>
-              <ul>
-                <li><a ng-click="closePullInfo()" ui-sref="app.userConfig">权限配置</a></li>
-              </ul>
-            </div>
-            <div class="col-md-2">
-              <p>
-                <a href="">KPI管理</a>
-              </p>
-              <ul>
-                <li><a ng-click="closePullInfo()" ui-sref="app.kpiConfig">KPI配置</a></li>
-              </ul>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-      <div class="nav-pannel-bottom">
-        <span class="glyphicon glyphicon-eject close-icon"
-          ng-click="closeNavPannel()"></span>
-      </div>
-    </div>
-  </div>
-</nav>
 
 <div class="modal fade" id="userResetPasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="width: 800px;">
