@@ -863,13 +863,25 @@ body {
 .details-content .sub-nav-tabs-conatainer .nav-tabs li a:focus {
   border: none;
 }
-.btn.btn-green {
-  background-image: -o-linear-gradient(-89deg, #b4ec51 0%, #429321 100%);
-  background-image: -moz-linear-gradient(-89deg, #b4ec51 0%, #429321 100%);
-  background-image: -ms-linear-gradient(-89deg, #b4ec51 0%, #429321 100%);
-  background-image: linear-gradient(-179deg, #b4ec51 0%, #429321 100%);
-  border: none;
+
+.btn.btn-green.active{
   color: white;
+  background-color: #57b382;
+}
+.btn.btn-green:hover{
+  color: white;
+  background-color: #57b382;
+}
+.btn.btn-green {
+  margin: 2px;
+  box-shadow: none;
+  border-radius: 1px;
+  border: #e8e8e8 solid 1px;
+  background-color: #fff;
+  color: black;
+  padding: 8px 20px;
+  transition: all .2s ease;
+
 }
 .btn.btn-red {
   background-image: -o-linear-gradient(-89deg, #f5515f 0%, #9f041b 100%);

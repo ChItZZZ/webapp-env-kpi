@@ -19,7 +19,8 @@ angular.module('app')
           for(var i = 0; i < self.btnGroup.length; i++) {
             self.btnGroup[i].$element.css("border", "none");
           }
-          btn.$element.css("border", "3px solid #4098c0");
+          btn.$element.addClass('active');
+          btn.$element.siblings().removeClass('active')
         };
       },
       link: function postLink(scope, element, attrs) {
