@@ -9,8 +9,8 @@
 .banner_bg_level6{background-color:#9f6aa2;}
 
 .citydata_banner{width:980px; margin:0px auto; z-index:1;}
-.citydata_banner_opacity{position:absolute; width:980px; height:230px; top:235px;left:auto; z-index:6; }
-.citydata_banner_top{ position:absolute; width:980px; height:50px; top:160px; left:auto;}
+.citydata_banner_opacity{position:absolute; width:980px; height:230px; top:125px;left:auto; z-index:6; }
+.citydata_banner_top{ position:absolute; width:980px; height:50px; top:50px; left:auto;}
 .citydata_changecity{ float:left; display:inline; width:750px;}
 .citydata_changecity a{ float:left; display:inline; width:34px; height:35px; background:url(../images/common_sprite.png) -6px -140px no-repeat; margin:8px 15px 0px 0px; }
 .citydata_changecity a:hover{ background-position:-6px -100px;}
@@ -19,7 +19,7 @@
 
 .citydata_updatetime{ float:right; display:inline; font-size:14px; color:#fff; margin-top:28px;}
 
-.cbo_opacity{ position:absolute; z-index:3; width:980px; height:230px; top:235px; left:auto;background:rgba(255, 255, 255, 0.1) none repeat scroll 0 0 !important;/*实现FF背景透明，文字不透明*/filter:Alpha(opacity=10);background:#fff;/*实现IE背景透明*/ }
+.cbo_opacity{ position:absolute; z-index:3; width:980px; height:230px; top:125px; left:auto;background:rgba(255, 255, 255, 0.1) none repeat scroll 0 0 !important;/*实现FF背景透明，文字不透明*/filter:Alpha(opacity=10);background:#fff;/*实现IE背景透明*/ }
 /*透明层上内容*/
 .cbo_left{ float:left; display:inline;}
 .cbol_aqi{ float:left; display:inline; position:relative; margin:55px 80px 0px 50px;}

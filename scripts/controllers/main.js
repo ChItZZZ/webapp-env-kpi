@@ -26,11 +26,14 @@ angular.module('app').controller('MainCtrl',
             domain['selectedCategory'] = domain.data[selectedOffset];
             pageCategory(domain['selectedCategory']);
           };
-          $scope.domainMap = kpis;
+          $scope.domainMap = kpis.filter(findEnvData);
           $rootScope.domainMap = kpis;
           initNews()
         });
   };
+  function findEnvData(obj) {
+    return obj.id == 2;
+  }
 
   function pageCategory(category){
     category['total'] = category.data.length;
