@@ -70,18 +70,13 @@
     </div>
 
 </div>
-<div ioc-scroll-nav></div>
-<div class="container home-container" style="min-height:1500px;margin-top: 230px">
+<div class="container home-container" style="margin-top: 230px">
     <div class="row" ng-repeat="domain in domainMap" id="{{ domain.id }}-section">
         <div class="col-md-12">
             <div class="title">
                 <a>
                     <img ng-src="{{ domain.icon }}" height="40"></a>
                 <span ng-bind-html='domain.status | domainStatusHTML'></span>
-                <!-- <div class="pull-right title-desc">
-                &nbsp;&nbsp;更新时间：{{ domain.update_time |  date:'yyyy年MM月dd日'}}
-            </div>
-            -->
             <div class="pull-right title-desc">&nbsp;&nbsp;</div>
             <div class="pull-right title-desc" style="width:300px;overflow:hidden;" ioc-marquee>
                 <span ng-repeat="news in domain.selectedCategory.news">
