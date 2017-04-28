@@ -9,8 +9,8 @@
 .banner_bg_level6{background-color:#9f6aa2;}
 
 .citydata_banner{width:980px; margin:0px auto; z-index:1;}
-.citydata_banner_opacity{position:absolute; width:980px; height:230px; top:125px;left:auto; z-index:6; }
-.citydata_banner_top{ position:absolute; width:980px; height:50px; top:50px; left:auto;}
+.citydata_banner_opacity{position:absolute; width:980px; height:230px; top:110px;left:auto; z-index:6; }
+.citydata_banner_top{ position:absolute; width:980px; height:50px; top:40px; left:auto;}
 .citydata_changecity{ float:left; display:inline; width:750px;}
 .citydata_changecity a{ float:left; display:inline; width:34px; height:35px; background:url(../images/common_sprite.png) -6px -140px no-repeat; margin:8px 15px 0px 0px; }
 .citydata_changecity a:hover{ background-position:-6px -100px;}
