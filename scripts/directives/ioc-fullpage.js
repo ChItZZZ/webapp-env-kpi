@@ -7,11 +7,11 @@
  * # iocFullpage
  */
 angular.module('app')
-  .directive('iocFullpage', function () {
-    return {
-      restrict: 'A',
-      link: function postLink(scope, element, attrs) {
-        element.fullpage({});
-      }
-    };
-  });
+    .directive('iocFullpage', function () {
+        return {
+            restrict: 'A',
+            link: function postLink(scope, element, attrs) {
+                element.fullpage({});
+            }
+        };
+    });

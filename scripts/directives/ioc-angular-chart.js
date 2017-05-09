@@ -1,11 +1,11 @@
-angular.module('AngularChart', []).directive('chart', function() {
+angular.module('AngularChart', []).directive('chart', function () {
     return {
         restrict: 'E',
         template: '<div></div>',
         transclude: true,
         replace: true,
         scope: '=',
-        link: function(scope, element, attrs) {
+        link: function (scope, element, attrs) {
             var opt = {
                 chart: {
                     renderTo: element[0],
@@ -49,15 +49,13 @@ angular.module('AngularChart', []).directive('chart', function() {
                     borderWidth: 0
                 },
 
-                series: [
-
-                ],
+                series: [],
                 credits: {
                     enabled: false
                 }
             }
-            scope.$watch(function(scope) {
-                
+            scope.$watch(function (scope) {
+
 
                 return JSON.stringify({
                     xAxis: {
@@ -83,9 +81,9 @@ angular.module('AngularChart', []).directive('chart', function() {
                     tooltip: {
                         shared: true,
                         useHTML: true,
-                        headerFormat: '<small>{point.key}'+ attrs.kpitype+'</small><table>',
+                        headerFormat: '<small>{point.key}' + attrs.kpitype + '</small><table>',
                         pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
-                            '<td style="text-align: right"><b>{point.y} '+ attrs.unit+'</b></td></tr>',
+                        '<td style="text-align: right"><b>{point.y} ' + attrs.unit + '</b></td></tr>',
                         footerFormat: '</table>',
                         valueDecimals: 2
                     },
@@ -96,7 +94,7 @@ angular.module('AngularChart', []).directive('chart', function() {
                         min: scope[attrs.ymin]
                     }
                 });
-            }, function(news) {
+            }, function (news) {
                 news = JSON.parse(news)
                 if (!news.series) return;
                 angular.extend(opt, news)
