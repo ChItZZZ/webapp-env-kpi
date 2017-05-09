@@ -61,10 +61,7 @@ body {
   border: none !important;
 }
 .pagination > li.active > a {
-  background-image: -o-linear-gradient(-89deg, #cae3ee 2%, #80b9d2 100%);
-  background-image: -moz-linear-gradient(-89deg, #cae3ee 2%, #80b9d2 100%);
-  background-image: -ms-linear-gradient(-89deg, #cae3ee 2%, #80b9d2 100%);
-  background-image: linear-gradient(-179deg, #cae3ee 2%, #80b9d2 100%);
+  background-color: #52a7ca;
 }
 .isloading-overlay {
   background-color: transparent !important;
@@ -873,11 +870,13 @@ body {
   background-color: #57b382;
 }
 .btn.btn-green {
+  /*border-left: 1px solid #ccc !important;*/
+  /*border-top: 1px solid #ccc !important;*/
+  /*border-right: 1px solid #ccc !important;*/
   margin-right: 2px;
   box-shadow: none;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  border: #e8e8e8 solid 1px;
   background-color: #fff;
   color: black;
   font-size: 14px;
