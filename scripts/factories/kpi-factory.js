@@ -5,6 +5,8 @@ angular.module('app')
     // Public API here
     var baseUrl = '/api/kpi';
     var headers = {'x-auth-token': $rootScope.token};
+    
+    console.log($rootScope.token);
 
     return {
       blueMap: function(){

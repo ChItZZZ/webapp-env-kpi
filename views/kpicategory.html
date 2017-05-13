@@ -8,12 +8,9 @@
         <a href="" ng-click="load()">{{domainName}}</a>
       </li>
       <li class="active">{{categoryName}}</li>
-
     </ol>
     <h1>{{domainName}}</h1>
-
-    <p>太仓市{{domainName}}关键业绩指标一览</p>
-  </div>
+  </div>h
 </div>
 
 <div class="kpicategory-content" style="min-height:800px;" >
@@ -30,8 +27,6 @@
                   <p class="nav-item-title">
                     <a  style="color: white">{{tab.name}}</a>
                   </p>
-                  <!-- <p class="nav-item-title">{{tab.name}}</p>
-                -->
               </div>
             </div>
           </div>
@@ -64,13 +59,13 @@
                           <!-- <th style="text-align:center;">更新频率</th>
                         -->
                         <th>统计时间</th>
-                     
+
                       <!-- <th>操作</th> -->
                     </tr>
                   </thead>
                   <tbody>
 
-                    <tr ng-repeat="kpi in class.data | orderBy:'sortOrder'" ng-click="changeKPI(class,kpi)" class="hover-tr">
+                    <tr ng-repeat="kpi in class.dacharta | orderBy:'sortOrder'" ng-click="changeKPI(class,kpi)" class="hover-tr">
                       <td class="tr-kpiname">{{kpi.name}}</td>
                       <td class="tr-kpistatus">
                         <label class="label {{kpi.data.status | kpiStatusClass}} status">{{ kpi.data.status | kpiStatusText}}</label>
@@ -85,7 +80,7 @@
                       <!-- <td style="text-align:center;">{{ kpi.type | kpiType }}</td>
                     -->
                     <td class="tr-kpidate">{{kpi |  applyDateFilter }}</td>
-                 
+
                  <!--  <td>
                     <label class="btn {{kpi.data.status | kpiStatusClass}} status" style="color: white"
                                                                    ng-click="changeKPI(class,kpi)">查看走势</label>
@@ -123,16 +118,16 @@
           </div>
 
         </div>
-        <div class="panel-chart col-md-8" id="" style="min-height:410px;">
+        <div class="panel-chart col-md-8"  style="min-height:410px;">
 
-          <chart title="{{class.chart.title}}" xData="chartXData_{{class.id}}"
+          <chart id="test-chart" title="{{class.chart.title}}" xData="chartXData_{{class.id}}"
                           yData="chartYData_{{class.id}}" kpitype="{{class.chart.xName}}" yName="{{class.chart.yName}}" interval="interval_{{class.id}}"
                           unit="{{class.curKpi.data.unit | unit_val}}" ></chart>
         </div>
         <p class="fill-margin"></p>
 
         <p class="pull-right">
-          <a ui-sref="{{class.kpiDetailUrl}}" class="view-details"></a>
+          <button ui-sref="{{class.kpiDetailUrl}}" class="view-details">查看kpi详情</button>
         </p>
 
       </div>

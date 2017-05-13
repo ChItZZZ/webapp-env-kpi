@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app').controller('KPICategoryCtrl',
-	function($scope, $http, $location, inform, $routeParams, dateService, kpiService, 
+	function($scope, $http, $location, inform, $routeParams, dateService, kpiService,
 		kpiFactory, $timeout, $rootScope, $stateParams, unitService) {
 		var colors = new Array('#7CADDF', '#000000');
 		$scope.categoryId = $stateParams.categoryId;
@@ -79,16 +79,16 @@ angular.module('app').controller('KPICategoryCtrl',
 				}
 				$scope.kpiClasses = list;
 			});
-	
-			//获取新闻
-			var newsUrl = "/api/kpi/category/" + $scope.categoryId + "/news";
-			$http.get(newsUrl, {
-				headers: {
-					'x-auth-token': $rootScope.token
-				}
-			}).success(function(rawData) {
-				$scope.newsList = JSOG.parse(JSOG.stringify(rawData.data));
-			});
+
+			// //获取新闻
+			// var newsUrl = "/api/kpi/category/" + $scope.categoryId + "/news";
+			// $http.get(newsUrl, {
+			// 	headers: {
+			// 		'x-auth-token': $rootScope.token
+			// 	}
+			// }).success(function(rawData) {
+			// 	$scope.newsList = JSOG.parse(JSOG.stringify(rawData.data));
+			// });
 		}
 
 		$scope.loadCategory($scope.categoryId);
@@ -134,7 +134,7 @@ angular.module('app').controller('KPICategoryCtrl',
 					startLongStr = dateService.formatDate(moment(startLong).startOf('year'));
 					endStr = dateService.formatDate(moment(end).endOf('month'));
 					cls.chart.xName = '月';
-					cls.curExplain.date = moment(sysTime).get('year') + '年' + (moment(sysTime).get('month') + 1) + '月';//(moment(sysTime).get('month') + 1) 
+					cls.curExplain.date = moment(sysTime).get('year') + '年' + (moment(sysTime).get('month') + 1) + '月';//(moment(sysTime).get('month') + 1)
 					break;
 				case "DAILY":
 					startShortStr = dateService.formatDate(moment(startShort).subtract(6, 'days').startOf('day'));
@@ -158,7 +158,10 @@ angular.module('app').controller('KPICategoryCtrl',
 					'x-auth-token': $rootScope.token
 				}
 			}).success(function(spanData) {
+
 				var spanData = JSOG.parse(JSOG.stringify(spanData.data));
+
+				console.log('spandata',spanData);
 
 				//highchart 趋势图表数据
 				cls.chart.title = kpi.name;
@@ -167,11 +170,11 @@ angular.module('app').controller('KPICategoryCtrl',
 				cls.chart.yName = kpi.name;
 				//cls.curKpiTargetType = spanData.targetType;
 				cls.chart.yData = getYdata(kpi.type, span, spanData.data, spanData.targetType, cls.chart.xData, kpi.unit);
-				if(cls.chart.yData[0].data.length >= 15){ 
+				if(cls.chart.yData[0].data.length >= 15){
 					//超过15条表格数据后跳 x 轴显示
-					$scope['interval_' + cls.id] = 2;	
+					$scope['interval_' + cls.id] = 2;
 				}else{
-					$scope['interval_' + cls.id] = 1;	
+					$scope['interval_' + cls.id] = 1;
 				}
 				$scope['chartYData_' + cls.id] = cls.chart.yData;
 			});

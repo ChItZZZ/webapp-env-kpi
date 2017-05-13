@@ -136,10 +136,14 @@ body {
   width: 130px;
   height: 30px;
   display: block;
-  background-image: url(../images/common/titles/view-details.png);
+  color: white;
+  border:0;
+  background-color: #52a7ca;
+  border-radius: 2px;
+  transition: all .2s ease;
 }
 .ioc-panel .view-details:hover {
-  background-image: url(../images/common/titles/view-details-hover.png);
+  background-color: #0a75a3;
 }
 .ioc-panel .ioc-panel-desc {
   padding-top: 25px;
@@ -265,19 +269,19 @@ body {
   padding: 24px 34px;
   font-size: 1.3em;
   cursor: pointer;
-  border-bottom: rgba(0,0,0,.7) solid 3px;
+  border-bottom: rgba(0,0,0,.7) solid 2px;
 }
 
 .navbar-ioc .navbar-nav > li a.current{
-  color: #1e9e69;
+  color: #514d40;
   background-color: #f6f6f6;
-  border-bottom-color: #57b382;
+  border-bottom-color: #514d40;
 
 }
 .navbar-ioc .navbar-nav > li a:hover {
-  color: #1e9e69;
+  color: #514d40;
   background-color: #f6f6f6;
-  border-bottom-color: #57b382;
+  border-bottom-color: #514d40;
 }
 .nav-pannel {
   position: absolute;
