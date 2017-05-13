@@ -7,7 +7,9 @@ angular.module('app').service('kpiService',
     kpiFactory.blueMap().get(null,
       function success(blueMap){
         var blueMap = JSOG.parse(JSOG.stringify(blueMap.data));
-        $localStorage.blueMap = blueMap;
+        $localStorage.blueMap = blueMap.filter(function (v) {
+            return v.id == 2;
+        });
         $rootScope.blueMap = blueMap;
       });
   };
