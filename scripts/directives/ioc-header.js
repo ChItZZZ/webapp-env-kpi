@@ -66,59 +66,6 @@ angular.module('app').directive('iocHeader', function() {
 				if(navName == 'home'){
 					$location.path('main')
 				}
-				if ($scope.isNavPannelCollapsed) {
-					$scope.isNavPannelCollapsed = false;
-					if (navName == 'kpi') {
-						$scope.initItems();
-						kpiContainer.animate({
-							left: '0'
-						});
-					// } else if (navName == 'bi') {
-					// 	biContainer.animate({
-					// 		left: '0'
-					// 	});
-					} else if (navName == 'peizhi') {
-						peizhiContainer.animate({
-							left: '0'
-						});
-					} else {
-						peizhiContainer.animate({
-							left: '0'
-						});
-					}
-				} else {
-					if (navName == 'kpi') {
-						kpiContainer.animate({
-							left: '0'
-						});
-						biContainer.animate({
-							left: '1024px'
-						});
-						peizhiContainer.animate({
-							left: '1024px'
-						});
-					// } else if (navName == 'bi') {
-					// 	biContainer.animate({
-					// 		left: '0'
-					// 	});
-					// 	kpiContainer.animate({
-					// 		left: '1024px'
-					// 	});
-					// 	peizhiContainer.animate({
-					// 		left: '1024px'
-					// 	});
-					} else if (navName == 'peizhi') {
-						peizhiContainer.animate({
-							left: '0'
-						});
-						biContainer.animate({
-							left: '1024px'
-						});
-						kpiContainer.animate({
-							left: '1024px'
-						});
-					}
-				}
 			};
 			/*
 			  获取页面头部分类信息函数
