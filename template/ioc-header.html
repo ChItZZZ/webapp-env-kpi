@@ -29,19 +29,19 @@
         <a class="current" ng-click="showNavPannel('home',$event.target)">首页</a>
       </li>
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" ng-click="showNavPannel('kpi',$event.target)">关键业绩指标</a>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-          <li><a href="#/kpicategory?categoryId=4001">水环境</a></li>
-          <li><a href="#/kpicategory?categoryId=4002">大气环境</a></li>
-          <li><a href="#/kpicategory?categoryId=4004">土地资源</a></li>
-          <li><a href="#/kpicategory?categoryId=5001">电力消耗</a></li>
+        <a id="dropdownMenu1" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" ng-click="showNavPannel('kpi',$event.target)">关键指标 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#/kpicategory?categoryId=4001">水环境</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#/kpicategory?categoryId=4002">大气环境</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#/kpicategory?categoryId=4004">土地资源</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#/kpicategory?categoryId=5001">电力消耗</a></li>
         </ul>
       </li>
       <li>
         <a href="#/waterEnvironmentBI" ng-click="showNavPannel('bi',$event.target)">智能分析</a>
       </li>
       <li class="dropdown" ng-if="systemManageNavStatus">
-        <a class="dropdown-toggle" data-toggle="dropdown" ng-click="showNavPannel('peizhi',$event.target)">系统管理</a>
+        <a class="dropdown-toggle" data-toggle="dropdown" ng-click="showNavPannel('peizhi',$event.target)">系统管理<span class="caret"></span> </a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
           <li><a href="#" ui-sref="app.userConfig">权限配置</a></li>
           <li><a href="#" ui-sref="app.kpiConfig">KPI配置</a></li>

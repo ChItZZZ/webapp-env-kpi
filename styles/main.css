@@ -284,6 +284,7 @@ body {
   border-bottom-color: #514d40;
 }
 .navbar-ioc .navbar-nav > li .dropdown-menu{
+  min-width: 145px;
   text-align: center;
 }
 .navbar-ioc .navbar-nav > li .dropdown-menu{
