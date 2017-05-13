@@ -259,7 +259,7 @@ body {
   background-color: rgba(0,0,0,.7);
 }
 .navbar-ioc .navbar-nav > li.active a {
-  color: #fff;
+  /*color: #fff;*/
 }
 .navbar-ioc .navbar-nav > li.active a:hover {
   color: #f6f6f6;

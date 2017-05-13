@@ -58,7 +58,15 @@ angular.module('app').directive('iocHeader', function() {
 
 			$scope.isNavPannelCollapsed = true;
 
-			$scope.showNavPannel = function(navName) {
+			$scope.showNavPannel = function(navName,target) {
+
+				console.log(target);
+				$(target).addClass('current')
+				$(target).parent('li').siblings().find('a').removeClass('current')
+
+				if(navName == 'home'){
+					$location.path('main')
+				}
 				if ($scope.isNavPannelCollapsed) {
 					$scope.isNavPannelCollapsed = false;
 					if (navName == 'kpi') {
