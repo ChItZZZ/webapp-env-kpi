@@ -1,145 +1,158 @@
 <div class="banner">
-  <div class="container" style="background-image: url('../{{categoryBackground}}');">
-    <ol class="breadcrumb">
-      <li>
-        <a href="/">首页</a>
-      </li>
-      <li>
-        <a href="" ng-click="load()">{{domainName}}</a>
-      </li>
-      <li class="active">{{categoryName}}</li>
-    </ol>
-    <h1>{{domainName}}</h1>
-  </div>h
+    <div class="container" style="background-image: url('../{{categoryBackground}}');">
+        <ol class="breadcrumb">
+            <li>
+                <a href="/">首页</a>
+            </li>
+            <li>
+                <a href="" ng-click="load()">{{domainName}}</a>
+            </li>
+            <li class="active">{{categoryName}}</li>
+        </ol>
+        <h1>{{domainName}}</h1>
+    </div>
+    h
 </div>
 
-<div class="kpicategory-content" style="min-height:800px;" >
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3">
+<div class="kpicategory-content" style="min-height:800px;">
+    <div class="container">
         <div class="row">
-          <div class="col-md-12">
-            <div class="panel panel-primary kpi-nav-panel">
-              <div class="panel-heading">导航窗口</div>
-              <div class="panel-body" style="min-height: 200px;">
-                <div class="nav-item"
-                                     ng-repeat="tab in categories" ui-sref="app.kpicategory({categoryId:tab.id})">
-                  <p class="nav-item-title">
-                    <a  style="color: white">{{tab.name}}</a>
-                  </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-9">
-      <div class="home-container">
+            <!--<div class="col-md-3">-->
+            <!--<div class="row">-->
+            <!--<div class="col-md-12">-->
+            <!--<div class="panel panel-primary kpi-nav-panel">-->
+            <!--<div class="panel-heading">导航窗口</div>-->
+            <!--<div class="panel-body" style="min-height: 200px;">-->
+            <!--<div class="nav-item" ng-repeat="tab in categories" ui-sref="app.kpicategory({categoryId:tab.id})">-->
+            <!--<p class="nav-item-title">-->
+            <!--<a  style="color: white">{{tab.name}}</a>-->
+            <!--</p>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <div class="col-md-12">
+                <div class="home-container">
+                    <div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-primary ioc-panel" ng-repeat="class in kpiClasses">
+                                    <div class="panel panel-primary ioc-panel" style="border:none;"
+                                    >
+                                        <div class="panel-heading">
+                                            {{class.name}}指标
+                                            <span class="glyphicon glyphicon-question-sign pull-right"></span>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="ioc-panel-table">
+                                                <table class="table table-bordered table-hover kpi-table">
+                                                    <thead class="ioc-thead">
+                                                    <tr>
+                                                        <th style="width:30%;">关键业绩指标(KPI)名称</th>
+                                                        <th style="">当前状态</th>
+                                                        <th style="text-align:center;border-right:none;">KPI值</th>
+                                                        <!-- <th style="border-left:none;"></th> -->
+                                                        <th>数据来源</th>
+                                                        <!-- <th style="text-align:center;">更新频率</th>
+                                                      -->
+                                                        <th>统计时间</th>
 
-      <div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="panel panel-primary ioc-panel" ng-repeat="class in kpiClasses">
-              <div class="panel panel-primary ioc-panel" style="border:none;"
-                                >
-                <div class="panel-heading">
-                  {{class.name}}指标
-                  <span class="glyphicon glyphicon-question-sign pull-right"></span>
+                                                        <!-- <th>操作</th> -->
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                    <tr ng-repeat="kpi in class.dacharta | orderBy:'sortOrder'"
+                                                        ng-click="changeKPI(class,kpi)" class="hover-tr">
+                                                        <td class="tr-kpiname">{{kpi.name}}</td>
+                                                        <td class="tr-kpistatus">
+                                                            <label class="label {{kpi.data.status | kpiStatusClass}} status">{{
+                                                                kpi.data.status | kpiStatusText}}</label>
+                                                            <span ng-bind-html=""></span>
+                                                        </td>
+                                                        <td class="tr-kpicolor"
+                                                            style="text-align:center; border-right:none;">
+                                                            <span class="kpi-value">{{kpi | unit_trans}}</span>
+                                                        </td>
+                                                        <!-- <td style="border-left:none;"> <i class="ioc-icon ioc-icon-green"></i>
+                                                        </td> -->
+                                                        <td class="tr-kpidepartment">{{kpi.department.name}}</td>
+                                                        <!-- <td style="text-align:center;">{{ kpi.type | kpiType }}</td>
+                                                      -->
+                                                        <td class="tr-kpidate">{{kpi | applyDateFilter }}</td>
+
+                                                        <!--  <td>
+                                                           <label class="btn {{kpi.data.status | kpiStatusClass}} status" style="color: white"
+                                                                                                          ng-click="changeKPI(class,kpi)">查看走势</label>
+                                                         </td> -->
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="panel-operation">
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-default" id=""
+                                                                ng-click="loadChart(class, class.curKpi, 'short')">
+                                                            {{class.curShortBtnText}}
+                                                        </button>
+                                                        <button type="button" class="btn btn-default" id=""
+                                                                ng-click="loadChart(class, class.curKpi, 'long')">
+                                                            {{class.curLongBtnText}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="ioc-panel-desc">
+                                                    <p class="ioc-panel-desc-title">
+                                                        <img src="/images/common/titles/one-sentence.png"/>
+                                                    </p>
+                                                    <!-- <p class="ioc-panel-desc-body" ng-bind-html="class.data[class.select_index].description"></p>
+                                                  -->
+                                                    <div ng-if="class.data[class.select_index].kpiStatus.status != 'nodata'">
+                                                        <p>
+                                                            {{ class.curExplain.date }}{{class.curKpi.name}} KPI 值为
+                                                            {{class.curKpi | unit_trans}}。
+                                                        </p>
+                                                        <p>
+                                                            KPI 状态为
+                                                            <label class="label {{class.curKpi.data.status | kpiStatusClass}} status">{{
+                                                                class.curKpi.data.status | kpiStatusText}}</label>
+                                                        </p>
+                                                    </div>
+                                                    <div ng-if="class.data[class.select_index].kpiStatus.status == 'nodata'">
+                                                        <p>{{ class.curExplain.date }}{{class.curKpi.name}} KPI 数据缺失</p>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="panel-chart col-md-8" style="min-height:410px;">
+
+                                                <chart id="test-chart" title="{{class.chart.title}}"
+                                                       xData="chartXData_{{class.id}}"
+                                                       yData="chartYData_{{class.id}}" kpitype="{{class.chart.xName}}"
+                                                       yName="{{class.chart.yName}}" interval="interval_{{class.id}}"
+                                                       unit="{{class.curKpi.data.unit | unit_val}}"></chart>
+                                            </div>
+                                            <p class="fill-margin"></p>
+
+                                            <p class="pull-right">
+                                                <button ui-sref="{{class.kpiDetailUrl}}" class="view-details">查看kpi详情
+                                                </button>
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="panel-body">
-                  <div class="ioc-panel-table">
-                    <table class="table table-bordered table-hover kpi-table">
-                      <thead class="ioc-thead">
-                        <tr>
-                          <th style="width:30%;">关键业绩指标(KPI)名称</th>
-                          <th style="">当前状态</th>
-                          <th style="text-align:center;border-right:none;">KPI值</th>
-                          <!-- <th style="border-left:none;"></th> -->
-                          <th>数据来源</th>
-                          <!-- <th style="text-align:center;">更新频率</th>
-                        -->
-                        <th>统计时间</th>
-
-                      <!-- <th>操作</th> -->
-                    </tr>
-                  </thead>
-                  <tbody>
-
-                    <tr ng-repeat="kpi in class.dacharta | orderBy:'sortOrder'" ng-click="changeKPI(class,kpi)" class="hover-tr">
-                      <td class="tr-kpiname">{{kpi.name}}</td>
-                      <td class="tr-kpistatus">
-                        <label class="label {{kpi.data.status | kpiStatusClass}} status">{{ kpi.data.status | kpiStatusText}}</label>
-                        <span ng-bind-html=""></span>
-                      </td>
-                      <td class="tr-kpicolor" style="text-align:center; border-right:none;">
-                        <span class="kpi-value">{{kpi | unit_trans}}</span>
-                      </td>
-                      <!-- <td style="border-left:none;"> <i class="ioc-icon ioc-icon-green"></i>
-                      </td> -->
-                      <td class="tr-kpidepartment">{{kpi.department.name}}</td>
-                      <!-- <td style="text-align:center;">{{ kpi.type | kpiType }}</td>
-                    -->
-                    <td class="tr-kpidate">{{kpi |  applyDateFilter }}</td>
-
-                 <!--  <td>
-                    <label class="btn {{kpi.data.status | kpiStatusClass}} status" style="color: white"
-                                                                   ng-click="changeKPI(class,kpi)">查看走势</label>
-                  </td> -->
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="col-md-4">
-            <div class="panel-operation">
-              <div class="btn-group">
-                <button type="button" class="btn btn-default" id="" ng-click="loadChart(class, class.curKpi, 'short')">{{class.curShortBtnText}}</button>
-                <button type="button" class="btn btn-default" id="" ng-click="loadChart(class, class.curKpi, 'long')">{{class.curLongBtnText}}</button>
-              </div>
             </div>
-            <div class="ioc-panel-desc">
-              <p class="ioc-panel-desc-title">
-                <img src="/images/common/titles/one-sentence.png"/>
-              </p>
-              <!-- <p class="ioc-panel-desc-body" ng-bind-html="class.data[class.select_index].description"></p>
-            -->
-            <div ng-if="class.data[class.select_index].kpiStatus.status != 'nodata'">
-              <p>
-                {{ class.curExplain.date }}{{class.curKpi.name}} KPI 值为 {{class.curKpi | unit_trans}}。
-              </p>
-              <p>
-                KPI 状态为
-                <label class="label {{class.curKpi.data.status | kpiStatusClass}} status">{{ class.curKpi.data.status | kpiStatusText}}</label>
-              </p>
-            </div>
-            <div ng-if="class.data[class.select_index].kpiStatus.status == 'nodata'">
-              <p>{{ class.curExplain.date }}{{class.curKpi.name}} KPI 数据缺失</p>
-
-            </div>
-          </div>
 
         </div>
-        <div class="panel-chart col-md-8"  style="min-height:410px;">
-
-          <chart id="test-chart" title="{{class.chart.title}}" xData="chartXData_{{class.id}}"
-                          yData="chartYData_{{class.id}}" kpitype="{{class.chart.xName}}" yName="{{class.chart.yName}}" interval="interval_{{class.id}}"
-                          unit="{{class.curKpi.data.unit | unit_val}}" ></chart>
-        </div>
-        <p class="fill-margin"></p>
-
-        <p class="pull-right">
-          <button ui-sref="{{class.kpiDetailUrl}}" class="view-details">查看kpi详情</button>
-        </p>
-
-      </div>
     </div>
-  </div>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
 </div>
