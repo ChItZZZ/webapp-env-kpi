@@ -60,7 +60,6 @@ angular.module('app').directive('iocHeader', function() {
 
 			$scope.showNavPannel = function(navName,target) {
 
-				console.log(target);
 				$(target).addClass('current')
 				$(target).parent('li').siblings().find('a').removeClass('current')
 
@@ -74,10 +73,10 @@ angular.module('app').directive('iocHeader', function() {
 						kpiContainer.animate({
 							left: '0'
 						});
-					} else if (navName == 'bi') {
-						biContainer.animate({
-							left: '0'
-						});
+					// } else if (navName == 'bi') {
+					// 	biContainer.animate({
+					// 		left: '0'
+					// 	});
 					} else if (navName == 'peizhi') {
 						peizhiContainer.animate({
 							left: '0'
@@ -98,16 +97,16 @@ angular.module('app').directive('iocHeader', function() {
 						peizhiContainer.animate({
 							left: '1024px'
 						});
-					} else if (navName == 'bi') {
-						biContainer.animate({
-							left: '0'
-						});
-						kpiContainer.animate({
-							left: '1024px'
-						});
-						peizhiContainer.animate({
-							left: '1024px'
-						});
+					// } else if (navName == 'bi') {
+					// 	biContainer.animate({
+					// 		left: '0'
+					// 	});
+					// 	kpiContainer.animate({
+					// 		left: '1024px'
+					// 	});
+					// 	peizhiContainer.animate({
+					// 		left: '1024px'
+					// 	});
 					} else if (navName == 'peizhi') {
 						peizhiContainer.animate({
 							left: '0'

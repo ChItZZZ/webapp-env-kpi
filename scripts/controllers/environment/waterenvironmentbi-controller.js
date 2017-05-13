@@ -4,7 +4,7 @@
  * @name iocUiApp.controller:AboutCtrl
  * @description # AboutCtrl Controller of the iocUiApp
  */
-angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $http, kpiDetailService, $timeout, dateService,biFactory,qService) {
+angular.module('app').controller('WaterEnvironmentBICtrl', function ($scope, $http, kpiDetailService, $timeout, dateService, biFactory, qService) {
     $scope.colorpicker = {
         options: {
             orientation: 'horizontal',
@@ -17,29 +17,29 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
      * 变量区
      *
      */
-    //水质监测点和废水排放点关系图(暂时写死)
+        //水质监测点和废水排放点关系图(暂时写死)
     var relationMonitorId = [{
-        waterQuality: 4003,
-        wasteWaterList: [4011, 4017, 4019]
-    }, {
-        waterQuality: 4004,
-        wasteWaterList: [4013, 4014, 4015, ]
-    }, {
-        waterQuality: 4005,
-        wasteWaterList: [4012, 4016]
-    }, {
-        waterQuality: 4032,
-        wasteWaterList: [4012]
-    }, {
-        waterQuality: 4033,
-        wasteWaterList: [4012]
-    }, {
-        waterQuality: 4034,
-        wasteWaterList: [4012]
-    }, {
-        waterQuality: 4044,
-        wasteWaterList: [4013]
-    }];
+            waterQuality: 4003,
+            wasteWaterList: [4011, 4017, 4019]
+        }, {
+            waterQuality: 4004,
+            wasteWaterList: [4013, 4014, 4015,]
+        }, {
+            waterQuality: 4005,
+            wasteWaterList: [4012, 4016]
+        }, {
+            waterQuality: 4032,
+            wasteWaterList: [4012]
+        }, {
+            waterQuality: 4033,
+            wasteWaterList: [4012]
+        }, {
+            waterQuality: 4034,
+            wasteWaterList: [4012]
+        }, {
+            waterQuality: 4044,
+            wasteWaterList: [4013]
+        }];
     //关系echart
     var relationChart;
     //变色范围
@@ -129,20 +129,22 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
         addMarker(waterQualityMarkerArr, '/images/environment/marker_sprite.png', 'waterQuality');
         mapObj.setFitView();
     }
+
     // 初始化地图对象，加载地图
     function mapInit() {
         mapObj = new AMap.Map("map_canvas_BI", { // 二维地图显示视口
             view: new AMap.View2D({
                 center: new AMap.LngLat(121.106661, 31.579533), // 地图中心点
                 zoom: 11
-                    // 地图显示的缩放级别
+                // 地图显示的缩放级别
             })
         });
     }
+
     // 实例化点标记
     function addMarker(markerInfoArr, imgSrc, type) {
         for (var i = 0; i < markerInfoArr.length; i++) {
-            (function(k) {
+            (function (k) {
                 addMarkerOne(markerInfoArr[k], imgSrc, type);
             })(i);
         }
@@ -172,7 +174,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
             topWhenMouseOver: true,
             position: new AMap.LngLat(p0, p1)
         });
-        (function(markerTemp) {
+        (function (markerTemp) {
             //构建信息窗体中显示的内容
             var info = [];
             info.push("<div><b>" + markerInfoOne.monitor + "</b>");
@@ -203,7 +205,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
                 content: info.join(""), //使用默认信息窗体框样式，显示信息内容
                 offset: new AMap.Pixel(16, -45)
             });
-            AMap.event.addListener(markerTemp, 'click', function() { //鼠标点击marker弹出自定义的信息窗体
+            AMap.event.addListener(markerTemp, 'click', function () { //鼠标点击marker弹出自定义的信息窗体
                 infoWindow.open(mapObj, markerTemp.getPosition());
             });
         })(marker);
@@ -234,7 +236,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
             topWhenMouseOver: true,
             position: new AMap.LngLat(p0, p1)
         });
-        (function(markerTemp) {
+        (function (markerTemp) {
             //构建信息窗体中显示的内容
             var info = [];
             info.push("<div><b>" + markerInfoOne.monitor + "</b>");
@@ -266,7 +268,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
                 offset: new AMap.Pixel(16, -45)
             });
             infoWindow.open(mapObj, markerTemp.getPosition());
-            AMap.event.addListener(markerTemp, 'click', function() { //鼠标点击marker弹出自定义的信息窗体
+            AMap.event.addListener(markerTemp, 'click', function () { //鼠标点击marker弹出自定义的信息窗体
                 infoWindow.open(mapObj, markerTemp.getPosition());
             });
         })(marker);
@@ -277,7 +279,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
         mapObj.clearMap();
     };
     //水质量 http请求后处理过程（即http.success(function(data))中的function)
-    var waterQualityCurrentSuccess = function(data) {
+    var waterQualityCurrentSuccess = function (data) {
         //地图初始化，无法在函数外初始化（暂时没搞懂）
         if (data.data.length == 0) return null;
         waterQualityCurrentArr = [];
@@ -384,7 +386,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
             pStatus: getStatusAsc(waterQualityMarkerOne.p, waterQualityPScan.scan, '总磷').status,
         };
         var statusList = [];
-        angular.forEach(indexStatusList, function(value, key) {
+        angular.forEach(indexStatusList, function (value, key) {
             this.push(value);
         }, statusList);
         var countResult = {
@@ -405,7 +407,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
         else return 'invalid';
     };
     //废水排放 http请求后处理过程（即http.success(function(data))中的function)
-    var wasteWaterCurrentSuccess = function(data) {
+    var wasteWaterCurrentSuccess = function (data) {
         if (data.data.length == 0) return null;
         var wasteWaterMarkerAllTemp = [];
         wasteWaterMarkerCurrentAllArr = wasteWaterCurrentAllGet(data);
@@ -456,6 +458,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
         function sortWaterPollution(a, b) {
             return b.index_discharge[5] - a.index_discharge[5];
         }
+
         wasteWaterTemp.sort(sortWaterPollution);
         return wasteWaterTemp;
     };
@@ -468,7 +471,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
             index_p: getStatusAsc(wasteWaterMarkerArrOne.index_p[5], waterPollutionPScan.scan, '总磷浓度').status,
         };
         var statusList = [];
-        angular.forEach(indexStatusList, function(value, key) {
+        angular.forEach(indexStatusList, function (value, key) {
             this.push(value);
         }, statusList);
         var countResult = {
@@ -530,7 +533,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
         return result;
     };
     //右边按钮点击控制区块的出现和消失
-    $scope.btn_waterEnvironmentAnalysisAllList = function() {
+    $scope.btn_waterEnvironmentAnalysisAllList = function () {
         $scope.tableStatus = {
             allWaterQualityArr: false,
             allWaterQualityFailArr: true,
@@ -542,7 +545,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
         addMarker(waterQualityMarkerArr2, '/images/environment/marker_sprite.png', 'waterQuality');
         mapObj.setFitView();
     };
-    $scope.btn_waterEnvironmentAnalysisElementsList = function(waterQualityMarkerArrOne) {
+    $scope.btn_waterEnvironmentAnalysisElementsList = function (waterQualityMarkerArrOne) {
         $scope.tableStatus = {
             allWaterQualityArr: false,
             allWaterQualityFailArr: false,
@@ -559,7 +562,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
         mapObj.setFitView();
         mapObj.zoomOut();
     };
-    $scope.btn_waterEnvironmentAllList = function() {
+    $scope.btn_waterEnvironmentAllList = function () {
         $scope.tableStatus = {
             allWaterQualityArr: true,
             allWaterQualityFailArr: false,
@@ -571,7 +574,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
         addMarker(waterQualityMarkerArr, '/images/environment/marker_sprite.png', 'waterQuality');
         mapObj.setFitView();
     };
-    $scope.btn_waterPredictionZone = function() {
+    $scope.btn_waterPredictionZone = function () {
         $scope.tableStatus = {
             allWaterQualityArr: false,
             allWaterQualityFailArr: false,
@@ -581,7 +584,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
         };
         echartInit();
         $.isLoading();
-        $timeout(function() {
+        $timeout(function () {
             $.isLoading('hide');
             window.scrollTo(0, 950);
         }, 1000);
@@ -660,7 +663,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
                     emphasis: {
                         label: {
                             show: false
-                                // textStyle: null // 默认使用全局文本样式，详见TEXTSTYLE
+                            // textStyle: null // 默认使用全局文本样式，详见TEXTSTYLE
                         },
                         nodeStyle: {
                             // r: 30
@@ -733,7 +736,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
         }
         return result;
     };
-    $scope.button_reset = function() {
+    $scope.button_reset = function () {
         for (var i = 0; i < $scope.wasteModelList.length; i++) {
             $scope.wasteModelList[i].dischargeChange = 100;
             $scope.wasteModelList[i].codChange = 100;
@@ -741,36 +744,27 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
             $scope.wasteModelList[i].pChange = 100;
         }
     };
-    $scope.button_recommend = function() {
+    $scope.button_recommend = function () {
         var dataTemp = {
-		  waterQuality: transferWaterQuality($scope.waterQualityAnalysisMarker),
-		  waterPollutions: transferWaterPollutions($scope.wasteModelList)
-		};
-    
-		$.isLoading();
-		$timeout(function() {
-		  $.isLoading('hide');
-		  for (var i = 0; i < $scope.wasteModelList.length; i++) {
-		      $scope.wasteModelList[i].dischargeChange = parseInt(90 + Math.random()*10);
-		      $scope.wasteModelList[i].codChange = parseInt(70 + Math.random()*30);
-		      $scope.wasteModelList[i].nh4nChange = parseInt(50 + Math.random()*50);
-		      $scope.wasteModelList[i].pChange = parseInt(90 + Math.random()*10);
-		    }
-		  // $http.post("/waterEnvironmentAnalysis/reverse_predict",dataTemp).success(function(data){
-		  //   for (var i = 0; i < $scope.wasteModelList.length; i++) {
-		  //     $scope.wasteModelList[i].dischargeChange = parseInt(data[i].index_discharge/$scope.wasteModelList[i].dischargeValue*100>100?100:data[i].index_discharge/$scope.wasteModelList[i].dischargeValue*100);
-		  //     $scope.wasteModelList[i].codChange = parseInt(data[i].index_cod/$scope.wasteModelList[i].codValue*100>100?100:data[i].index_cod/$scope.wasteModelList[i].codValue*100);
-		  //     $scope.wasteModelList[i].nh4nChange = parseInt(data[i].index_nh4n/$scope.wasteModelList[i].nh4nValue*100>100?100:data[i].index_nh4n/$scope.wasteModelList[i].nh4nValue*100);
-		  //     $scope.wasteModelList[i].pChange = parseInt(data[i].index_p/$scope.wasteModelList[i].pValue*100>100?100:data[i].index_p/$scope.wasteModelList[i].pValue*100);
-		  //   }
-		  // }
-		  // )
-		 
-		}, 1000);
-    };
-    $scope.source_predict = function() {
+            waterQuality: transferWaterQuality($scope.waterQualityAnalysisMarker),
+            waterPollutions: transferWaterPollutions($scope.wasteModelList)
+        };
+
         $.isLoading();
-        $timeout(function() {
+        $timeout(function () {
+            $.isLoading('hide');
+            for (var i = 0; i < $scope.wasteModelList.length; i++) {
+                $scope.wasteModelList[i].dischargeChange = parseInt(90 + Math.random() * 10);
+                $scope.wasteModelList[i].codChange = parseInt(70 + Math.random() * 30);
+                $scope.wasteModelList[i].nh4nChange = parseInt(50 + Math.random() * 50);
+                $scope.wasteModelList[i].pChange = parseInt(90 + Math.random() * 10);
+            }
+
+        }, 1000);
+    };
+    $scope.source_predict = function () {
+        $.isLoading();
+        $timeout(function () {
             $.isLoading('hide');
             var dataTemp = {
                 waterQuality: transferWaterQuality($scope.waterQualityAnalysisMarker),
@@ -779,433 +773,430 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
             $scope.predict_waterquality = {};
 
 
-   //          var promiseWaterBI = qService.tokenHttpPost(biFactory.waterBiPredict, null,dataTemp);
-			// promiseWaterBI.then(function(data) {
-            //   $scope.predict_waterquality = data.data;
-				$scope.predict_waterquality = predictProcess(dataTemp.waterQuality);
-                console.log($scope.predict_waterquality);
-                var chartWaterQualityo2 = new Highcharts.Chart({
-                    chart: {
-                        type: 'gauge',
-                        plotBackgroundColor: null,
-                        plotBackgroundImage: null,
-                        plotBorderWidth: 0,
-                        plotShadow: false,
-                        renderTo: 'chart_WaterQualityo2'
+            $scope.predict_waterquality = predictProcess(dataTemp.waterQuality);
+            console.log($scope.predict_waterquality);
+            var chartWaterQualityo2 = new Highcharts.Chart({
+                chart: {
+                    type: 'gauge',
+                    plotBackgroundColor: null,
+                    plotBackgroundImage: null,
+                    plotBorderWidth: 0,
+                    plotShadow: false,
+                    renderTo: 'chart_WaterQualityo2'
+                },
+                title: {
+                    text: '溶解氧',
+                    margin: 0,
+                    style: {
+                        fontSize: "14px"
+                    }
+                },
+                pane: {
+                    startAngle: -150,
+                    endAngle: 150,
+                    background: [{
+                        backgroundColor: {
+                            linearGradient: {
+                                x1: 0,
+                                y1: 0,
+                                x2: 0,
+                                y2: 1
+                            },
+                            stops: [
+                                [0, '#FFF'],
+                                [1, '#333']
+                            ]
+                        },
+                        borderWidth: 0,
+                        outerRadius: '109%'
+                    }, {
+                        backgroundColor: {
+                            linearGradient: {
+                                x1: 0,
+                                y1: 0,
+                                x2: 0,
+                                y2: 1
+                            },
+                            stops: [
+                                [0, '#333'],
+                                [1, '#FFF']
+                            ]
+                        },
+                        borderWidth: 1,
+                        outerRadius: '107%'
+                    }, {
+                        // default background
+                    }, {
+                        backgroundColor: '#DDD',
+                        borderWidth: 0,
+                        outerRadius: '105%',
+                        innerRadius: '103%'
+                    }]
+                },
+                // the value axis
+                yAxis: {
+                    min: 0,
+                    max: 10,
+                    minorTickInterval: 'auto',
+                    minorTickWidth: 1,
+                    minorTickLength: 10,
+                    minorTickPosition: 'inside',
+                    minorTickColor: '#666',
+                    tickPixelInterval: 30,
+                    tickWidth: 2,
+                    tickPosition: 'inside',
+                    tickLength: 10,
+                    tickColor: '#666',
+                    labels: {
+                        step: 2,
+                        rotation: 'auto'
                     },
                     title: {
-                        text: '溶解氧',
-                        margin: 0,
-                        style: {
-                            fontSize: "14px"
-                        }
+                        text: ''
                     },
-                    pane: {
-                        startAngle: -150,
-                        endAngle: 150,
-                        background: [{
-                            backgroundColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, '#FFF'],
-                                    [1, '#333']
-                                ]
-                            },
-                            borderWidth: 0,
-                            outerRadius: '109%'
-                        }, {
-                            backgroundColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, '#333'],
-                                    [1, '#FFF']
-                                ]
-                            },
-                            borderWidth: 1,
-                            outerRadius: '107%'
-                        }, {
-                            // default background
-                        }, {
-                            backgroundColor: '#DDD',
-                            borderWidth: 0,
-                            outerRadius: '105%',
-                            innerRadius: '103%'
-                        }]
-                    },
-                    // the value axis
-                    yAxis: {
-                        min: 0,
-                        max: 10,
-                        minorTickInterval: 'auto',
-                        minorTickWidth: 1,
-                        minorTickLength: 10,
-                        minorTickPosition: 'inside',
-                        minorTickColor: '#666',
-                        tickPixelInterval: 30,
-                        tickWidth: 2,
-                        tickPosition: 'inside',
-                        tickLength: 10,
-                        tickColor: '#666',
-                        labels: {
-                            step: 2,
-                            rotation: 'auto'
-                        },
-                        title: {
-                            text: ''
-                        },
-                        plotBands: [{
-                            from: waterQualityO2Scan.scan[0],
-                            to: 10,
-                            color: '#55BF3B' // green
-                        }, {
-                            from: waterQualityO2Scan.scan[1],
-                            to: waterQualityO2Scan.scan[0],
-                            color: '#DDDF0D' // yellow
-                        }, {
-                            from: 0,
-                            to: waterQualityO2Scan.scan[1],
-                            color: '#DF5353' // red
-                        }]
-                    },
-                    series: [{
-                        name: '溶解氧',
-                        data: [parseFloat($scope.predict_waterquality.index_o2)],
-                        tooltip: {
-                            valueSuffix: ' '
-                        }
-                    }],
-                    credits: {
-                        enabled: false
+                    plotBands: [{
+                        from: waterQualityO2Scan.scan[0],
+                        to: 10,
+                        color: '#55BF3B' // green
+                    }, {
+                        from: waterQualityO2Scan.scan[1],
+                        to: waterQualityO2Scan.scan[0],
+                        color: '#DDDF0D' // yellow
+                    }, {
+                        from: 0,
+                        to: waterQualityO2Scan.scan[1],
+                        color: '#DF5353' // red
+                    }]
+                },
+                series: [{
+                    name: '溶解氧',
+                    data: [parseFloat($scope.predict_waterquality.index_o2)],
+                    tooltip: {
+                        valueSuffix: ' '
                     }
-                });
-                var chartWaterQualitykmno4 = new Highcharts.Chart({
-                    chart: {
-                        type: 'gauge',
-                        plotBackgroundColor: null,
-                        plotBackgroundImage: null,
-                        plotBorderWidth: 0,
-                        plotShadow: false,
-                        renderTo: 'chart_WaterQualitykmno4'
+                }],
+                credits: {
+                    enabled: false
+                }
+            });
+            var chartWaterQualitykmno4 = new Highcharts.Chart({
+                chart: {
+                    type: 'gauge',
+                    plotBackgroundColor: null,
+                    plotBackgroundImage: null,
+                    plotBorderWidth: 0,
+                    plotShadow: false,
+                    renderTo: 'chart_WaterQualitykmno4'
+                },
+                title: {
+                    text: '高锰酸钾22',
+                    margin: 0,
+                    style: {
+                        fontSize: "14px"
+                    }
+                },
+                pane: {
+                    startAngle: -150,
+                    endAngle: 150,
+                    background: [{
+                        backgroundColor: {
+                            linearGradient: {
+                                x1: 0,
+                                y1: 0,
+                                x2: 0,
+                                y2: 1
+                            },
+                            stops: [
+                                [0, '#FFF'],
+                                [1, '#333']
+                            ]
+                        },
+                        borderWidth: 0,
+                        outerRadius: '109%'
+                    }, {
+                        backgroundColor: {
+                            linearGradient: {
+                                x1: 0,
+                                y1: 0,
+                                x2: 0,
+                                y2: 1
+                            },
+                            stops: [
+                                [0, '#333'],
+                                [1, '#FFF']
+                            ]
+                        },
+                        borderWidth: 1,
+                        outerRadius: '107%'
+                    }, {
+                        // default background
+                    }, {
+                        backgroundColor: '#DDD',
+                        borderWidth: 0,
+                        outerRadius: '105%',
+                        innerRadius: '103%'
+                    }]
+                },
+                // the value axis
+                yAxis: {
+                    min: 0,
+                    max: 30,
+                    minorTickInterval: 'auto',
+                    minorTickWidth: 1,
+                    minorTickLength: 10,
+                    minorTickPosition: 'inside',
+                    minorTickColor: '#666',
+                    tickPixelInterval: 30,
+                    tickWidth: 2,
+                    tickPosition: 'inside',
+                    tickLength: 10,
+                    tickColor: '#666',
+                    labels: {
+                        step: 2,
+                        rotation: 'auto'
                     },
                     title: {
-                        text: '高锰酸钾',
-                        margin: 0,
-                        style: {
-                            fontSize: "14px"
-                        }
+                        text: ''
                     },
-                    pane: {
-                        startAngle: -150,
-                        endAngle: 150,
-                        background: [{
-                            backgroundColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, '#FFF'],
-                                    [1, '#333']
-                                ]
-                            },
-                            borderWidth: 0,
-                            outerRadius: '109%'
-                        }, {
-                            backgroundColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, '#333'],
-                                    [1, '#FFF']
-                                ]
-                            },
-                            borderWidth: 1,
-                            outerRadius: '107%'
-                        }, {
-                            // default background
-                        }, {
-                            backgroundColor: '#DDD',
-                            borderWidth: 0,
-                            outerRadius: '105%',
-                            innerRadius: '103%'
-                        }]
-                    },
-                    // the value axis
-                    yAxis: {
-                        min: 0,
-                        max: 30,
-                        minorTickInterval: 'auto',
-                        minorTickWidth: 1,
-                        minorTickLength: 10,
-                        minorTickPosition: 'inside',
-                        minorTickColor: '#666',
-                        tickPixelInterval: 30,
-                        tickWidth: 2,
-                        tickPosition: 'inside',
-                        tickLength: 10,
-                        tickColor: '#666',
-                        labels: {
-                            step: 2,
-                            rotation: 'auto'
-                        },
-                        title: {
-                            text: ''
-                        },
-                        plotBands: [{
-                            from: 0,
-                            to: waterQualityKmno4Scan.scan[0],
-                            color: '#55BF3B' // green
-                        }, {
-                            from: waterQualityKmno4Scan.scan[0],
-                            to: waterQualityKmno4Scan.scan[1],
-                            color: '#DDDF0D' // yellow
-                        }, {
-                            from: waterQualityKmno4Scan.scan[1],
-                            to: 30,
-                            color: '#DF5353' // red
-                        }]
-                    },
-                    series: [{
-                        name: '高锰酸钾',
-                        data: [parseFloat($scope.predict_waterquality.index_kmno4)],
-                        tooltip: {
-                            valueSuffix: 'mg/L'
-                        }
-                    }],
-                    credits: {
-                        enabled: false
+                    plotBands: [{
+                        from: 0,
+                        to: waterQualityKmno4Scan.scan[0],
+                        color: '#55BF3B' // green
+                    }, {
+                        from: waterQualityKmno4Scan.scan[0],
+                        to: waterQualityKmno4Scan.scan[1],
+                        color: '#DDDF0D' // yellow
+                    }, {
+                        from: waterQualityKmno4Scan.scan[1],
+                        to: 30,
+                        color: '#DF5353' // red
+                    }]
+                },
+                series: [{
+                    name: '高锰酸钾11',
+                    data: [parseFloat($scope.predict_waterquality.index_kmno4)],
+                    tooltip: {
+                        valueSuffix: 'mg/L'
                     }
-                });
-                var chartWaterQualitynh4n = new Highcharts.Chart({
-                    chart: {
-                        type: 'gauge',
-                        plotBackgroundColor: null,
-                        plotBackgroundImage: null,
-                        plotBorderWidth: 0,
-                        plotShadow: false,
-                        renderTo: 'chart_WaterQualitynh4n'
+                }],
+                credits: {
+                    enabled: false
+                }
+            });
+            var chartWaterQualitynh4n = new Highcharts.Chart({
+                chart: {
+                    type: 'gauge',
+                    plotBackgroundColor: null,
+                    plotBackgroundImage: null,
+                    plotBorderWidth: 0,
+                    plotShadow: false,
+                    renderTo: 'chart_WaterQualitynh4n'
+                },
+                title: {
+                    text: '氨氮',
+                    margin: 0,
+                    style: {
+                        fontSize: "14px"
+                    }
+                },
+                pane: {
+                    startAngle: -150,
+                    endAngle: 150,
+                    background: [{
+                        backgroundColor: {
+                            linearGradient: {
+                                x1: 0,
+                                y1: 0,
+                                x2: 0,
+                                y2: 1
+                            },
+                            stops: [
+                                [0, '#FFF'],
+                                [1, '#333']
+                            ]
+                        },
+                        borderWidth: 0,
+                        outerRadius: '109%'
+                    }, {
+                        backgroundColor: {
+                            linearGradient: {
+                                x1: 0,
+                                y1: 0,
+                                x2: 0,
+                                y2: 1
+                            },
+                            stops: [
+                                [0, '#333'],
+                                [1, '#FFF']
+                            ]
+                        },
+                        borderWidth: 1,
+                        outerRadius: '107%'
+                    }, {
+                        // default background
+                    }, {
+                        backgroundColor: '#DDD',
+                        borderWidth: 0,
+                        outerRadius: '105%',
+                        innerRadius: '103%'
+                    }]
+                },
+                // the value axis
+                yAxis: {
+                    min: 0,
+                    max: 5,
+                    minorTickInterval: 'auto',
+                    minorTickWidth: 1,
+                    minorTickLength: 10,
+                    minorTickPosition: 'inside',
+                    minorTickColor: '#666',
+                    tickPixelInterval: 30,
+                    tickWidth: 2,
+                    tickPosition: 'inside',
+                    tickLength: 10,
+                    tickColor: '#666',
+                    labels: {
+                        step: 2,
+                        rotation: 'auto'
                     },
                     title: {
-                        text: '氨氮',
-                        margin: 0,
-                        style: {
-                            fontSize: "14px"
-                        }
+                        text: ''
                     },
-                    pane: {
-                        startAngle: -150,
-                        endAngle: 150,
-                        background: [{
-                            backgroundColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, '#FFF'],
-                                    [1, '#333']
-                                ]
-                            },
-                            borderWidth: 0,
-                            outerRadius: '109%'
-                        }, {
-                            backgroundColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, '#333'],
-                                    [1, '#FFF']
-                                ]
-                            },
-                            borderWidth: 1,
-                            outerRadius: '107%'
-                        }, {
-                            // default background
-                        }, {
-                            backgroundColor: '#DDD',
-                            borderWidth: 0,
-                            outerRadius: '105%',
-                            innerRadius: '103%'
-                        }]
-                    },
-                    // the value axis
-                    yAxis: {
-                        min: 0,
-                        max: 5,
-                        minorTickInterval: 'auto',
-                        minorTickWidth: 1,
-                        minorTickLength: 10,
-                        minorTickPosition: 'inside',
-                        minorTickColor: '#666',
-                        tickPixelInterval: 30,
-                        tickWidth: 2,
-                        tickPosition: 'inside',
-                        tickLength: 10,
-                        tickColor: '#666',
-                        labels: {
-                            step: 2,
-                            rotation: 'auto'
-                        },
-                        title: {
-                            text: ''
-                        },
-                        plotBands: [{
-                            from: 0,
-                            to: waterQualityNh4nScan.scan[0],
-                            color: '#55BF3B' // green
-                        }, {
-                            from: waterQualityNh4nScan.scan[0],
-                            to: waterQualityNh4nScan.scan[1],
-                            color: '#DDDF0D' // yellow
-                        }, {
-                            from: waterQualityNh4nScan.scan[1],
-                            to: 5.0,
-                            color: '#DF5353' // red
-                        }]
-                    },
-                    series: [{
-                        name: '氨氮',
-                        data: [parseFloat($scope.predict_waterquality.index_nh4n)],
-                        tooltip: {
-                            valueSuffix: 'mg/L'
-                        }
-                    }],
-                    credits: {
-                        enabled: false
+                    plotBands: [{
+                        from: 0,
+                        to: waterQualityNh4nScan.scan[0],
+                        color: '#55BF3B' // green
+                    }, {
+                        from: waterQualityNh4nScan.scan[0],
+                        to: waterQualityNh4nScan.scan[1],
+                        color: '#DDDF0D' // yellow
+                    }, {
+                        from: waterQualityNh4nScan.scan[1],
+                        to: 5.0,
+                        color: '#DF5353' // red
+                    }]
+                },
+                series: [{
+                    name: '氨氮',
+                    data: [parseFloat($scope.predict_waterquality.index_nh4n)],
+                    tooltip: {
+                        valueSuffix: 'mg/L'
                     }
-                });
-                var chartWaterQualityp = new Highcharts.Chart({
-                    chart: {
-                        type: 'gauge',
-                        plotBackgroundColor: null,
-                        plotBackgroundImage: null,
-                        plotBorderWidth: 0,
-                        plotShadow: false,
-                        renderTo: 'chart_WaterQualityp'
+                }],
+                credits: {
+                    enabled: false
+                }
+            });
+            var chartWaterQualityp = new Highcharts.Chart({
+                chart: {
+                    type: 'gauge',
+                    plotBackgroundColor: null,
+                    plotBackgroundImage: null,
+                    plotBorderWidth: 0,
+                    plotShadow: false,
+                    renderTo: 'chart_WaterQualityp'
+                },
+                title: {
+                    text: '总磷',
+                    margin: 0,
+                    style: {
+                        fontSize: "14px"
+                    }
+                },
+                pane: {
+                    startAngle: -150,
+                    endAngle: 150,
+                    background: [{
+                        backgroundColor: {
+                            linearGradient: {
+                                x1: 0,
+                                y1: 0,
+                                x2: 0,
+                                y2: 1
+                            },
+                            stops: [
+                                [0, '#FFF'],
+                                [1, '#333']
+                            ]
+                        },
+                        borderWidth: 0,
+                        outerRadius: '109%'
+                    }, {
+                        backgroundColor: {
+                            linearGradient: {
+                                x1: 0,
+                                y1: 0,
+                                x2: 0,
+                                y2: 1
+                            },
+                            stops: [
+                                [0, '#333'],
+                                [1, '#FFF']
+                            ]
+                        },
+                        borderWidth: 1,
+                        outerRadius: '107%'
+                    }, {
+                        // default background
+                    }, {
+                        backgroundColor: '#DDD',
+                        borderWidth: 0,
+                        outerRadius: '105%',
+                        innerRadius: '103%'
+                    }]
+                },
+                // the value axis
+                yAxis: {
+                    min: 0,
+                    max: 0.6,
+                    minorTickInterval: 'auto',
+                    minorTickWidth: 1,
+                    minorTickLength: 10,
+                    minorTickPosition: 'inside',
+                    minorTickColor: '#666',
+                    tickPixelInterval: 30,
+                    tickWidth: 2,
+                    tickPosition: 'inside',
+                    tickLength: 10,
+                    tickColor: '#666',
+                    labels: {
+                        step: 2,
+                        rotation: 'auto'
                     },
                     title: {
-                        text: '总磷',
-                        margin: 0,
-                        style: {
-                            fontSize: "14px"
-                        }
+                        text: ''
                     },
-                    pane: {
-                        startAngle: -150,
-                        endAngle: 150,
-                        background: [{
-                            backgroundColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, '#FFF'],
-                                    [1, '#333']
-                                ]
-                            },
-                            borderWidth: 0,
-                            outerRadius: '109%'
-                        }, {
-                            backgroundColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, '#333'],
-                                    [1, '#FFF']
-                                ]
-                            },
-                            borderWidth: 1,
-                            outerRadius: '107%'
-                        }, {
-                            // default background
-                        }, {
-                            backgroundColor: '#DDD',
-                            borderWidth: 0,
-                            outerRadius: '105%',
-                            innerRadius: '103%'
-                        }]
-                    },
-                    // the value axis
-                    yAxis: {
-                        min: 0,
-                        max: 0.6,
-                        minorTickInterval: 'auto',
-                        minorTickWidth: 1,
-                        minorTickLength: 10,
-                        minorTickPosition: 'inside',
-                        minorTickColor: '#666',
-                        tickPixelInterval: 30,
-                        tickWidth: 2,
-                        tickPosition: 'inside',
-                        tickLength: 10,
-                        tickColor: '#666',
-                        labels: {
-                            step: 2,
-                            rotation: 'auto'
-                        },
-                        title: {
-                            text: ''
-                        },
-                        plotBands: [{
-                            from: 0,
-                            to: waterQualityPScan.scan[0],
-                            color: '#55BF3B' // green
-                        }, {
-                            from: waterQualityPScan.scan[0],
-                            to: waterQualityPScan.scan[1],
-                            color: '#DDDF0D' // yellow
-                        }, {
-                            from: waterQualityPScan.scan[1],
-                            to: 0.6,
-                            color: '#DF5353' // red
-                        }]
-                    },
-                    series: [{
-                        name: '总磷',
-                        data: [parseFloat($scope.predict_waterquality.index_p)],
-                        tooltip: {
-                            valueSuffix: 'mg/L'
-                        }
-                    }],
-                    credits: {
-                        enabled: false
+                    plotBands: [{
+                        from: 0,
+                        to: waterQualityPScan.scan[0],
+                        color: '#55BF3B' // green
+                    }, {
+                        from: waterQualityPScan.scan[0],
+                        to: waterQualityPScan.scan[1],
+                        color: '#DDDF0D' // yellow
+                    }, {
+                        from: waterQualityPScan.scan[1],
+                        to: 0.6,
+                        color: '#DF5353' // red
+                    }]
+                },
+                series: [{
+                    name: '总磷',
+                    data: [parseFloat($scope.predict_waterquality.index_p)],
+                    tooltip: {
+                        valueSuffix: 'mg/L'
                     }
-                });
-                $('#Modal_Predict').modal();
-			// });
+                }],
+                credits: {
+                    enabled: false
+                }
+            });
+            $('#Modal_Predict').modal();
+            // });
 
 
             // $http.post("/waterEnvironmentAnalysis/predict", dataTemp).success(function(data) {
-               
+
             // });
         }, 1000);
     };
@@ -1235,19 +1226,19 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
         type: 'asc'
     };
 
-    var predictProcess = function(data){
+    var predictProcess = function (data) {
         var data = {
             dictid: data.dictid,
             monitor: data.monitor,
             index_o2: (data.index_o2).toFixed(2),
-            index_kmno4: (data.index_kmno4*0.95).toFixed(2),
-            index_nh4n: (data.index_nh4n*0.85).toFixed(2),
-            index_p: (data.index_p*0.95).toFixed(2),
+            index_kmno4: (data.index_kmno4 * 0.95).toFixed(2),
+            index_nh4n: (data.index_nh4n * 0.85).toFixed(2),
+            index_p: (data.index_p * 0.95).toFixed(2),
         }
         return data;
     };
     //button状态改变标签
-    $scope.getButtonStatus = function(status) {
+    $scope.getButtonStatus = function (status) {
         if (status == 'accept') return "btn-success";
         else if (status == 'caution') return "btn-warning";
         else if (status == 'take_action') return "btn-danger"
@@ -1272,7 +1263,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
             return 'label label-default';
         }
     };
-    $scope.getLabelCss = function(status) {
+    $scope.getLabelCss = function (status) {
         if (status == 'accept') {
             return 'label label-success';
         } else if (status == 'caution') {
@@ -1308,7 +1299,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
             }
         }
     };
-    $scope.getStatusAsc = function(data1, scan, indexName) {
+    $scope.getStatusAsc = function (data1, scan, indexName) {
         var data = parseFloat(data1);
         if (data <= scan[0] && data > 0) {
             return {
@@ -1357,7 +1348,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
             }
         }
     };
-    $scope.getStatusDesc = function(data1, scan, indexName) {
+    $scope.getStatusDesc = function (data1, scan, indexName) {
         var data = parseFloat(data1);
         if (data >= scan[0]) {
             return {
@@ -1393,7 +1384,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
             return '无数据';
         }
     };
-    $scope.getChineseStatusView = function(status) {
+    $scope.getChineseStatusView = function (status) {
         if (status == 'accept') {
             return '正常';
         } else if (status == 'caution') {
@@ -1405,11 +1396,11 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
         }
     };
     //比较两个值相等
-    $scope.equals = function(val1, val2) {
+    $scope.equals = function (val1, val2) {
         if (val1 == val2) return true;
         else return false;
     };
-    var getCurrentDate = function(databaseDate) {
+    var getCurrentDate = function (databaseDate) {
         var year = moment(dateService.get_system_time()).get('year');
         var month = moment(dateService.get_system_time()).get('month') + 1;
         var day = moment(dateService.get_system_time()).get('date');
@@ -1418,7 +1409,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
         if (moment(databaseDate).toDate() < moment(systemDate).toDate()) return moment(databaseDate).toDate().getTime();
         else return moment(systemDate).toDate().getTime();
     };
-    var getCurrentDateForDayData = function(databaseDate) {
+    var getCurrentDateForDayData = function (databaseDate) {
         var year = moment(dateService.get_system_time()).get('year');
         var month = moment(dateService.get_system_time()).get('month') + 1;
         var day = moment(dateService.get_system_time()).subtract(1, 'days').get('date');
@@ -1426,7 +1417,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
         if (moment(databaseDate).toDate() < moment(systemDate).toDate()) return moment(databaseDate).toDate().getTime();
         else return moment(systemDate).toDate().getTime();
     };
-    var getSubstractDate = function(date, hours) {
+    var getSubstractDate = function (date, hours) {
         return moment(date).subtract(hours, 'hours').toDate().getTime();
     };
     /**
@@ -1434,7 +1425,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
      * 有些图表的数据是在网页刷新时就请求到的
      */
     //水质量 当天数据模块 初始化
-    kpiDetailService.getLastestObject('WaterQuality', ['date'], function(data) {
+    kpiDetailService.getLastestObject('WaterQuality', ['date'], function (data) {
         var date = data.data.date;
         var datebaseLastestDate = moment('2015-05-03 09:00:00.000');
         var startTime = getSubstractDate(getCurrentDate(datebaseLastestDate), 23);
@@ -1454,7 +1445,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
                 key: 'date',
                 sortType: 'asc'
             }
-        }, function(data) {
+        }, function (data) {
             waterQualityCurrentSuccess(data);
             initMap();
         });
@@ -1473,7 +1464,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function($scope, $htt
         $scope.waterQualityCurrentDateTime = waterQualityLastDate;
     });
     //废水排放 当天数据模块 初始化
-    kpiDetailService.getLastestObject('WaterPollution', ['date'], function(data) {
+    kpiDetailService.getLastestObject('WaterPollution', ['date'], function (data) {
         var date = data.data.date;
         var datebaseLastestDate = moment('2015-05-03 00:00:00.000');
         var startTime = getSubstractDate(getCurrentDateForDayData(datebaseLastestDate), 24 * 5);
