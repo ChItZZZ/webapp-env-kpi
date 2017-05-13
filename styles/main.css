@@ -283,6 +283,22 @@ body {
   background-color: #f6f6f6;
   border-bottom-color: #514d40;
 }
+.navbar-ioc .navbar-nav > li .dropdown-menu{
+  text-align: center;
+}
+.navbar-ioc .navbar-nav > li .dropdown-menu{
+  padding: 0px;
+}
+.navbar-ioc .navbar-nav > li .dropdown-menu a{
+  color: black;
+  font-size: 14px;
+  border-bottom: 1px solid darkgrey;
+  padding: 18px 34px;
+}
+.navbar-ioc .navbar-nav > li .dropdown-menu a:hover{
+  background-color: rgba(0,0,0,.7);
+  color: white;
+}
 .nav-pannel {
   position: absolute;
   left: 0;

@@ -1227,7 +1227,9 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function ($scope, $ht
     };
 
     var predictProcess = function (data) {
-        var data = {
+
+        console.log(data);
+        var rs = {
             dictid: data.dictid,
             monitor: data.monitor,
             index_o2: (data.index_o2).toFixed(2),
@@ -1235,7 +1237,7 @@ angular.module('app').controller('WaterEnvironmentBICtrl', function ($scope, $ht
             index_nh4n: (data.index_nh4n * 0.85).toFixed(2),
             index_p: (data.index_p * 0.95).toFixed(2),
         }
-        return data;
+        return rs;
     };
     //button状态改变标签
     $scope.getButtonStatus = function (status) {

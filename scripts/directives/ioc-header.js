@@ -161,6 +161,9 @@ angular.module('app').directive('iocHeader', function() {
 
 		},
 		link: function postLink(scope, element, attrs, controller) {
+			element.mouseover(function () {
+				
+            })
 			element.mouseleave(function() {
 				var kpiContainer = element.find('.kpi-container');
 				var biContainer = element.find('.bi-container');
