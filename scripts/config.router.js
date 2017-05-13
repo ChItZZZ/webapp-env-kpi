@@ -74,6 +74,22 @@ angular.module('app')
                     ]
                 }
             })
+            .state('app.kpiAir',{
+                url:"^/kpiAir",
+                templateUrl: 'views/kpiAir.html',
+                controller:'KPIAirCtrl',
+                resolve: {
+                    deps: ['$ocLazyLoad',
+                        function ($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'scripts/controllers/kpicategory.js'
+                            ]);
+                        }
+                    ]
+                }
+
+
+            })
             .state('app.userConfig', {
                 url: '^/userConfig',
                 templateUrl: 'views/userConfig.html',
