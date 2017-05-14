@@ -166,6 +166,22 @@ angular.module('app')
                     ]
                 }
             })
+            .state('app.airEnvironmentBI', {
+                url: '^/airEnvironmentBI',
+                controller: 'AirEnvironmentBICtrl',
+                templateUrl: 'views/details/airEnvironmentBI.html',
+                resolve: {
+                    deps: ['$ocLazyLoad',
+                        function ($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'scripts/controllers/environment/echarts-plain.js',
+                                'scripts/factories/bi-factory.js',
+                                'scripts/controllers/environment/airenvironmentbi-controller.js'
+                            ]);
+                        }
+                    ]
+                }
+            })
             .state('app.landResource', {
                 url: '^/landResource',
                 controller: 'landResourceCtrl',

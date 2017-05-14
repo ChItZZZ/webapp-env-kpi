@@ -1,22 +1,3 @@
-<!--mytop-->
-<!--<div class="header-mast-options">-->
-  <!--<div class="container">-->
-    <!--<div class="nav navbar-option navbar-right pull-left">-->
-      <!--<span>感谢访问太仓市智慧城市KPI系统</span>-->
-    <!--</div>-->
-    <!--<div class="nav navbar-option navbar-right">-->
-      <!--<span>欢迎! {{currentUser.nickname}}</span>-->
-      <!--<span>&nbsp;&nbsp;|&nbsp;</span>-->
-      <!--<span ng-click="show_datapicker()" style="cursor:pointer;">显示时间 <span style="text-decoration: underline;">{{system_date | date:'yyyy-MM-dd'}}</span></span>-->
-      <!--<span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>-->
-      <!--<a href="javascript:void(0);" ng-click="userResetPassword()">密码重置</a>-->
-      <!--<span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>-->
-       <!--<datepicker id="date_picker" max-date="curr_date" min-date="min_date" ng-model="system_date"  show-weeks="true" class="well well-sm" style="z-index:1000;position:fixed;display:none;"></datepicker>-->
-      <!--<a href="javascript:void(0);" ng-click="logout()">退出</a>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-
 <!--myheader-->
 <nav class="navbar navbar-ioc main-nav">
   <div class="container">
@@ -37,11 +18,15 @@
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#/kpicategory?categoryId=5001">电力消耗</a></li>
         </ul>
       </li>
-      <li>
-        <a href="#/waterEnvironmentBI" ng-click="showNavPannel('bi',$event.target)">智能分析</a>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown"  ng-click="showNavPannel('bi',$event.target)">智能分析<span class="caret"></span> </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <li><a href="#" ui-sref="app.waterEnvironmentBI">水环境预测</a></li>
+          <li><a href="#" ui-sref="app.airEnvironmentBI">大气预测</a></li>
+        </ul>
       </li>
       <li class="dropdown" ng-if="systemManageNavStatus">
-        <a class="dropdown-toggle" data-toggle="dropdown" ng-click="showNavPannel('peizhi',$event.target)">系统管理<span class="caret"></span> </a>
+        <a class="dropdown-toggle" data-toggle="dropdown" ng-click="showNavPannel('peizhi',$event.target)">系统管理1<span class="caret"></span> </a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
           <li><a href="#" ui-sref="app.userConfig">权限配置</a></li>
           <li><a href="#" ui-sref="app.kpiConfig">KPI配置</a></li>
@@ -53,19 +38,6 @@
   </div>
 </nav>
 
-<!--<div class="menu_width">-->
-  <!--<div class="menu">-->
-    <!--<div class="menu_logo"><a href="/"></a></div>-->
-    <!--<ul class="menu_list" style="height: 90px">-->
-      <!--&lt;!&ndash;-当前页面是哪个栏目，只用在li的class里再加个" current "就行了&ndash;&gt;-->
-      <!--<li class="menu_1"><a href="/ganzizhou.html"><span>首页</span></a></li>-->
-      <!--<li class="menu_2"><a class="current" href="/city.html"><span>实时监测</span></a></li>-->
-      <!--<li class="menu_3"><a ng-click="showNavPannel('kpi')"><span>关键业绩指标</span></a></li>-->
-      <!--<li class="menu_4"><a ng-click="showNavPannel('bi')"><span>智能分析</span></a></li>-->
-      <!--<div class="clear"></div>-->
-    <!--</ul>-->
-  <!--</div>-->
-<!--</div>-->
 
 <div class="modal fade" id="userResetPasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="width: 800px;">
