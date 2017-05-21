@@ -27,9 +27,15 @@ angular.module('app').controller('MainCtrl',
             pageCategory(domain['selectedCategory']);
           };
           //去除电力资源
-          kpis.filter(findEnvData)[0].data.splice(3,1)
-          $scope.domainMap = kpis.filter(findEnvData);
-          $rootScope.domainMap = kpis.filter(findEnvData);
+            var kpiEnv = kpis.filter(findEnvData);
+            kpiEnv[0].data.forEach(function (v, i) {
+                if(v.id == 5001){
+                  kpiEnv[0].data.splice(i,1)
+                }
+            })
+          $scope.domainMap = kpiEnv;
+          console.log($scope.domainMap);
+          $rootScope.domainMap = kpiEnv
         });
   };
   function findEnvData(obj) {
