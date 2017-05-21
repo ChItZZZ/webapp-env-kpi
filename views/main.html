@@ -83,7 +83,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr ng-repeat="kpi in domain.selectedCategory.page_data | orderBy:'sortOrder'">
+                                    <tr ng-repeat="kpi in domain.selectedCategory.page_data | orderBy:'sortOrder'" style="text-align: center">
                                         <td class="tr-kpiname">{{kpi.name}}</td>
                                         <td class="tr-kpistatus" style="text-align: center">
                                             <label class="label {{kpi.data.status | kpiStatusClass}} status">{{
@@ -98,7 +98,7 @@
                                         <td style="border-left:none;"><i class="ioc-icon ioc-icon-green"></i>
                                         </td>
                                         <td class="tr-kpidepartment">{{kpi.department.name}}</td>
-                                        <td style="text-align:left;">{{kpi | kpiTypeFilter}}</td>
+                                        <td>{{kpi | kpiTypeFilter}}</td>
                                         <!-- <td>{{ kpi.updateTime |  date:'yyyy年MM月dd日' }}</td>
                                     -->
                                         <td class="tr-kpidate">{{kpi | applyDateFilter }}</td>

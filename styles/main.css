@@ -48,7 +48,6 @@ body {
   font-weight: bold;
   display: inline-block;
   min-width: 160px;
-  text-align: right;
 }
 .pagination {
   display: inline-block;
