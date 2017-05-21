@@ -1,10 +1,138 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="main_width">
+    <div class="main">
+        <!--监测点数据-->
+        <div class="panel_jiance">
+            <div class="pj_area ui-switchable" data-widget-cid="widget-1">
+                <div class="pj_area_tab ui-switchable-nav">
+                    <a class="tab_caqi current ui-switchable-trigger" href="javascript:void(0)">各监测点数据<i></i></a>
+                    <div class="clear"></div>
+                </div>
+                <!--详细数据开始-->
+                <div class="pj_area_data ui-switchable-content">
+                    <div class="pj_area_data_title">
+                        <span class="pjadt_location">监测站点</span>
+                        <!--AQI指数有上下箭头，可以选择排序,a标签分别增加“aqi_arrow_top”和“aqi_arrow_down”,默认是没有这个类名的-->
+                        <a class="pjadt_aqi aqi_arrow_top" href="javascript:void(0)" style="cursor:default;">
+                            <span>AQI</span>
+                            <!-- @todo <span class="tabletittle_arrow">
+                                   <i class="tabletittle_arrow_top"></i>
+                                   <i class="tabletittle_arrow_down"></i>
+                            </span> -->
+                        </a>
+                        <span class="pjadt_quality">空气质量状况</span>
+                        <span class="pjadt_wuranwu">首要污染物</span>
+                        <span class="pjadt_pm25">PM2.5浓度</span>
+                        <span class="pjadt_pm10">PM10浓度</span>
+                        <div class="clear"></div>
+                    </div>
+                    <ul class="pj_area_data_details ui-switchable-panel">
+                        <!--鼠标划上去后，要有个li的背景变绿色效果，增加li的"pj_area_data_item_active"就行-->
+                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                            <b></b>
+                            <a class="pjadt_location" href="/city/mon/aqi/太仓/太仓市监测站.html"
+                               title="查看太仓市监测站详细数据">太仓市监测站</a>
+                            <span class="pjadt_aqi">89<i class=""></i></span>
+                            <span class="pjadt_quality"><em class="pjadt_quality_bglevel_2">良</em></span>
+                            <a class="pjadt_wuranwu" href="/news/388.html" title="臭氧1小时" target="_blank">臭氧1小时</a>
+                            <span class="pjadt_pm25">22 <em>μg/m³</em><i class=""></i></span>
+                            <span class="pjadt_pm10">69 <em>μg/m³</em><i class=""></i></span>
+                            <div class="clear"></div>
+                        </li>
+                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                            <b></b>
+                            <a class="pjadt_location" href="/city/mon/aqi/太仓/科教新城实小.html"
+                               title="查看科教新城实小详细数据">科教新城实小</a>
+                            <span class="pjadt_aqi">95<i class=""></i></span>
+                            <span class="pjadt_quality"><em class="pjadt_quality_bglevel_2">良</em></span>
+                            <a class="pjadt_wuranwu" href="/news/388.html" title="臭氧1小时" target="_blank">臭氧1小时</a>
+                            <span class="pjadt_pm25">20 <em>μg/m³</em><i class=""></i></span>
+                            <span class="pjadt_pm10">61 <em>μg/m³</em><i class=""></i></span>
+                            <div class="clear"></div>
+                        </li>
+                    </ul>
+                    <ul class="pj_area_data_details ui-switchable-panel" style="display: none;">
+                        <!--鼠标划上去后，要有个li的背景变绿色效果，增加li的"pj_area_data_item_active"就行-->
+                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                            <b></b>
+                            <a class="pjadt_location" href="/city/mon/aqi/太仓/太仓市监测站.html" title="查看西溪详细数据">太仓市监测站</a>
+                            <span class="pjadt_aqi">135<i class=""></i></span>
+                            <span class="pjadt_quality"><em class="pjadt_quality_bglevel_3">轻度污染</em></span>
+                            <a class="pjadt_wuranwu" href="/news/388.html" title="臭氧1小时" target="_blank">臭氧1小时</a>
+                            <span class="pjadt_pm25">22 <em>μg/m³</em><i class=""></i></span>
+                            <span class="pjadt_pm10">69 <em>μg/m³</em><i class=""></i></span>
+                            <div class="clear"></div>
+                        </li>
+                        <li class="pj_area_data_item pj_area_data_item_darkbg">
+                            <b></b>
+                            <a class="pjadt_location" href="/city/mon/aqi/太仓/科教新城实小.html" title="查看西溪详细数据">科教新城实小</a>
+                            <span class="pjadt_aqi">141<i class=""></i></span>
+                            <span class="pjadt_quality"><em class="pjadt_quality_bglevel_3">轻度污染</em></span>
+                            <a class="pjadt_wuranwu" href="/news/388.html" title="臭氧1小时" target="_blank">臭氧1小时</a>
+                            <span class="pjadt_pm25">20 <em>μg/m³</em><i class=""></i></span>
+                            <span class="pjadt_pm10">61 <em>μg/m³</em><i class=""></i></span>
+                            <div class="clear"></div>
+                        </li>
+                    </ul>
 
-</body>
-</html>
+                </div>
+            </div>
+
+        </div>
+        <!--曲线图-->
+        <div class="panel_graph ui-switchable" data-widget-cid="widget-2">
+            <div class="pg_area ui-switchable-content">
+                <div class="pg_area_tab ui-switchable-nav">
+                    <a class="tab_24h current ui-switchable-trigger" href="javascript:void(0)">空气质量指数变化趋势<i></i></a>
+                    <div class="clear"></div>
+                </div>
+                <!--曲线图从这里开始,放到这里-->
+                <div id="pg_content_24h" class="pg_content ui-switchable-panel"
+                     style="background-color: rgba(0, 0, 0, 0); cursor: default;" _echarts_instance_="1494657809789">
+                    <div style="position: relative; overflow: hidden; width: 978px; height: 310px;">
+                        <div width="978" height="310" data-zr-dom-id="bg"
+                             style="position: absolute; left: 0px; top: 0px; width: 978px; height: 310px; user-select: none;"></div>
+                        <canvas width="978" height="310" data-zr-dom-id="0"
+                                style="position: absolute; left: 0px; top: 0px; width: 978px; height: 310px; user-select: none;"></canvas>
+                        <canvas width="978" height="310" data-zr-dom-id="1"
+                                style="position: absolute; left: 0px; top: 0px; width: 978px; height: 310px; user-select: none;"></canvas>
+                        <canvas width="978" height="310" data-zr-dom-id="2"
+                                style="position: absolute; left: 0px; top: 0px; width: 978px; height: 310px; user-select: none;"></canvas>
+                        <canvas width="978" height="310" data-zr-dom-id="3"
+                                style="position: absolute; left: 0px; top: 0px; width: 978px; height: 310px; user-select: none;"></canvas>
+                        <canvas width="978" height="310" data-zr-dom-id="4"
+                                style="position: absolute; left: 0px; top: 0px; width: 978px; height: 310px; user-select: none;"></canvas>
+                        <canvas width="978" height="310" data-zr-dom-id="8"
+                                style="position: absolute; left: 0px; top: 0px; width: 978px; height: 310px; user-select: none;"></canvas>
+                        <canvas width="978" height="310" data-zr-dom-id="_zrender_hover_"
+                                style="position: absolute; left: 0px; top: 0px; width: 978px; height: 310px; user-select: none;"></canvas>
+                        <div style="position: absolute; display: none; border-style: solid; white-space: nowrap; transition: left 0.4s, top 0.4s; background-color: rgba(0, 0, 0, 0.7); border-width: 0px; border-color: rgb(51, 51, 51); border-radius: 4px; color: rgb(255, 255, 255); text-decoration: none; font-family: Arial, Verdana, sans-serif; font-size: 12px; line-height: 18px; font-style: normal; font-weight: normal; padding: 5px; left: 517px; top: 210px;">
+                            13日03时<br>美国标准 : 123<br>中国标准 : 71
+                        </div>
+                    </div>
+                </div>
+                <div id="pg_content_30d" class="pg_content ui-switchable-panel"
+                     style="background-color: rgba(0, 0, 0, 0); display: none;" _echarts_instance_="1494657809790">
+                    <div style="position: relative; overflow: hidden; width: 978px; height: 300px;">
+                        <div width="978" height="300" data-zr-dom-id="bg"
+                             style="position: absolute; left: 0px; top: 0px; width: 978px; height: 300px; user-select: none;"></div>
+                        <canvas width="978" height="300" data-zr-dom-id="0"
+                                style="position: absolute; left: 0px; top: 0px; width: 978px; height: 300px; user-select: none;"></canvas>
+                        <canvas width="978" height="300" data-zr-dom-id="1"
+                                style="position: absolute; left: 0px; top: 0px; width: 978px; height: 300px; user-select: none;"></canvas>
+                        <canvas width="978" height="300" data-zr-dom-id="2"
+                                style="position: absolute; left: 0px; top: 0px; width: 978px; height: 300px; user-select: none;"></canvas>
+                        <canvas width="978" height="300" data-zr-dom-id="3"
+                                style="position: absolute; left: 0px; top: 0px; width: 978px; height: 300px; user-select: none;"></canvas>
+                        <canvas width="978" height="300" data-zr-dom-id="4"
+                                style="position: absolute; left: 0px; top: 0px; width: 978px; height: 300px; user-select: none;"></canvas>
+                        <canvas width="978" height="300" data-zr-dom-id="8"
+                                style="position: absolute; left: 0px; top: 0px; width: 978px; height: 300px; user-select: none;"></canvas>
+                        <canvas width="978" height="300" data-zr-dom-id="_zrender_hover_"
+                                style="position: absolute; left: 0px; top: 0px; width: 978px; height: 300px; user-select: none;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
