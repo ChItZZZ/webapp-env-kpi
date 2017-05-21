@@ -510,20 +510,6 @@ angular.module('app')
                     ]
                 }
             })
-            .state('app.energy_electric', {
-                url: '^/energy_electric',
-                controller: "energydianlicontroller",
-                templateUrl: 'views/details/energy/energydianli.html',
-                resolve: {
-                    deps: ['$ocLazyLoad',
-                        function ($ocLazyLoad) {
-                            return $ocLazyLoad.load([
-                                'scripts/controllers/energy/energydianli.js'
-                            ]);
-                        }
-                    ]
-                }
-            })
             .state('app.finance', {
                 url: '^/economic/finance',
                 controller: "financeCtrl",
@@ -827,21 +813,6 @@ angular.module('app')
                         function ($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 'scripts/controllers/wellbeing/PopulationStructurePrediction.js'
-                            ]);
-                        }
-                    ]
-                }
-            })
-
-            .state('app.dianlixiaohaoBI', {
-                url: '^/dianlixiaohaoBI',
-                controller: "dianlixiaohaoBIcontroller",
-                templateUrl: 'views/details/dianlixiaohaoBI.html',
-                resolve: {
-                    deps: ['$ocLazyLoad',
-                        function ($ocLazyLoad) {
-                            return $ocLazyLoad.load([
-                                'scripts/controllers/energy/dianlixiaohaoBI.js'
                             ]);
                         }
                     ]
