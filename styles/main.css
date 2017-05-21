@@ -107,7 +107,6 @@ body {
   height: 150px;
   background-repeat: no-repeat;
   background-position: 100% 50%;
-  background-image: url(../images/common/ioc-ec-banner.png);
 }
 .scroll-content-container {
   overflow: auto;
@@ -866,6 +865,7 @@ body {
   border-bottom: 2px solid #20a0ff;
 }
 .details-content .nav-tabs li a {
+  border:1px solid #ddd;
   font-size: 14px;
   color: #8391a5;
   background-color: #fff;
