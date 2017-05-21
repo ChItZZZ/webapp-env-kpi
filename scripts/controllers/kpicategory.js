@@ -161,7 +161,7 @@ angular.module('app').controller('KPICategoryCtrl',
 
 				var spanData = JSOG.parse(JSOG.stringify(spanData.data));
 
-				console.log('spandata',spanData);
+				console.log('kpi和目标数据',spanData);
 
 				//highchart 趋势图表数据
 				cls.chart.title = kpi.name;

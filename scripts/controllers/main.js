@@ -26,8 +26,10 @@ angular.module('app').controller('MainCtrl',
             domain['selectedCategory'] = domain.data[selectedOffset];
             pageCategory(domain['selectedCategory']);
           };
+          //去除电力资源
+          kpis.filter(findEnvData)[0].data.splice(3,1)
           $scope.domainMap = kpis.filter(findEnvData);
-          $rootScope.domainMap = kpis;
+          $rootScope.domainMap = kpis.filter(findEnvData);
         });
   };
   function findEnvData(obj) {
