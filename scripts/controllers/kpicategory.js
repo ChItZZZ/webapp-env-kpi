@@ -21,9 +21,12 @@ angular.module('app').controller('KPICategoryCtrl',
 
 				//通过blueMap获得当前category所属domain下的categories，显示在导航窗口
 				$scope.blueMap = kpiService.getBlueMap();
+
+				console.log('bluemap',$scope.blueMap);
 				for (var i = 0; i < $scope.blueMap.length; i++) {
 					if ($scope.blueMap[i].name == $scope.domainName) {
 						$scope.categories = $scope.blueMap[i].categories.slice(0,3);
+						console.log($scope.categories);
 						break;
 					}
 				}
