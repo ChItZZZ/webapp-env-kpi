@@ -23,7 +23,7 @@ angular.module('app').controller('KPICategoryCtrl',
 				$scope.blueMap = kpiService.getBlueMap();
 				for (var i = 0; i < $scope.blueMap.length; i++) {
 					if ($scope.blueMap[i].name == $scope.domainName) {
-						$scope.categories = $scope.blueMap[i].categories;
+						$scope.categories = $scope.blueMap[i].categories.slice(0,3);
 						break;
 					}
 				}

@@ -17,20 +17,21 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-            <div class="row">
-            <div class="col-md-12">
-            <div class="panel panel-primary kpi-nav-panel">
-            <div class="panel-heading">导航窗口</div>
-            <div class="panel-body" style="min-height: 200px;">
-            <div class="nav-item" ng-repeat="tab in categories" ui-sref="app.kpicategory({categoryId:tab.id})">
-            <p class="nav-item-title">
-            <a  style="color: white">{{tab.name}}</a>
-            </p>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-primary kpi-nav-panel">
+                            <div class="panel-heading">导航窗口</div>
+                            <div class="panel-body" style="min-height: 200px;">
+                                <div class="nav-item" ng-repeat="tab in categories"
+                                     ui-sref="app.kpicategory({categoryId:tab.id})">
+                                    <p class="nav-item-title">
+                                        <a style="color: white">{{tab.name}}</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-9">
                 <div class="home-container">
@@ -105,7 +106,7 @@
                                                 </div>
                                                 <div class="ioc-panel-desc">
                                                     <!--<p class="ioc-panel-desc-title">-->
-                                                        <!--<img src="/images/common/titles/one-sentence.png"/>-->
+                                                    <!--<img src="/images/common/titles/one-sentence.png"/>-->
                                                     <!--</p>-->
                                                     <!-- <p class="ioc-panel-desc-body" ng-bind-html="class.data[class.select_index].description"></p>
                                                   -->
