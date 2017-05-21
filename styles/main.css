@@ -293,7 +293,7 @@ body {
   color: black;
   font-size: 14px;
   border-bottom: 1px solid darkgrey;
-  padding: 18px 34px;
+  padding: 14px 34px;
 }
 .navbar-ioc .navbar-nav > li .dropdown-menu a:hover{
   background-color: rgba(0,0,0,.7);
@@ -1096,4 +1096,10 @@ table td.t-gray {
 
 .hover-tr:hover{
   cursor:pointer;
+}
+
+
+。tr-kpistatus{
+  text-align: center;
+
 }

@@ -87,7 +87,7 @@
                                     <tbody>
                                     <tr ng-repeat="kpi in domain.selectedCategory.page_data | orderBy:'sortOrder'">
                                         <td class="tr-kpiname">{{kpi.name}}</td>
-                                        <td class="tr-kpistatus">
+                                        <td class="tr-kpistatus" style="text-align: center">
                                             <label class="label {{kpi.data.status | kpiStatusClass}} status">{{
                                                 kpi.data.status | kpiStatusText}}</label>
 
