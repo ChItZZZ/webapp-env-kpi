@@ -47,52 +47,7 @@
                                             {{class.name}}指标
                                             <span class="glyphicon glyphicon-question-sign pull-right"></span>
                                         </div>
-                                        <div class="panel-body">
-                                            <div class="ioc-panel-table">
-                                                <table class="table table-bordered table-hover kpi-table">
-                                                    <thead class="ioc-thead">
-                                                    <tr>
-                                                        <th style="width:30%;">关键业绩指标(KPI)名称</th>
-                                                        <th style="">当前状态</th>
-                                                        <th style="text-align:center;border-right:none;">KPI值</th>
-                                                        <!-- <th style="border-left:none;"></th> -->
-                                                        <th>数据来源</th>
-                                                        <!-- <th style="text-align:center;">更新频率</th>
-                                                      -->
-                                                        <th>统计时间</th>
-
-                                                        <!-- <th>操作</th> -->
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-
-                                                    <tr ng-repeat="kpi in class.dacharta | orderBy:'sortOrder'"
-                                                        ng-click="changeKPI(class,kpi)" class="hover-tr">
-                                                        <td class="tr-kpiname">{{kpi.name}}</td>
-                                                        <td class="tr-kpistatus">
-                                                            <label class="label {{kpi.data.status | kpiStatusClass}} status">{{
-                                                                kpi.data.status | kpiStatusText}}</label>
-                                                            <span ng-bind-html=""></span>
-                                                        </td>
-                                                        <td class="tr-kpicolor"
-                                                            style="text-align:center; border-right:none;">
-                                                            <span class="kpi-value">{{kpi | unit_trans}}</span>
-                                                        </td>
-                                                        <!-- <td style="border-left:none;"> <i class="ioc-icon ioc-icon-green"></i>
-                                                        </td> -->
-                                                        <td class="tr-kpidepartment">{{kpi.department.name}}</td>
-                                                        <!-- <td style="text-align:center;">{{ kpi.type | kpiType }}</td>
-                                                      -->
-                                                        <td class="tr-kpidate">{{kpi | applyDateFilter }}</td>
-
-                                                        <!--  <td>
-                                                           <label class="btn {{kpi.data.status | kpiStatusClass}} status" style="color: white"
-                                                                                                          ng-click="changeKPI(class,kpi)">查看走势</label>
-                                                         </td> -->
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                        <div class="panel-body" style="padding-top: 40px">
                                             <div class="col-md-4">
                                                 <div class="panel-operation">
                                                     <div class="btn-group">
@@ -107,11 +62,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="ioc-panel-desc">
-                                                    <!--<p class="ioc-panel-desc-title">-->
-                                                    <!--<img src="/images/common/titles/one-sentence.png"/>-->
-                                                    <!--</p>-->
-                                                    <!-- <p class="ioc-panel-desc-body" ng-bind-html="class.data[class.select_index].description"></p>
-                                                  -->
                                                     <div ng-if="class.data[class.select_index].kpiStatus.status != 'nodata'">
                                                         <p>
                                                             {{ class.curExplain.date }}{{class.curKpi.name}} KPI 值为
