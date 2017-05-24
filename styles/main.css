@@ -1107,3 +1107,12 @@ table td.t-gray {
   text-align: center;
 
 }
+.config-user{
+  display: flex;
+  justify-content: space-around;
+}
+.config-user .btn{
+  margin-left: 18px;
+  flex: 1;
+
+}

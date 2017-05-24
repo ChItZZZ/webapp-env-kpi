@@ -65,10 +65,10 @@
 											<td style="width:80px">
 												<h5>{{user.name}}</h5>
 											</td>
-											<td>
+											<td class="config-user" >
 												<button  class="btn btn-primary" ng-click="userQuery(user)">查看</button>
-												<button  class="btn btn-primary" ng-click="userModify(user)">修改</button>
-												<button  class="btn btn-primary" ng-click="userDelConfirmPre(user)">删除</button>
+												<button  class="btn btn-success" ng-click="userModify(user)">修改</button>
+												<button  class="btn btn-danger" ng-click="userDelConfirmPre(user)">删除</button>
 												<button  class="btn btn-primary" ng-click="userIdResetPassword(user)">密码重置</button>
 												<button  class="btn btn-primary" ng-click="userDepartmentConfig(user)">用户组配置</button>
 											</td>
@@ -126,10 +126,10 @@
 											<td style="width:180px">
 												<h5>{{formatDateTime(department.modify_time)}}</h5>
 											</td>
-											<td>
+											<td class="config-user">
 												<button  class="btn btn-primary" ng-click="departmentQuery(department)">查看</button>
-												<button  class="btn btn-primary" ng-click="departmentModify(department)">修改</button>
-												<button  class="btn btn-primary" ng-click="departmentDelConfirmPre(department)">删除</button>
+												<button  class="btn btn-success" ng-click="departmentModify(department)">修改</button>
+												<button  class="btn btn-danger" ng-click="departmentDelConfirmPre(department)">删除</button>
 											</td>
 										</tr>
 									</tbody>
