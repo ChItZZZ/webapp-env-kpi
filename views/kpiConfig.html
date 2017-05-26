@@ -61,10 +61,10 @@
 									<td  style="width:180px">
 										<h5>{{kpi.description}}</h5>
 									</td>
-									<td>
+									<td class="config-user">
 										<button class="btn btn-primary" ng-click="kpiQuery(kpi)">查看</button>
-										<button class="btn btn-primary" ng-click="kpiModify(kpi)">修改</button>
-										<button class="btn btn-primary" ng-click="kpiDelConfirmPre(kpi)">删除</button>
+										<button class="btn btn-success" ng-click="kpiModify(kpi)">修改</button>
+										<button class="btn btn-danger" ng-click="kpiDelConfirmPre(kpi)">删除</button>
 										<button class="btn btn-primary" ng-click="kpiTargetYearSelect(kpi)">目标值</button>
 										<button class="btn btn-primary" ng-click="kpiScope(kpi)">区间设置</button>
 										<button class="btn btn-primary" ng-click="kpiDepartmentConfig(kpi)">局设置</button>
