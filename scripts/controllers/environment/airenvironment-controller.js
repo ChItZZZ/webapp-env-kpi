@@ -1432,7 +1432,6 @@ angular.module('app').controller('AirEnvironmentCtrl', function($scope, kpiDetai
 				index_pm25: airQualityTempOne.pm25,
 				index_pm10: airQualityTempOne.pm10,
 				index_so2: airQualityTempOne.so2,
-				index_no2: airQualityTempOne.no2,
 				index_co: airQualityTempOne.co,
 				index_o3: airQualityTempOne.o3,
 				index_level: airQualityTempOne.level,

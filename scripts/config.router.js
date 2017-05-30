@@ -609,9 +609,9 @@ angular.module('app')
                 }
             })
             .state('app.keqiangIndex', {
-                url: '^/economic/bi/kqIndex',
+                url: '^/economic/tj.bi/kqIndex',
                 controller: "KeQiangIndexCtrl",
-                templateUrl: 'views/bi/keqiangindex.html',
+                templateUrl: 'views/tj.bi/keqiangindex.html',
                 resolve: {
                     deps: ['$ocLazyLoad',
                         function ($ocLazyLoad) {
@@ -807,7 +807,7 @@ angular.module('app')
             .state('app.PopulationStructurePrediction', {
                 url: '^/DetailPlanBorn/PopulationStructurePrediction',
                 controller: "PopulationStructurePredictionController",
-                templateUrl: 'views/bi/PopulationStructurePrediction.html',
+                templateUrl: 'views/tj.bi/PopulationStructurePrediction.html',
                 resolve: {
                     deps: ['$ocLazyLoad',
                         function ($ocLazyLoad) {
