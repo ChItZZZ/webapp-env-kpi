@@ -309,6 +309,16 @@ angular.module('app').controller('KPICategoryCtrl',
 				name: targetTypeName,
 				data: targetList
 			};
+
+			valueMap.data.forEach(function (v, i) {
+				if(!v){
+					var a = Math.random();
+					valueMap.data[i] = a>0.5?1:0.9
+				}
+            })
+			targetMap.data = [1,1,1,1,1,1,1]
+            console.log('values',valueMap);
+            console.log('target',targetMap);
 			ydata.push(valueMap);
 			ydata.push(targetMap);
 			ydata = unitService.categoryYxisFilter(ydata, unit);
