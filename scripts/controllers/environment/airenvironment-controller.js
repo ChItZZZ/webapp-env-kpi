@@ -1364,15 +1364,19 @@ angular.module('app').controller('AirEnvironmentCtrl', function($scope, kpiDetai
 		airQualityMarkerArr = [];
 		var hourOne = data.data[0].hour;
 		airQualityCurrentTimeList = [];
+		airQualityCurrentTimeList.push('05-31');
+		var prefix = '06-0'
 
-		for (var i = 0; i < 12; i++) {
-			if (hourOne == 24) {
-				airQualityCurrentTimeList.push('0时');
-				hourOne = 1;
-			} else {
-				airQualityCurrentTimeList.push(parseInt(hourOne) + '时');
-				hourOne = parseInt(hourOne) + 1;
-			}
+		for (var i = 1; i <= 6; i++) {
+			// if (hourOne == 24) {
+			// 	airQualityCurrentTimeList.push('0时');
+			// 	hourOne = 1;
+			// } else {
+			// 	airQualityCurrentTimeList.push(parseInt(hourOne) + '时');
+			// 	hourOne = parseInt(hourOne) + 1;
+			// }
+			airQualityCurrentTimeList.push(prefix+i);
+
 		}
 		for (var i = 0; i < data.data.length / 12; i++) {
 			var index_aqiList = [];
@@ -1487,6 +1491,8 @@ angular.module('app').controller('AirEnvironmentCtrl', function($scope, kpiDetai
 		$scope.airQualityOptions.currentNo2LineOption.options.xAxis.categories = airQualityCurrentTimeList;
 		$scope.airQualityOptions.currentCoLineOption.options.xAxis.categories = airQualityCurrentTimeList;
 		$scope.airQualityOptions.currentO3LineOption.options.xAxis.categories = airQualityCurrentTimeList;
+
+		console.log('timelist',airQualityCurrentTimeList);
 
 
 
