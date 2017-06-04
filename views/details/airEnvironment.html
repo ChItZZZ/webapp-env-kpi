@@ -52,10 +52,7 @@
                                 </div>
                                 <hr>
                                 <div ng-show="mapTableStatus.airQuality">
-                                    <h5 align="right" style="padding-top: 0px">(更新时间:&nbsp{{airQualityCurrentDateTime.year + '-'
-                                            + airQualityCurrentDateTime.month + '-'
-                                            + airQualityCurrentDateTime.day + ' '
-                                            + airQualityCurrentDateTime.hour + '时'}}&nbsp&nbsp单位：μg/m³)</h5>
+                                    <h5 align="right" style="padding-top: 0px">(更新时间:&nbsp2017-06-06&nbsp23时&nbsp&nbsp单位：μg/m³)</h5>
                                     <table class="table table-hover table-responsive" style="font-size:14px;margin-bottom:0px">
                                         <tr>
                                             <th style="width:30%">监测点</th>
@@ -70,12 +67,26 @@
                                 </div>
                                 <div style="overflow: auto; overflow-x:hidden;height: 340px" ng-show="mapTableStatus.airQuality">
                                     <table class="table table-hover table-responsive" style="font-size:14px">
-                                        <tr ng-repeat="airQualityOne in airQualityMarkerList">
-                                            <td style="width:30%">{{airQualityOne.monitor}}</td>
-                                            <td style="width:14%"><span>{{airQualityOne.index_aqi}}</span></td>
-                                            <td style="width:14%"><span>{{airQualityOne.index_pm25}}</span></td>
-                                            <td style="width:14%"><span>{{airQualityOne.index_pm10}}</span></td>
-                                            <td style="width:14%"><span>{{airQualityOne.index_so2}}</span></td>
+                                        <!--<tr ng-repeat="airQualityOne in airQualityMarkerList">-->
+                                            <!--<td style="width:30%">{{airQualityOne.monitor}}</td>-->
+                                            <!--<td style="width:14%"><span>{{airQualityOne.index_aqi}}</span></td>-->
+                                            <!--<td style="width:14%"><span>{{airQualityOne.index_pm25}}</span></td>-->
+                                            <!--<td style="width:14%"><span>{{airQualityOne.index_pm10}}</span></td>-->
+                                            <!--<td style="width:14%"><span>{{airQualityOne.index_so2}}</span></td>-->
+                                        <!--</tr>-->
+                                        <tr>
+                                            <td style="width:30%">太仓市监测点</td>
+                                            <td style="width:14%"><span>39</span></td>
+                                            <td style="width:14%"><span>21</span></td>
+                                            <td style="width:14%"><span>26</span></td>
+                                            <td style="width:14%"><span>11</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:30%">科教新城实验小学监测点</td>
+                                            <td style="width:14%"><span>43</span></td>
+                                            <td style="width:14%"><span>23</span></td>
+                                            <td style="width:14%"><span>78</span></td>
+                                            <td style="width:14%"><span>16</span></td>
                                         </tr>
                                     </table>
 
@@ -107,9 +118,7 @@
                                     </table>
                                 </div> -->
                                 <div ng-show="mapTableStatus.wasteAir">
-                                    <h5 align="right" style="padding-top: 0px">(更新时间:&nbsp{{wasteAirCurrentDateTime.year + '-'
-                                        + wasteAirCurrentDateTime.month + '-'
-                                        + wasteAirCurrentDateTime.day }})</h5>
+                                    <h5 align="right" style="padding-top: 0px">(更新时间:&nbsp2017-06-06&nbsp23时)</h5>
                                     <table class="table table-hover table-responsive" style="font-size:14px;margin-bottom:0px">
                                         <tr>
                                             <th style="width:20%">企业</th>
