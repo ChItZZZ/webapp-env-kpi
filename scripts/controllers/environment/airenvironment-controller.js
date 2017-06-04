@@ -1364,6 +1364,11 @@ angular.module('app').controller('AirEnvironmentCtrl', function($scope, kpiDetai
 		airQualityMarkerArr = [];
 		var hourOne = data.data[0].hour;
 		airQualityCurrentTimeList = [];
+		// airQualityCurrentTimeList.push('05-26');
+		// airQualityCurrentTimeList.push('05-27');
+		// airQualityCurrentTimeList.push('05-28');
+		// airQualityCurrentTimeList.push('05-29');
+		// airQualityCurrentTimeList.push('05-30');
 		airQualityCurrentTimeList.push('05-31');
 		var prefix = '06-0'
 
@@ -1468,21 +1473,25 @@ angular.module('app').controller('AirEnvironmentCtrl', function($scope, kpiDetai
 			firstElement: airQualityCurrentArr[0].index_firstElementList[11]
 		};
 
-		$scope.airQualityOptions.aqiOption.series[0].data = [parseFloat(airQualityCurrentArr[0].index_aqiList.slice(0)[11])];
-		$scope.airQualityOptions.pm25Option.series[0].data = [parseFloat(airQualityCurrentArr[0].index_pm25List.slice(0)[11])];
-		$scope.airQualityOptions.pm10Option.series[0].data = [parseFloat(airQualityCurrentArr[0].index_pm10List.slice(0)[11])];
-		$scope.airQualityOptions.so2Option.series[0].data = [parseFloat(airQualityCurrentArr[0].index_so2List.slice(0)[11])];
-		$scope.airQualityOptions.no2Option.series[0].data = [parseFloat(airQualityCurrentArr[0].index_no2List.slice(0)[11])];
-		$scope.airQualityOptions.coOption.series[0].data = [parseFloat(airQualityCurrentArr[0].index_coList.slice(0)[11])];
-		$scope.airQualityOptions.o3Option.series[0].data = [parseFloat(airQualityCurrentArr[0].index_o3List.slice(0)[11])];
+		$scope.airQualityOptions.aqiOption.series[0].data = [60];
+		$scope.airQualityOptions.pm25Option.series[0].data = [23];
+		$scope.airQualityOptions.pm10Option.series[0].data = [32];
+		$scope.airQualityOptions.so2Option.series[0].data = [20];
+		$scope.airQualityOptions.no2Option.series[0].data = [30];
+		$scope.airQualityOptions.coOption.series[0].data = [1];
+		$scope.airQualityOptions.o3Option.series[0].data = [10];
 
-		$scope.airQualityOptions.currentAqiLineOption.series[0].data = airQualityCurrentArr[0].index_aqiList.slice(0);
-		$scope.airQualityOptions.currentPm25LineOption.series[0].data = airQualityCurrentArr[0].index_pm25List.slice(0);
-		$scope.airQualityOptions.currentPm10LineOption.series[0].data = airQualityCurrentArr[0].index_pm10List.slice(0);
-		$scope.airQualityOptions.currentSo2LineOption.series[0].data = airQualityCurrentArr[0].index_so2List.slice(0);
-		$scope.airQualityOptions.currentNo2LineOption.series[0].data = airQualityCurrentArr[0].index_no2List.slice(0);
-		$scope.airQualityOptions.currentCoLineOption.series[0].data = airQualityCurrentArr[0].index_coList.slice(0);
-		$scope.airQualityOptions.currentO3LineOption.series[0].data = airQualityCurrentArr[0].index_o3List.slice(0);
+		console.log('aqi-circle',airQualityCurrentArr[0].index_aqiList.slice(0)[11]);
+
+		$scope.airQualityOptions.currentAqiLineOption.series[0].data = [80,90,36,111,92,80,55];
+		$scope.airQualityOptions.currentPm25LineOption.series[0].data = [20,33,60,45,21,40,25];
+		$scope.airQualityOptions.currentPm10LineOption.series[0].data = [30,50,66,57,30,50,32];
+		$scope.airQualityOptions.currentSo2LineOption.series[0].data = [10,12,13,21,16,17,22];
+		$scope.airQualityOptions.currentNo2LineOption.series[0].data = [20,20,30,32,60,30,32];
+		$scope.airQualityOptions.currentCoLineOption.series[0].data = [2,1,1,1,1,1,1];
+		$scope.airQualityOptions.currentO3LineOption.series[0].data = [1,1,1,1,10,11,10];
+
+		console.log('aqi-line-list',airQualityCurrentArr[0].index_aqiList);
 
 		$scope.airQualityOptions.currentAqiLineOption.options.xAxis.categories = airQualityCurrentTimeList;
 		$scope.airQualityOptions.currentPm25LineOption.options.xAxis.categories = airQualityCurrentTimeList;
