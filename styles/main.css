@@ -290,11 +290,12 @@ body {
   color: black;
   font-size: 14px;
   border-bottom: 1px solid darkgrey;
+  background-color: #3d3a39;
+  color: white;
   padding: 14px 34px;
 }
 .navbar-ioc .navbar-nav > li .dropdown-menu a:hover{
-  background-color: rgb(0,0,0);
-  color: white;
+  background-color: black;
 }
 .nav-pannel {
   position: absolute;
