@@ -20,7 +20,9 @@ angular.module('app').controller('KpiConfigCtrl', function($localStorage, $scope
 	var pageDepartmentInit = function() {
 		var promiseDepartment = qService.tokenHttpGet(departmentFactory.departmentAll, null);
 		promiseDepartment.then(function(data) {
-			$scope.departmentArr = data.data;
+			$scope.departmentArr = data.data.filter(function (v, i) {
+				return v.name == "环保局"||"国土局"||"水利局"
+            });
 			$scope.departmentArr.sort(sortDepartment);
 			$scope.departmentFactAll = angular.copy($scope.departmentArr);
 			$scope.departmentArr.unshift({
@@ -48,7 +50,11 @@ angular.module('app').controller('KpiConfigCtrl', function($localStorage, $scope
 	var pageKpiInit = function() {
 		var promise = qService.tokenHttpGet(kpiConfigFactory.kpiAll, null);
 		promise.then(function(data) {
-			$scope.kpiArr = data.data;
+			$scope.kpiArr = data.data.filter(function (v, i) {
+				return v.department.name == '环保局'||
+						v.department.name == '国土局' ||
+						v.department.name == '水利局';
+            });
 		});
 	};
 	pageKpiInit();
